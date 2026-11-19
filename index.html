@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>케이카 마이카(MyCar) 상세페이지 리뉴얼 3안 비교 | K Car e-biz실 데이터랩</title>
-  <meta name="description" content="K Car C2C Design System 기반 마이카(MyCarMain) 모바일 상세페이지 디자인 리뉴얼 3가지 타입 인터랙티브 비교 프로토타입" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>K Car 마이카(MyCar) 상세 리뉴얼 3가지 버전 | K Car 디자인 가이드 준수</title>
   <style>
+    /* ==========================================================================
+       1:1 K Car Production Typography & Design System Tokens
+       (Spoqa Han Sans Neo + Official K Car Color/Border/Badge/Card Rules)
+       ========================================================================== */
     @font-face {
       font-family: 'Spoqa Han Sans Neo';
       font-weight: 700;
@@ -33,908 +34,1576 @@
            url('../assets/fonts/SpoqaHanSansNeo-Regular.woff2') format('woff2');
     }
 
-    * {
+    :root {
+      --kc-red: #b70f28;
+      --kc-red-bright: #da2631;
+      --kc-red-badge: #f01d29;
+      --kc-red-soft: #fdeeef;
+      --kc-red-bg: #fff9f9;
+
+      --kc-gray1: #000000;
+      --kc-gray2: #16171d;
+      --kc-gray3: #54555a;
+      --kc-gray4: #82848b;
+      --kc-gray5: #999ea1;
+      --kc-gray6: #b0b2bd;
+      --kc-gray7: #d8dee8;
+      --kc-gray8: #e8e8ee;
+      --kc-gray9: #f1f1f4;
+      --kc-gray10: #f2f2f2;
+      --kc-gray11: #f6f8fa;
+      --kc-white: #ffffff;
+
+      --kc-green: #086f4f;
+      --kc-green-bright: #02b260;
+      --kc-green-bg: #ddf2e5;
+      --kc-blue: #0073fd;
+      --kc-blue-bg: #e5eefc;
+      --kc-warn: #fa6400;
+      --kc-warn-bg: #ffebd6;
+
+      --font-kcar: 'Spoqa Han Sans Neo', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    }
+
+    *, *::before, *::after {
       box-sizing: border-box;
-      font-family: 'Spoqa Han Sans Neo', 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
-      letter-spacing: -0.03em;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      padding: 0;
-      background-color: #070b14;
-      background-image:
-        radial-gradient(ellipse 70% 40% at 15% 0%, rgba(56, 189, 248, 0.10), transparent 55%),
-        radial-gradient(ellipse 60% 40% at 85% 5%, rgba(183, 15, 40, 0.14), transparent 50%);
-      color: #f8fafc;
-      min-height: 100vh;
+      font-family: var(--font-kcar);
+      background-color: #ebedf2;
+      color: var(--kc-gray2);
+      letter-spacing: -0.5px;
       -webkit-font-smoothing: antialiased;
       word-break: keep-all;
     }
 
-    .phone-frame {
-      width: 375px;
-      min-width: 375px;
-      border-radius: 36px;
-      border: 8px solid #1E2433;
-      box-shadow: 0 24px 54px -12px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.12);
-      overflow: hidden;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      height: 785px;
+    button, input, select {
+      font-family: var(--font-kcar);
+      letter-spacing: -0.5px;
+      border: none;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
     }
 
-    .phone-scroll {
+    /* ==========================================================================
+       Top Presentation Control Bar (Clean K Car White/Gray Workbench)
+       ========================================================================== */
+    .workbench-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #ffffff;
+      border-bottom: 1px solid var(--kc-gray7);
+      padding: 12px 20px;
+      box-shadow: 0 2px 8px rgba(22, 23, 29, 0.05);
+    }
+
+    .wb-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .wb-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Official K Car Vector Logo */
+    .kcar-logo {
+      display: inline-block;
+      width: 68px;
+      height: 18px;
+      flex-shrink: 0;
+      background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='31' fill='none' viewBox='0 0 120 31'%3E%3Cpath fill='%23da2631' d='M51.694 14.822 61.851 3.087h-6.636L46.873 13.09V3.087h-5.646v24.847h5.647V17.052l6.445 8.378a6.4 6.4 0 0 0 5.065 2.504h3.852l-10.548-13.12zM107.073 24.086v-7.272c0-5.24-2.356-7.682-7.414-7.682-2.058 0-4.062.573-5.951 1.712l-.21.13.027.382c.04.655.392 1.248.94 1.603a1.97 1.97 0 0 0 1.802.178 7.9 7.9 0 0 1 2.884-.574c2.675 0 3.799 1.058 3.9 3.753-1.063-.048-1.902-.048-3.013-.048-3.162 0-8.51 1.303-8.51 6.194 0 3.739 2.477 5.888 6.797 5.888 2.675 0 4.34-1.269 5.221-2.217a2.67 2.67 0 0 0 2.518 1.808h1.212l-.061-.457c-.088-.676-.135-1.788-.135-3.391m-4.029-4.544v1.153c0 2.6-1.706 4.216-4.455 4.216-1.15 0-2.85-.777-2.85-2.456 0-2.585 3.54-2.974 5.653-2.974.339 0 .671.02 1.009.034.217.014.427.02.643.027M119.604 9.364c-.65-.13-1.164-.232-2.132-.232-1.659 0-3.352.982-4.401 2.483a3.11 3.11 0 0 0-2.919-2.067h-.711v18.393h4.022v-8.405c0-4.107 1.707-6.768 4.354-6.768.63 0 1.178.096 1.625.28l.555.232V9.446zM89.828 22.367l-.339.164s-.514.245-.697.327c-1.327.594-3.345 1.044-4.692 1.044-4.632 0-7.997-3.527-7.997-8.391s3.359-8.392 8.159-8.392c.711 0 1.415.082 2.085.246a2.98 2.98 0 0 0 2.458-.484 3 3 0 0 0 1.233-2.204l.06-.73-.487-.218c-1.625-.717-3.426-1.071-5.518-1.071-7.658 0-13.007 5.24-13.007 12.737s5.092 12.941 12.973 12.941c2.282 0 4.15-.3 5.566-.893l.487-.205-.298-4.885zM29.336.004C22.173.59 16.458 6.342 15.883 13.559c-.055.662.494 1.215 1.15 1.215H29.39a1.15 1.15 0 0 0 1.151-1.16V1.164c0-.662-.548-1.215-1.205-1.16'/%3E%3Cpath fill='%23b2b1b3' d='M15.883 17.441c.582 7.218 6.29 12.976 13.453 13.556.657.055 1.206-.498 1.206-1.16v-12.45a1.15 1.15 0 0 0-1.152-1.16H17.035c-.657 0-1.206.553-1.151 1.214'/%3E%3Cpath fill='%23da2631' d='M13.284.229H1.158C.518.229 0 .751 0 1.396v12.218c0 .644.518 1.167 1.158 1.167h12.126c.64 0 1.158-.523 1.158-1.167V1.396c0-.645-.518-1.167-1.158-1.167'/%3E%3Cpath fill='%23b2b1b3' d='M13.284 16.234H1.158C.518 16.234 0 16.756 0 17.4V29.62c0 .644.518 1.167 1.158 1.167h12.126c.64 0 1.158-.523 1.158-1.167V17.401c0-.645-.518-1.167-1.158-1.167'/%3E%3C/svg%3E") no-repeat 50% 50% / 100%;
+    }
+
+    .wb-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--kc-gray2);
+    }
+
+    .wb-sub {
+      font-size: 12px;
+      color: var(--kc-gray4);
+      margin-top: 1px;
+    }
+
+    .wb-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .seg-group {
+      display: inline-flex;
+      background: var(--kc-gray9);
+      padding: 3px;
+      border-radius: 6px;
+      border: 1px solid var(--kc-gray8);
+    }
+
+    .seg-btn {
+      padding: 6px 11px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--kc-gray3);
+      border-radius: 4px;
+      transition: all 0.15s;
+    }
+
+    .seg-btn.is-active {
+      background: #fff;
+      color: var(--kc-gray2);
+      font-weight: 700;
+      box-shadow: 0 1px 3px rgba(22, 23, 29, 0.1);
+    }
+
+    .seg-btn.is-red.is-active {
+      background: var(--kc-red);
+      color: #fff;
+    }
+
+    /* ==========================================================================
+       6 Core Pillars Summary Strip
+       ========================================================================== */
+    .main-wrap {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 18px 20px 48px;
+    }
+
+    .pillars-banner {
+      background: #fff;
+      border: 1px solid var(--kc-gray7);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .pillar-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .p-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      height: 24px;
+      padding: 0 9px;
+      border-radius: 4px;
+      background: var(--kc-gray11);
+      border: 1px solid var(--kc-gray8);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--kc-gray2);
+    }
+
+    .p-tag strong {
+      color: var(--kc-red);
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       3-Column Mobile Device Showcase Grid
+       ========================================================================== */
+    .phones-row {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      padding-bottom: 16px;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    @media (min-width: 1260px) {
+      .phones-row {
+        justify-content: center;
+      }
+    }
+
+    .ver-col {
+      width: 392px;
+      min-width: 392px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .ver-col.is-hidden {
+      display: none;
+    }
+
+    .ver-head-card {
+      background: #fff;
+      border: 1px solid var(--kc-gray7);
+      border-radius: 8px;
+      padding: 12px 15px;
+    }
+
+    .ver-badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+
+    .ver-badge {
+      display: inline-flex;
+      align-items: center;
+      height: 20px;
+      padding: 0 7px;
+      border-radius: 3px;
+      background: var(--kc-red);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .ver-badge.dark { background: var(--kc-gray2); }
+    .ver-badge.blue { background: var(--kc-blue); }
+
+    .ver-head-tit {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--kc-gray2);
+      margin-bottom: 3px;
+    }
+
+    .ver-head-desc {
+      font-size: 12px;
+      line-height: 17px;
+      color: var(--kc-gray3);
+    }
+
+    /* ==========================================================================
+       Authentic 1:1 K Car Mobile Frame (.kcar-phone)
+       ========================================================================== */
+    .kcar-phone {
+      width: 392px;
+      height: 820px;
+      background: #ffffff;
+      border-radius: 28px;
+      border: 6px solid #22252e;
+      box-shadow: 0 16px 36px rgba(22, 23, 29, 0.16);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* 1:1 K Car Mobile Header (52px) */
+    .kc-app-hdr {
+      height: 52px;
+      padding: 0 18px;
+      background: #fff;
+      border-bottom: 1px solid var(--kc-gray8);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      z-index: 30;
+    }
+
+    .kc-hdr-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .kc-back-ico {
+      width: 22px;
+      height: 22px;
+      margin-left: -5px;
+      background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E%3Cpath fill='%2316171d' d='M14.515 4.2a.686.686 0 1 1 .97.97L8.655 12l6.83 6.83a.686.686 0 1 1-.97.97l-7.314-7.315a.686.686 0 0 1 0-.97z'/%3E%3C/svg%3E") no-repeat 50% / 20px 20px;
+    }
+
+    .kc-hdr-tit {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--kc-gray2);
+    }
+
+    .kc-garage-pill {
+      height: 28px;
+      padding: 0 10px;
+      border-radius: 100px;
+      border: 1px solid var(--kc-gray7);
+      background: #fff;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--kc-gray2);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .kc-garage-pill strong {
+      color: var(--kc-red);
+      font-weight: 700;
+    }
+
+    /* Scroll Body */
+    .kc-scroll {
       flex: 1;
       overflow-y: auto;
       overflow-x: hidden;
+      background: #fff;
       scroll-behavior: smooth;
     }
+    .kc-scroll::-webkit-scrollbar { width: 4px; }
+    .kc-scroll::-webkit-scrollbar-thumb { background: #d8dee8; border-radius: 99px; }
 
-    .phone-scroll::-webkit-scrollbar {
-      width: 4px;
-    }
-    .phone-scroll::-webkit-scrollbar-thumb {
-      background: rgba(130, 132, 139, 0.35);
-      border-radius: 999px;
+    /* Signature K Car 8px Section Divider */
+    .kc-divider {
+      height: 8px;
+      background: var(--kc-gray9);
+      border-top: 1px solid var(--kc-gray8);
     }
 
-    .no-scrollbar::-webkit-scrollbar {
+    /* Garage Switcher Bar (Non-overlapping, Clean Studio Thumbnails!) */
+    .garage-bar {
       display: none;
+      background: var(--kc-gray11);
+      border-bottom: 1px solid var(--kc-gray8);
+      padding: 10px 16px;
+      gap: 8px;
+      overflow-x: auto;
     }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
+    .garage-bar.is-open {
+      display: flex;
+    }
+    .garage-chip {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 10px 5px 6px;
+      border-radius: 6px;
+      background: #fff;
+      border: 1px solid var(--kc-gray7);
+      text-align: left;
+    }
+    .garage-chip.is-active {
+      border-color: var(--kc-red);
+      background: var(--kc-red-bg);
+    }
+    .garage-chip img {
+      width: 38px;
+      height: 24px;
+      object-fit: contain;
+    }
+    .garage-chip .g-no {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--kc-gray2);
+      line-height: 15px;
+    }
+    .garage-chip .g-nm {
+      font-size: 10px;
+      color: var(--kc-gray4);
     }
 
-    .z100 { box-shadow: 0 2px 4px 0 rgba(22,23,29,0.04), 0 0 1px 0 rgba(22,23,29,0.14); }
-    .z200 { box-shadow: 0 4px 12px -2px rgba(22,23,29,0.08), 0 0 1px 0 rgba(22,23,29,0.12); }
-
-    @keyframes pulseSoft {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.55; }
+    /* Sticky Anchor / Sub-Tab Bar (Exact K Car Underline Tab Style) */
+    .kc-tabs {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: #fff;
+      border-bottom: 1px solid var(--kc-gray8);
+      display: flex;
+      padding: 0 12px;
     }
-    .pulse-dot {
-      animation: pulseSoft 2s infinite ease-in-out;
+
+    .kc-tab {
+      flex: 1;
+      height: 42px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--kc-gray4);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+    }
+
+    .kc-tab.is-active {
+      color: var(--kc-gray2);
+      font-weight: 700;
+    }
+
+    .kc-tab.is-active::after {
+      content: '';
+      position: absolute;
+      left: 8px;
+      right: 8px;
+      bottom: 0;
+      height: 2px;
+      background: var(--kc-red);
+    }
+
+    /* Section Container */
+    .kc-sec {
+      padding: 20px 18px;
+    }
+
+    .kc-sec-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .kc-sec-tit {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 22px;
+      color: var(--kc-gray2);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .kc-sec-more {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--kc-gray4);
+    }
+
+    /* Official K Car Square/Small Labels */
+    .kc-badge-red {
+      display: inline-flex;
+      align-items: center;
+      height: 20px;
+      padding: 0 6px;
+      border-radius: 2px;
+      background: var(--kc-red-badge);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .kc-badge-cert {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      height: 20px;
+      padding: 0 6px;
+      border-radius: 2px;
+      background: var(--kc-green-bg);
+      color: var(--kc-green);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .kc-badge-gray {
+      display: inline-flex;
+      align-items: center;
+      height: 20px;
+      padding: 0 6px;
+      border-radius: 2px;
+      background: var(--kc-gray9);
+      color: var(--kc-gray3);
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    .kc-badge-blue {
+      display: inline-flex;
+      align-items: center;
+      height: 20px;
+      padding: 0 6px;
+      border-radius: 2px;
+      background: var(--kc-blue-bg);
+      color: var(--kc-blue);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    /* Korean License Plate Mini Component */
+    .plate-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      height: 24px;
+      padding: 0 8px;
+      border: 1.5px solid var(--kc-gray2);
+      border-radius: 4px;
+      background: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--kc-gray2);
+    }
+    .plate-box::before {
+      content: 'KOR';
+      font-size: 8px;
+      font-weight: 700;
+      color: #fff;
+      background: #1d4ed8;
+      padding: 1px 3px;
+      border-radius: 2px;
+    }
+
+    /* Studio Real Car Podium Box */
+    .studio-podium {
+      position: relative;
+      background: linear-gradient(180deg, #f5f7fa 0%, #ffffff 78%);
+      border: 1px solid var(--kc-gray8);
+      border-radius: 8px;
+      padding: 12px 14px 10px;
+      text-align: center;
+      margin: 12px 0;
+    }
+
+    .studio-podium img.hero-car-img {
+      width: 236px;
+      height: 112px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* 4-Cell Spec Summary Strip */
+    .spec-strip-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--kc-gray8);
+      border-radius: 6px;
+      background: var(--kc-gray11);
+      overflow: hidden;
+    }
+
+    .spec-strip-4 > div {
+      padding: 9px 6px;
+      text-align: center;
+      border-right: 1px solid var(--kc-gray8);
+    }
+    .spec-strip-4 > div:last-child { border-right: none; }
+    .spec-lbl { font-size: 11px; color: var(--kc-gray4); margin-bottom: 2px; }
+    .spec-val { font-size: 12.5px; font-weight: 700; color: var(--kc-gray2); }
+
+    /* K Car Standard Buttons */
+    .kc-btn-primary {
+      width: 100%;
+      height: 44px;
+      border-radius: 6px;
+      background: var(--kc-red);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .kc-btn-primary:hover { background: #9d0a22; }
+
+    .kc-btn-outline {
+      width: 100%;
+      height: 44px;
+      border-radius: 6px;
+      border: 1px solid var(--kc-gray7);
+      background: #fff;
+      color: var(--kc-gray2);
+      font-size: 13.5px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .kc-btn-outline:hover { background: var(--kc-gray11); }
+
+    /* Maintenance Progress Rows */
+    .maint-row {
+      padding: 10px 12px;
+      border: 1px solid var(--kc-gray8);
+      border-radius: 6px;
+      background: #fff;
+      margin-bottom: 8px;
+    }
+    .maint-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+    .maint-bar {
+      height: 6px;
+      border-radius: 99px;
+      background: var(--kc-gray9);
+      overflow: hidden;
+    }
+    .maint-fill {
+      height: 100%;
+      border-radius: 99px;
+    }
+
+    /* Valuation Dual Box (K Car Direct vs C2C Direct) */
+    .val-dual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .val-card {
+      border: 1px solid var(--kc-gray7);
+      border-radius: 8px;
+      padding: 12px;
+      background: #fff;
+      position: relative;
+    }
+    .val-card.is-highlight {
+      border-color: var(--kc-red);
+      background: var(--kc-red-bg);
+    }
+    .val-price {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--kc-gray2);
+      margin: 4px 0 2px;
+    }
+    .val-card.is-highlight .val-price {
+      color: var(--kc-red);
+    }
+
+    /* Budget Filter Pills (Exact K Car .kcar-stroke-pill) */
+    .budget-pills {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      margin-bottom: 12px;
+    }
+    .budget-pills::-webkit-scrollbar { display: none; }
+
+    .kc-pill {
+      height: 32px;
+      padding: 0 12px;
+      border-radius: 100px;
+      border: 1px solid var(--kc-gray7);
+      background: #fff;
+      color: var(--kc-gray3);
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .kc-pill.is-active {
+      border-color: var(--kc-red);
+      background: var(--kc-red);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    /* Trade-In K Car Listing Cards (Real Studio Car + Price Diff Badge!) */
+    .trade-grid-2col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 10px;
+    }
+
+    .trade-card {
+      border: 1px solid var(--kc-gray8);
+      border-radius: 6px;
+      overflow: hidden;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .trade-thumb {
+      position: relative;
+      height: 104px;
+      background: linear-gradient(180deg, #f4f6f9 0%, #ffffff 100%);
+      border-bottom: 1px solid var(--kc-gray9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+    }
+
+    .trade-thumb img {
+      max-width: 100%;
+      max-height: 84px;
+      object-fit: contain;
+    }
+
+    .trade-thumb .top-badge {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+    }
+
+    .trade-body {
+      padding: 9px 10px 11px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .trade-name {
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 17px;
+      color: var(--kc-gray2);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 34px;
+    }
+
+    .trade-meta {
+      font-size: 11px;
+      color: var(--kc-gray4);
+    }
+
+    .trade-price {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--kc-gray2);
+      margin-top: 2px;
+    }
+
+    .trade-diff {
+      margin-top: 3px;
+      padding: 4px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      text-align: center;
+    }
+    .trade-diff.zero {
+      background: var(--kc-green-bg);
+      color: var(--kc-green);
+    }
+    .trade-diff.plus {
+      background: var(--kc-red-soft);
+      color: var(--kc-red);
+    }
+
+    /* Horizontal Trade-In Card (for Version 2 & 3) */
+    .trade-row-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border: 1px solid var(--kc-gray8);
+      border-radius: 8px;
+      background: #fff;
+      margin-bottom: 8px;
+    }
+    .trade-row-card img {
+      width: 96px;
+      height: 60px;
+      object-fit: contain;
+      background: var(--kc-gray11);
+      border-radius: 6px;
+      padding: 4px;
+      flex-shrink: 0;
+    }
+
+    /* Partner Coupon Row */
+    .partner-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 11px 12px;
+      border: 1px solid var(--kc-gray8);
+      border-radius: 6px;
+      background: #fff;
+      margin-bottom: 8px;
+    }
+
+    .coupon-dl-btn {
+      height: 28px;
+      padding: 0 10px;
+      border-radius: 4px;
+      border: 1px solid var(--kc-red);
+      color: var(--kc-red);
+      background: var(--kc-red-bg);
+      font-size: 11.5px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .coupon-dl-btn.done {
+      border-color: var(--kc-gray6);
+      color: var(--kc-gray4);
+      background: var(--kc-gray9);
+    }
+
+    /* Care Reward Bonus Card */
+    .reward-card {
+      border: 1.5px solid var(--kc-gray2);
+      border-radius: 8px;
+      padding: 14px;
+      background: linear-gradient(180deg, #fff9f9 0%, #ffffff 100%);
+      margin-bottom: 12px;
+    }
+
+    /* Bottom Navigation Bar (1:1 K Car Mobile TabBar) */
+    .kc-tabbar {
+      height: 54px;
+      border-top: 1px solid var(--kc-gray8);
+      background: #fff;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      align-items: center;
+      text-align: center;
+      font-size: 10.5px;
+      color: var(--kc-gray4);
+      flex-shrink: 0;
+    }
+    .kc-tabbar .is-on {
+      color: var(--kc-red);
+      font-weight: 700;
+    }
+
+    /* Range Slider Styling */
+    input[type="range"].kc-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 99px;
+      background: var(--kc-gray8);
+      outline: none;
+    }
+    input[type="range"].kc-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--kc-red);
+      border: 2px solid #fff;
+      box-shadow: 0 2px 6px rgba(183, 15, 40, 0.35);
+      cursor: pointer;
+    }
+
+    /* Modal Bottom Sheet */
+    .sheet-backdrop {
+      display: none;
+      position: absolute;
+      inset: 0;
+      background: rgba(22, 23, 29, 0.52);
+      z-index: 50;
+      align-items: flex-end;
+    }
+    .sheet-backdrop.is-open {
+      display: flex;
+    }
+    .sheet-panel {
+      width: 100%;
+      max-height: 78%;
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 16px 16px 0 0;
+      padding: 18px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Studio Workbench Header -->
-  <header class="sticky top-0 z-50 bg-[#0b1120]/95 backdrop-blur-md border-b border-slate-800 px-5 py-3.5">
-    <div class="max-w-[1340px] mx-auto flex flex-wrap items-center justify-between gap-3">
-      <div class="flex items-center gap-3">
-        <span class="inline-flex items-center justify-center px-2.5 py-1 rounded-md text-xs font-extrabold text-white" style="background:#B70F28;">K Car</span>
+  <!-- Top Workbench Bar -->
+  <header class="workbench-bar">
+    <div class="wb-inner">
+      <div class="wb-brand">
+        <span class="kcar-logo" aria-label="K Car"></span>
         <div>
-          <div class="flex items-center gap-2">
-            <h1 class="text-[16px] font-bold text-white leading-tight m-0">마이카(MyCar) 상세페이지 디자인 리뉴얼 · 3가지 타입 비교</h1>
-            <span class="hidden sm:inline-block text-[11px] font-bold px-2 py-0.5 rounded-full bg-rose-500/15 text-rose-300 border border-rose-500/30">Design System v1.0</span>
-          </div>
-          <p class="text-xs text-slate-400 m-0 mt-0.5">실제 운영 데이터(BMW X5 xDrive 45e · 내 차고 3대 · 히스토리 7건) 기준 인터랙티브 UI/UX 목업</p>
+          <div class="wb-title">마이카(MyCar) 상세페이지 리뉴얼 · 3가지 버전 비교</div>
+          <div class="wb-sub">실사 차량 이미지 + K Car 네이티브 UI 가이드 유지 · 6대 핵심 기능(내차정보·관리·시세·갈아타기·제휴·매각우대) 완비</div>
         </div>
       </div>
 
-      <div class="flex flex-wrap items-center gap-2.5">
-        <!-- View Mode Switch -->
-        <div class="inline-flex rounded-lg border border-slate-700 bg-slate-900 p-0.5 text-xs">
-          <button id="btnViewCompare" onclick="setViewMode('compare')" class="px-3 py-1.5 rounded-md font-bold transition-all bg-[#B70F28] text-white">
-            3안 나란히 비교
-          </button>
-          <button id="btnViewSingle" onclick="setViewMode('single')" class="px-3 py-1.5 rounded-md font-medium text-slate-400 hover:text-white transition-all">
-            1안씩 집중 분석
-          </button>
+      <div class="wb-controls">
+        <!-- View Mode -->
+        <div class="seg-group">
+          <button type="button" id="btnModeAll" class="seg-btn is-red is-active" onclick="setLayoutMode('all')">3버전 한눈에 보기</button>
+          <button type="button" id="btnModeOne" class="seg-btn" onclick="setLayoutMode('one')">1버전씩 크게 보기</button>
         </div>
 
-        <!-- Single Type Selector -->
-        <div class="inline-flex rounded-lg border border-slate-700 bg-slate-900 p-0.5 text-xs">
-          <button onclick="selectType('A')" id="tabTypeA" class="px-2.5 py-1.5 rounded-md font-bold transition-all text-white bg-slate-800 shadow-sm">
-            Type A · 클린 자산형
-          </button>
-          <button onclick="selectType('B')" id="tabTypeB" class="px-2.5 py-1.5 rounded-md font-medium transition-all text-slate-400 hover:text-white">
-            Type B · 쇼룸 다크형
-          </button>
-          <button onclick="selectType('C')" id="tabTypeC" class="px-2.5 py-1.5 rounded-md font-medium transition-all text-slate-400 hover:text-white">
-            Type C · 스마트 케어형
-          </button>
+        <!-- Version Focus Selector -->
+        <div class="seg-group">
+          <button type="button" id="btnVer1" class="seg-btn is-active" onclick="focusVersion(1)">Ver 1 · 정통 올인원형</button>
+          <button type="button" id="btnVer2" class="seg-btn" onclick="focusVersion(2)">Ver 2 · 대차·시세 집중형</button>
+          <button type="button" id="btnVer3" class="seg-btn" onclick="focusVersion(3)">Ver 3 · 4-탭 분리형</button>
         </div>
 
-        <!-- Valuation Data State Toggle -->
-        <div class="inline-flex items-center rounded-lg border border-slate-700 bg-slate-900 p-0.5 text-xs">
-          <button id="btnPriceOn" onclick="setPriceState(true)" class="px-2.5 py-1.5 rounded-md font-bold transition-all bg-sky-500 text-slate-950">
-            시세 차트 있음
-          </button>
-          <button id="btnPriceOff" onclick="setPriceState(false)" class="px-2.5 py-1.5 rounded-md font-medium transition-all text-slate-400 hover:text-white">
-            시세 미제공 (X5 케이스)
-          </button>
+        <!-- Global Garage Switcher Shortcut -->
+        <div class="seg-group" title="등록된 내 차고 차량을 바꾸면 실사·시세·갈아타기 추천차가 모두 연동됩니다">
+          <button type="button" id="topCar0" class="seg-btn is-active" onclick="selectMyCar(0)">300라7716 (X5)</button>
+          <button type="button" id="topCar1" class="seg-btn" onclick="selectMyCar(1)">55도0589 (CLA)</button>
+          <button type="button" id="topCar2" class="seg-btn" onclick="selectMyCar(2)">46더1573 (그랜저)</button>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Main Workspace -->
-  <main class="max-w-[1340px] mx-auto px-5 py-6">
-
-    <!-- As-Is Pain Point Diagnosis Summary -->
-    <section class="mb-6 rounded-2xl border border-slate-800 bg-slate-900/75 p-4">
-      <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
-        <div class="flex items-center gap-2">
-          <span class="text-[11px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded bg-[#B70F28]/20 text-rose-300 border border-[#B70F28]/40">현행 m.kcar.com/sc/MyCar/MyCarMain 진단 및 공통 개선점</span>
-        </div>
-        <span class="text-xs text-slate-400">💡 각 모바일 화면 안의 <strong class="text-slate-200">내 차고(차량 변경) · 제원보기 · 탭 · 히스토리 필터 · 수리비 아코디언</strong>을 직접 클릭해 보세요.</span>
+  <main class="main-wrap">
+    <!-- 6 Functional Requirements Checklist Banner -->
+    <section class="pillars-banner">
+      <div class="pillar-tags">
+        <span class="p-tag"><strong>01</strong> 등록차량 실사·제원·이력</span>
+        <span class="p-tag"><strong>02</strong> 소모품·보험·검사 밀착관리</span>
+        <span class="p-tag"><strong>03</strong> 매각시세 (직영매입 vs 안심직거래)</span>
+        <span class="p-tag"><strong>04</strong> 추가금 0원 / 금액별 케이카 갈아타기</span>
+        <span class="p-tag"><strong>05</strong> 케이카 공식 제휴 관리·할인</span>
+        <span class="p-tag"><strong>06</strong> 관리이력 연동 매각 우대(+가산금)</span>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
-        <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800">
-          <div class="font-bold text-slate-100 mb-1">1. 다색 혼재 → K Car 토큰 통일</div>
-          <p class="text-slate-400 m-0 leading-relaxed">현행 크림슨·초록·핫핑크·적갈색 혼재를 <strong class="text-slate-200">Brand Red(#B70F28) + 표준 Semantic 컬러</strong>로 정돈</p>
-        </div>
-        <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800">
-          <div class="font-bold text-slate-100 mb-1">2. 내 차고 펼침 시 가림(Clipping) 해결</div>
-          <p class="text-slate-400 m-0 leading-relaxed">드롭다운 확장 시 차량명이 잘리던 현상을 <strong class="text-slate-200">인라인 차고 칩 / 푸시형 스위처</strong>로 개선</p>
-        </div>
-        <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800">
-          <div class="font-bold text-slate-100 mb-1">3. 시세 미제공 차량 브릿지 강화</div>
-          <p class="text-slate-400 m-0 leading-relaxed">단순 텍스트 박스 대신 <strong class="text-slate-200">방문견적 유도 + 당일 판매 혜택(+12만원)</strong> 맞춤 카드로 전환</p>
-        </div>
-        <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800">
-          <div class="font-bold text-slate-100 mb-1">4. 2,724px 롱스크롤 & 0건 필터 압축</div>
-          <p class="text-slate-400 m-0 leading-relaxed">하단에 숨겨진 정기검사·보증·보험 D-Day를 상단 요약화하고 <strong class="text-slate-200">0건 빈 카테고리</strong> 노이즈 제거</p>
-        </div>
-      </div>
+      <span style="font-size:12px;color:var(--kc-gray4);">💡 추가금 버튼/슬라이더와 정비 인증 미션을 직접 클릭해 테스트해 보세요.</span>
     </section>
 
-    <!-- Reusable SVG Car Templates -->
-    <svg class="hidden" aria-hidden="true">
-      <defs>
-        <g id="suv-illustration">
-          <ellipse cx="145" cy="96" rx="118" ry="10" fill="rgba(0,0,0,0.20)" />
-          <ellipse cx="145" cy="95" rx="92" ry="6" fill="rgba(0,0,0,0.28)" />
-          <path d="M28 72 C26 64, 30 53, 42 48 L66 43 L96 22 C104 17, 118 15, 142 15 L212 16 C228 16, 240 22, 249 35 L258 49 C263 54, 265 62, 263 72 L258 80 C256 83, 251 84, 244 84 L44 84 C35 84, 29 80, 28 72 Z" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2"/>
-          <path d="M32 76 L255 76 L252 83 L36 83 Z" fill="#1E293B"/>
-          <path d="M88 68 L202 68 L198 73 L92 73 Z" fill="#E2E8F0"/>
-          <path d="M92 74 L198 74" stroke="#0F172A" stroke-width="2.2" stroke-linecap="round"/>
-          <path d="M74 43 L100 24 C106 20, 116 19, 135 19 L206 20 C219 20, 229 24, 237 36 L242 43 Z" fill="#1E293B"/>
-          <path d="M142 19 L140 43" stroke="#0F172A" stroke-width="3.5"/>
-          <path d="M192 20 L195 43" stroke="#0F172A" stroke-width="3"/>
-          <path d="M80 41 L103 24 L136 23 L135 41 Z" fill="#334155"/>
-          <path d="M145 23 L189 23 L191 41 L144 41 Z" fill="#293548"/>
-          <path d="M108 15 L214 15" stroke="#64748B" stroke-width="2" stroke-linecap="round"/>
-          <path d="M28 56 C29 51, 34 49, 41 49 L45 49 L44 62 L29 61 Z" fill="#0F172A"/>
-          <rect x="29" y="51" width="6" height="9" rx="1.5" fill="#1E293B" stroke="#94A3B8" stroke-width="1"/>
-          <path d="M44 50 L66 48 L63 54 L45 55 Z" fill="#E0F2FE" stroke="#38BDF8" stroke-width="1"/>
-          <path d="M30 66 L52 65 L49 74 L31 74 Z" fill="#0F172A"/>
-          <path d="M251 45 L262 47 L261 54 L249 52 Z" fill="#DC2626"/>
-          <rect x="85" y="52" width="8" height="7" rx="1" fill="none" stroke="#CBD5E1" stroke-width="0.9"/>
-          <path d="M47 84 A24 24 0 0 1 95 84 Z" fill="#0F172A"/>
-          <path d="M193 84 A24 24 0 0 1 241 84 Z" fill="#0F172A"/>
-          <circle cx="71" cy="82" r="19" fill="#1E293B" stroke="#0F172A" stroke-width="2"/>
-          <circle cx="71" cy="82" r="13" fill="#94A3B8"/>
-          <circle cx="71" cy="82" r="9" fill="#334155"/>
-          <circle cx="71" cy="82" r="3.5" fill="#E2E8F0"/>
-          <path d="M71 69 L71 95 M58 82 L84 82 M62 73 L80 91 M80 73 L62 91" stroke="#CBD5E1" stroke-width="1.6"/>
-          <circle cx="217" cy="82" r="19" fill="#1E293B" stroke="#0F172A" stroke-width="2"/>
-          <circle cx="217" cy="82" r="13" fill="#94A3B8"/>
-          <circle cx="217" cy="82" r="9" fill="#334155"/>
-          <circle cx="217" cy="82" r="3.5" fill="#E2E8F0"/>
-          <path d="M217 69 L217 95 M204 82 L230 82 M208 73 L226 91 M226 73 L208 91" stroke="#CBD5E1" stroke-width="1.6"/>
-          <path d="M82 41 L91 38 L92 44 L83 45 Z" fill="#F8FAFC" stroke="#94A3B8" stroke-width="0.9"/>
-        </g>
-      </defs>
-    </svg>
+    <div class="phones-row">
 
-    <!-- Prototype Grid / Single Container -->
-    <div id="phonesWrapper" class="flex gap-7 overflow-x-auto pb-8 items-start justify-start xl:justify-center">
-
-      <!-- =========================================================
-           TYPE A: CLEAN LIGHT — ASSET & VALUATION CENTRIC
-      ========================================================== -->
-      <div id="colTypeA" class="flex flex-col items-center shrink-0">
-        <div class="w-[375px] mb-3.5 p-4 rounded-2xl border border-slate-800 bg-slate-900/90">
-          <div class="flex items-center justify-between mb-1.5">
-            <span class="text-[11px] font-extrabold px-2.5 py-0.5 rounded text-white" style="background:#B70F28;">TYPE A · 추천 표준안</span>
-            <span class="text-[11px] font-semibold text-slate-400">K Car C2C Light System</span>
+      <!-- ====================================================================
+           VERSION 1: K CAR STANDARD ALL-IN-ONE FEED (정통 섹션 피드 + 상단 앵커탭)
+           ==================================================================== -->
+      <div class="ver-col" id="verCol1">
+        <div class="ver-head-card">
+          <div class="ver-badge-row">
+            <span class="ver-badge">VERSION 1 · K Car 정통 피드형</span>
+            <span style="font-size:11px;color:var(--kc-gray4);">현행 케이카 UI 감성 100% 계승</span>
           </div>
-          <h2 class="text-[15px] font-bold text-white m-0">클린 라이트 · 자산/시세 대시보드형</h2>
-          <p class="text-xs text-slate-400 m-0 mt-1 leading-relaxed">
-            케이카 표준 화이트/그레이 기반에 핀테크 앱처럼 <strong class="text-slate-200">시세 가치 + 내차팔기 전환 + 2×2 케어 요약</strong>을 정돈한 가장 신뢰감 높은 타입
-          </p>
+          <div class="ver-head-tit">올인원 스크롤 + 스티키 앵커 네비게이션</div>
+          <p class="ver-head-desc">케이카 고객에게 가장 익숙한 화이트 섹션 &amp; 8px 디바이더 구조로, <strong>내 차 정보 → 관리 → 시세 → 갈아타기 → 제휴·매각우대</strong>가 한 흐름으로 이어지는 표준안</p>
         </div>
 
-        <div class="phone-frame" style="background:#F9FAFB; color:#16171D;">
-          <!-- Header A -->
-          <div class="bg-white border-b border-[#E8E8EE] px-4 pt-3 pb-2.5 sticky top-0 z-20">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <button class="w-7 h-7 flex items-center justify-center rounded-full hover:bg-[#F1F1F4] text-[#16171D]" aria-label="뒤로가기">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 18l-6-6 6-6"/></svg>
-                </button>
-                <span class="text-[18px] font-bold tracking-tight text-[#16171D]">마이카</span>
-              </div>
-              <div class="flex items-center gap-1.5">
-                <button onclick="toggleGarage('A')" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[12px] font-bold bg-[#F1F1F4] text-[#16171D] hover:bg-[#E8E8EE] transition">
-                  <span>내 차고</span>
-                  <span class="text-[#B70F28]">3</span>
-                  <svg id="garageArrowA" class="transition-transform" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-                </button>
-                <button class="w-7 h-7 flex items-center justify-center rounded-full hover:bg-[#F1F1F4] text-[#54555A]" aria-label="알림">
-                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-                </button>
-              </div>
+        <div class="kcar-phone">
+          <!-- App Header -->
+          <header class="kc-app-hdr">
+            <div class="kc-hdr-left">
+              <button type="button" class="kc-back-ico" aria-label="뒤로가기"></button>
+              <span class="kcar-logo"></span>
+              <span class="kc-hdr-tit" style="margin-left:2px;">마이카</span>
             </div>
-
-            <!-- Non-overlapping Inline Garage Pill Bar -->
-            <div id="garageDrawerA" class="hidden mt-2.5 pt-2.5 border-t border-[#F1F1F4]">
-              <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-0.5">
-                <button onclick="switchCar(0)" class="car-pill-0 shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-[#16171D] text-white">
-                  <span class="w-1.5 h-1.5 rounded-full bg-[#F01D29]"></span>300라 7716
-                </button>
-                <button onclick="switchCar(1)" class="car-pill-1 shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-[#F6F8FA] text-[#54555A] border border-[#E8E8EE]">
-                  55도 0589
-                </button>
-                <button onclick="switchCar(2)" class="car-pill-2 shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-[#F6F8FA] text-[#54555A] border border-[#E8E8EE]">
-                  46더 1573
-                </button>
-                <button class="shrink-0 inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-semibold text-[#B70F28] bg-[#FDEEEF]">
-                  + 차량추가
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Scrollable Content A -->
-          <div class="phone-scroll px-5 pt-4 pb-8 space-y-4">
-            <!-- Unified Hero + Valuation Card -->
-            <div class="bg-white rounded-2xl p-4 z100 border border-[#E8E8EE]">
-              <div class="flex items-start justify-between gap-2">
-                <div>
-                  <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-[#F1F1F4] text-[12px] font-bold text-[#16171D] mb-1.5">
-                    <span class="js-car-plate">300라 7716</span>
-                    <span class="text-[#82848B] font-normal">|</span>
-                    <span class="text-[#0B845F] js-car-fuel">PHEV</span>
-                  </div>
-                  <h3 class="text-[20px] font-bold text-[#16171D] leading-snug m-0 js-car-model">BMW X5 (G05)</h3>
-                  <p class="text-[13px] text-[#54555A] m-0 mt-0.5 js-car-trim">xDrive 45e M 스포츠 · 22년 3월식</p>
-                </div>
-                <button onclick="toggleSpecSheet(true)" class="text-[11px] font-semibold px-2.5 py-1 rounded-md bg-[#F6F8FA] text-[#54555A] border border-[#E8E8EE] hover:bg-[#E8E8EE] transition">
-                  제원보기 &gt;
-                </button>
-              </div>
-
-              <div class="my-2 flex justify-center bg-gradient-to-b from-[#F9FAFB] to-white rounded-xl py-2">
-                <svg width="240" height="88" viewBox="0 0 290 108">
-                  <use href="#suv-illustration" />
-                </svg>
-              </div>
-
-              <!-- Mileage Bar -->
-              <div class="flex items-center justify-between px-3 py-2.5 rounded-xl bg-[#F6F8FA] mb-3">
-                <div class="flex items-center gap-1.5">
-                  <span class="text-[13px] text-[#54555A] font-medium">예측 주행거리</span>
-                  <span class="inline-flex items-center justify-center w-4 h-4 rounded-full bg-[#D8DEE8] text-[10px] font-bold text-[#54555A]" title="최근 주행데이터 기반 예측치">?</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <strong class="text-[15px] font-bold text-[#16171D] js-car-km">103,503 km</strong>
-                  <button class="text-[12px] font-semibold text-[#0086FF] underline underline-offset-2">수정</button>
-                </div>
-              </div>
-
-              <!-- Valuation Sub-block -->
-              <div class="pt-3 border-t border-[#E8E8EE]">
-                <div class="price-on-view">
-                  <div class="flex items-baseline justify-between mb-2">
-                    <span class="text-[13px] font-bold text-[#16171D]">이달의 케이카 예상 시세</span>
-                    <span class="text-[11px] font-semibold text-[#B70F28] bg-[#FDEEEF] px-2 py-0.5 rounded-full">오늘 판매 시 최고가 구간</span>
-                  </div>
-                  <div class="flex items-end justify-between mb-3">
-                    <div>
-                      <div class="text-[24px] font-bold text-[#B70F28] leading-tight"><span class="js-car-price">6,420 ~ 6,850</span><span class="text-[16px] font-bold">만원</span></div>
-                      <div class="text-[12px] text-[#82848B] mt-0.5">6개월 뒤 약 <span class="text-[#DD1540] font-semibold">-290만원</span> 감가 예상</div>
-                    </div>
-                    <div class="flex items-end gap-2.5 h-12 pr-1">
-                      <div class="flex flex-col items-center gap-1">
-                        <div class="w-3.5 h-9 rounded-t bg-[#B70F28]"></div>
-                        <span class="text-[10px] font-bold text-[#B70F28]">현재</span>
-                      </div>
-                      <div class="flex flex-col items-center gap-1">
-                        <div class="w-3.5 h-7 rounded-t bg-[#D8DEE8]"></div>
-                        <span class="text-[10px] text-[#82848B]">6개월</span>
-                      </div>
-                      <div class="flex flex-col items-center gap-1">
-                        <div class="w-3.5 h-5 rounded-t bg-[#E8E8EE]"></div>
-                        <span class="text-[10px] text-[#82848B]">1년후</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="price-off-view hidden">
-                  <div class="rounded-xl bg-[#FFF9F9] border border-[#FDEEEF] p-3 mb-3">
-                    <div class="flex items-center gap-1.5 mb-1">
-                      <span class="text-[11px] font-bold px-1.5 py-0.5 rounded bg-[#B70F28] text-white">맞춤 산정 대상</span>
-                      <span class="text-[13px] font-bold text-[#16171D]">전문 평가사 견적이 필요한 모델이에요</span>
-                    </div>
-                    <p class="text-[12px] text-[#54555A] m-0 leading-relaxed">
-                      수입 PHEV 모델은 배터리 컨디션·옵션에 따라 시세 차이가 커요. 무료 방문견적으로 <strong>당일 판매 +12만원 혜택</strong>까지 받아보세요.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="grid grid-cols-2 gap-2">
-                  <button class="py-2.5 px-3 rounded-xl text-white font-bold text-[13px] transition shadow-sm" style="background:#B70F28;">
-                    내차팔기 무료견적
-                  </button>
-                  <button class="py-2.5 px-3 rounded-xl bg-white border border-[#B0B2BD] text-[#16171D] font-bold text-[13px] hover:bg-[#F6F8FA] transition">
-                    안심직거래 등록
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- 2x2 Smart Status Bento Grid -->
-            <div>
-              <div class="flex items-center justify-between mb-2">
-                <h4 class="text-[16px] font-bold text-[#16171D] m-0">내 차 케어 브리핑</h4>
-                <span class="text-[12px] text-[#82848B]">점검 필요 <strong class="text-[#DD1540]">1건</strong></span>
-              </div>
-              <div class="grid grid-cols-2 gap-2.5">
-                <div class="bg-white rounded-xl p-3.5 border border-[#FDEEEF] z100">
-                  <div class="flex items-center justify-between mb-1.5">
-                    <span class="text-[12px] font-medium text-[#54555A]">자동차 보험</span>
-                    <span class="text-[11px] font-bold px-1.5 py-0.5 rounded bg-[#FDEEEF] text-[#DD1540]">만료예정</span>
-                  </div>
-                  <div class="text-[15px] font-bold text-[#16171D]">삼성화재</div>
-                  <div class="text-[12px] text-[#82848B] mt-0.5">2026.04 만기 갱신</div>
-                </div>
-
-                <div class="bg-white rounded-xl p-3.5 border border-[#E8E8EE] z100">
-                  <div class="flex items-center justify-between mb-1.5">
-                    <span class="text-[12px] font-medium text-[#54555A]">교통 미납 내역</span>
-                    <span class="text-[11px] font-bold px-1.5 py-0.5 rounded bg-[#E5EEFC] text-[#0086FF]">즉시조회</span>
-                  </div>
-                  <div class="text-[15px] font-bold text-[#16171D]">과태료·하이패스</div>
-                  <div class="text-[12px] text-[#0086FF] font-medium mt-0.5">미납 원클릭 조회 &gt;</div>
-                </div>
-
-                <div class="bg-white rounded-xl p-3.5 border border-[#E8E8EE] z100">
-                  <div class="flex items-center justify-between mb-1.5">
-                    <span class="text-[12px] font-medium text-[#54555A]">법정정기검사</span>
-                    <span class="text-[11px] font-bold px-1.5 py-0.5 rounded bg-[#DDF2E5] text-[#0B845F]">D-526</span>
-                  </div>
-                  <div class="text-[15px] font-bold text-[#16171D]">2028.04.27</div>
-                  <div class="text-[12px] text-[#82848B] mt-0.5">검사 예약 안내 &gt;</div>
-                </div>
-
-                <div class="bg-white rounded-xl p-3.5 border border-[#E8E8EE] z100">
-                  <div class="flex items-center justify-between mb-1.5">
-                    <span class="text-[12px] font-medium text-[#54555A]">제조사 보증</span>
-                    <span class="text-[11px] font-bold px-1.5 py-0.5 rounded bg-[#F1F1F4] text-[#54555A]">유효</span>
-                  </div>
-                  <div class="text-[15px] font-bold text-[#16171D]">96,497km 남음</div>
-                  <div class="w-full h-1.5 bg-[#F1F1F4] rounded-full mt-2 overflow-hidden">
-                    <div class="h-full bg-[#0086FF] rounded-full" style="width:52%;"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Clean History Timeline -->
-            <div class="bg-white rounded-2xl p-4 border border-[#E8E8EE] z100">
-              <div class="flex items-center justify-between mb-3">
-                <h4 class="text-[16px] font-bold text-[#16171D] m-0">내 차 히스토리 <span class="text-[#B70F28]">7</span></h4>
-                <span class="text-[12px] text-[#54555A] bg-[#F6F8FA] px-2 py-1 rounded-md border border-[#E8E8EE]">최신순 ▾</span>
-              </div>
-
-              <div class="flex gap-1.5 overflow-x-auto no-scrollbar pb-3 border-b border-[#F1F1F4]">
-                <button onclick="filterHistory('A','all',this)" class="hist-chip-A shrink-0 px-3 py-1.5 rounded-full text-[12px] font-bold bg-[#B70F28] text-white">전체 7</button>
-                <button onclick="filterHistory('A','ins',this)" class="hist-chip-A shrink-0 px-3 py-1.5 rounded-full text-[12px] font-medium bg-[#F6F8FA] text-[#54555A] border border-[#E8E8EE]">보험처리 3</button>
-                <button onclick="filterHistory('A','care',this)" class="hist-chip-A shrink-0 px-3 py-1.5 rounded-full text-[12px] font-medium bg-[#F6F8FA] text-[#54555A] border border-[#E8E8EE]">검사·보증 2</button>
-                <button onclick="filterHistory('A','origin',this)" class="hist-chip-A shrink-0 px-3 py-1.5 rounded-full text-[12px] font-medium bg-[#F6F8FA] text-[#54555A] border border-[#E8E8EE]">출고·생산 2</button>
-              </div>
-              <div class="text-[11px] text-[#02B260] font-medium py-2 flex items-center gap-1">
-                <span>✓ 미이행 리콜 0건 · 소유자 변경 0건 (무결점)</span>
-              </div>
-
-              <div class="space-y-3 mt-1">
-                <div data-cat="ins" class="hist-item-A pl-3 border-l-2 border-[#FDEEEF]">
-                  <div class="flex items-center justify-between">
-                    <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-[#FDEEEF] text-[#B70F28]">보험처리</span>
-                    <span class="text-[12px] text-[#82848B]">2024.07.22</span>
-                  </div>
-                  <div class="text-[14px] font-bold text-[#16171D] mt-1">내차 피해 2,145,242원 (상대차보험 수리)</div>
-                  <button onclick="toggleElement('accCostA')" class="text-[12px] text-[#54555A] mt-1 flex items-center gap-1 hover:text-[#16171D]">
-                    <span>수리비 상세내역 접기/열기</span>
-                    <span>▾</span>
-                  </button>
-                  <div id="accCostA" class="mt-2 p-2.5 rounded-lg bg-[#F9FAFB] border border-[#E8E8EE] text-[12px] space-y-1">
-                    <div class="flex justify-between"><span class="text-[#82848B]">부품</span><span class="font-medium text-[#16171D]">1,448,100원</span></div>
-                    <div class="flex justify-between"><span class="text-[#82848B]">공임</span><span class="font-medium text-[#16171D]">237,500원</span></div>
-                    <div class="flex justify-between"><span class="text-[#82848B]">도장</span><span class="font-medium text-[#16171D]">459,642원</span></div>
-                  </div>
-                </div>
-
-                <div data-cat="ins" class="hist-item-A pl-3 border-l-2 border-[#E8E8EE]">
-                  <div class="flex items-center justify-between">
-                    <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-[#FDEEEF] text-[#B70F28]">보험처리 외 1건</span>
-                    <span class="text-[12px] text-[#82848B]">2025.02 ~ 03</span>
-                  </div>
-                  <div class="text-[13px] font-medium text-[#54555A] mt-1">상대차 피해 수리 1,049,220원 / 1,017,950원</div>
-                </div>
-
-                <div data-cat="care" class="hist-item-A pl-3 border-l-2 border-[#E8E8EE]">
-                  <div class="flex items-center justify-between">
-                    <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-[#E5EEFC] text-[#0086FF]">보증 · 정기검사</span>
-                    <span class="text-[12px] text-[#82848B]">2027 ~ 2028</span>
-                  </div>
-                  <div class="text-[13px] font-medium text-[#54555A] mt-1">제조사 보증 만료(27.03) · 정기검사 도래(28.04)</div>
-                </div>
-
-                <div data-cat="origin" class="hist-item-A pl-3 border-l-2 border-[#E8E8EE]">
-                  <div class="flex items-center justify-between">
-                    <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-[#DDF2E5] text-[#0B845F]">신차출고</span>
-                    <span class="text-[12px] text-[#82848B]">2022.03.28</span>
-                  </div>
-                  <div class="text-[13px] font-medium text-[#54555A] mt-1">개인 신차 등록 (경기도 고양시 · 22.01 생산)</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Partner Benefit Cards -->
-            <div>
-              <h4 class="text-[16px] font-bold text-[#16171D] m-0 mb-2.5">마이카 오너 전용 혜택</h4>
-              <div class="flex gap-2.5 overflow-x-auto no-scrollbar pb-1">
-                <div class="shrink-0 w-[210px] bg-white rounded-xl p-3.5 border border-[#E8E8EE] z100">
-                  <span class="text-[11px] font-bold text-[#B70F28]">T-Station</span>
-                  <div class="text-[14px] font-bold text-[#16171D] mt-0.5">타이어 30% · 얼라이먼트 50%</div>
-                  <div class="text-[11px] text-[#82848B] mt-1">마이카 회원 전용 쿠폰 &gt;</div>
-                </div>
-                <div class="shrink-0 w-[210px] bg-white rounded-xl p-3.5 border border-[#E8E8EE] z100">
-                  <span class="text-[11px] font-bold text-[#0086FF]">갓차 · 울트라레인보우</span>
-                  <div class="text-[14px] font-bold text-[#16171D] mt-0.5">출장세차·세차용품 48% 할인</div>
-                  <div class="text-[11px] text-[#82848B] mt-1">온라인 최저가 보장 &gt;</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Collapsible Legal Notice -->
-            <button onclick="toggleElement('noticeA')" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-[#F1F1F4] text-[12px] font-medium text-[#54555A]">
-              <span>이용 및 시세/이력 조회 유의사항 (7건)</span>
-              <span>▾</span>
+            <button type="button" class="kc-garage-pill" onclick="toggleGarageBar(1)">
+              내 차고 <strong>3</strong> ▾
             </button>
-            <div id="noticeA" class="hidden text-[11px] text-[#82848B] space-y-1 px-2 leading-relaxed">
-              <p class="m-0">· 예상 시세는 케이카 기준 참고치이며 실제 견적은 내차팔기 홈서비스로 확인 가능합니다.</p>
-              <p class="m-0">· 보험이력(카히스토리) 및 국토부 리콜 정보는 제공기관 업데이트 주기에 따라 차이가 있을 수 있습니다.</p>
+          </header>
+
+          <!-- Garage Bar 1 -->
+          <div class="garage-bar" id="garageBar1"></div>
+
+          <!-- Sticky Section Anchor Tabs -->
+          <nav class="kc-tabs">
+            <button type="button" class="kc-tab is-active" onclick="scrollSec('scrollV1','v1SecInfo',this)">내차정보</button>
+            <button type="button" class="kc-tab" onclick="scrollSec('scrollV1','v1SecCare',this)">차량관리</button>
+            <button type="button" class="kc-tab" onclick="scrollSec('scrollV1','v1SecPrice',this)">예상시세</button>
+            <button type="button" class="kc-tab" onclick="scrollSec('scrollV1','v1SecTrade',this)">갈아타기</button>
+            <button type="button" class="kc-tab" onclick="scrollSec('scrollV1','v1SecBenefit',this)">제휴·우대</button>
+          </nav>
+
+          <!-- Scrollable Feed V1 -->
+          <div class="kc-scroll" id="scrollV1">
+
+            <!-- [1] 내 등록 차량 실사 & 기본 정보 -->
+            <section class="kc-sec" id="v1SecInfo">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                <span class="plate-box js-plate">300라 7716</span>
+                <span class="kc-badge-cert">✓ 마이카 관리인증 GOLD</span>
+              </div>
+
+              <h2 class="js-title" style="font-size:20px;font-weight:700;line-height:26px;">BMW X5 (G05)</h2>
+              <p class="js-sub" style="font-size:13px;color:var(--kc-gray3);margin-top:2px;">가솔린+전기 4WD xDrive 45e M 스포츠</p>
+
+              <!-- Real K Car Studio Cutout Photo -->
+              <div class="studio-podium">
+                <img src="./assets/images/mycar/my_x5_msport.png" alt="등록 차량 실사" class="hero-car-img js-hero-img" />
+                <div style="display:flex;justify-content:center;gap:6px;margin-top:8px;">
+                  <span class="kc-badge-gray">소유자변경 0회</span>
+                  <span class="kc-badge-gray">미이행 리콜 0건</span>
+                  <span class="kc-badge-blue js-warranty-tag">제조사보증 유효</span>
+                </div>
+              </div>
+
+              <!-- 4-Column Core Specs -->
+              <div class="spec-strip-4">
+                <div>
+                  <div class="spec-lbl">최초등록</div>
+                  <div class="spec-val js-year">22년 3월</div>
+                </div>
+                <div>
+                  <div class="spec-lbl">주행거리 ✎</div>
+                  <div class="spec-val js-km">103,503km</div>
+                </div>
+                <div>
+                  <div class="spec-lbl">연료/구동</div>
+                  <div class="spec-val js-fuel">PHEV·4WD</div>
+                </div>
+                <div>
+                  <div class="spec-lbl">보험이력</div>
+                  <div class="spec-val js-ins-cnt">3건 (경미)</div>
+                </div>
+              </div>
+
+              <button type="button" class="kc-btn-outline" style="height:38px;margin-top:10px;font-size:12.5px;" onclick="openDetailModal('V1')">
+                제원 · 내 차 히스토리 7건 상세보기 &gt;
+              </button>
+            </section>
+
+            <div class="kc-divider"></div>
+
+            <!-- [2] 내 차 밀착 관리 기능 (소모품 & 보험/검사/미납) -->
+            <section class="kc-sec" id="v1SecCare">
+              <div class="kc-sec-head">
+                <h3 class="kc-sec-tit">
+                  내 차 컨디션 · 소모품 관리
+                  <span class="kc-badge-red">점검 1</span>
+                </h3>
+                <span class="kc-sec-more">정비기록 등록 +</span>
+              </div>
+
+              <div class="maint-row" style="border-color:#ffd7da;background:var(--kc-red-bg);">
+                <div class="maint-top">
+                  <span><strong>엔진오일 · 오일필터</strong> <span class="kc-badge-red" style="margin-left:4px;">교체임박</span></span>
+                  <strong style="color:var(--kc-red);font-size:12px;">잔여 1,490km</strong>
+                </div>
+                <div class="maint-bar"><div class="maint-fill" style="width:88%;background:var(--kc-red);"></div></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-top:7px;font-size:11.5px;color:var(--kc-gray3);">
+                  <span>케이카 제휴 정비소 35% 할인 적용 가능</span>
+                  <strong style="color:var(--kc-red);">예약 시 우대금 +25만원 &gt;</strong>
+                </div>
+              </div>
+
+              <div class="maint-row">
+                <div class="maint-top">
+                  <span><strong>타이어 위치교환 · 편마모 점검</strong></span>
+                  <span style="color:var(--kc-gray3);font-size:12px;">잔여 6,800km</span>
+                </div>
+                <div class="maint-bar"><div class="maint-fill" style="width:48%;background:var(--kc-blue);"></div></div>
+              </div>
+
+              <!-- Insurance / Inspection / Fines 3-Box -->
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px;">
+                <div style="border:1px solid var(--kc-gray8);border-radius:6px;padding:9px 8px;background:#fff;">
+                  <div style="font-size:11px;color:var(--kc-gray4);">자동차보험</div>
+                  <div style="font-size:12.5px;font-weight:700;margin-top:2px;">삼성화재</div>
+                  <div style="font-size:11px;color:var(--kc-red);font-weight:700;">26.04 만기</div>
+                </div>
+                <div style="border:1px solid var(--kc-gray8);border-radius:6px;padding:9px 8px;background:#fff;">
+                  <div style="font-size:11px;color:var(--kc-gray4);">법정정기검사</div>
+                  <div style="font-size:12.5px;font-weight:700;margin-top:2px;">28.04.27</div>
+                  <div style="font-size:11px;color:var(--kc-green);font-weight:700;">D-526 여유</div>
+                </div>
+                <div style="border:1px solid var(--kc-gray8);border-radius:6px;padding:9px 8px;background:#fff;">
+                  <div style="font-size:11px;color:var(--kc-gray4);">과태료·미납</div>
+                  <div style="font-size:12.5px;font-weight:700;margin-top:2px;">0건 (완납)</div>
+                  <div style="font-size:11px;color:var(--kc-blue);font-weight:500;">실시간 조회 &gt;</div>
+                </div>
+              </div>
+            </section>
+
+            <div class="kc-divider"></div>
+
+            <!-- [3] 이 차를 팔면 얼마? (케이카 직영매입 vs 안심직거래 시세) -->
+            <section class="kc-sec" id="v1SecPrice">
+              <div class="kc-sec-head">
+                <h3 class="kc-sec-tit">지금 내 차를 팔면 얼마 받을까?</h3>
+                <span style="font-size:11px;color:var(--kc-green);font-weight:700;">관리우대 가산금 포함</span>
+              </div>
+
+              <div class="val-dual-grid">
+                <!-- K Car Home Service -->
+                <div class="val-card is-highlight">
+                  <span class="kc-badge-red">당일 빠른 매각</span>
+                  <div style="font-size:12px;font-weight:700;color:var(--kc-gray2);margin-top:6px;">내차팔기 홈서비스</div>
+                  <div class="val-price"><span class="js-kcar-sell">6,480</span><span style="font-size:14px;">만원</span></div>
+                  <div style="font-size:11px;color:var(--kc-red);font-weight:500;">기본시세 + 관리우대 <span class="js-bonus-txt">60</span>만원</div>
+                  <button type="button" class="kc-btn-primary" style="height:34px;font-size:12px;margin-top:10px;">무료 방문견적 신청</button>
+                </div>
+
+                <!-- K Car Safe Direct C2C -->
+                <div class="val-card">
+                  <span class="kc-badge-blue">수수료 0원 · 최고가</span>
+                  <div style="font-size:12px;font-weight:700;color:var(--kc-gray2);margin-top:6px;">케이카 안심직거래</div>
+                  <div class="val-price"><span class="js-c2c-sell">6,890</span><span style="font-size:14px;">만원</span></div>
+                  <div style="font-size:11px;color:var(--kc-blue);font-weight:700;">직영매입 대비 +<span class="js-c2c-gap">410</span>만원↑</div>
+                  <button type="button" class="kc-btn-outline" style="height:34px;font-size:12px;margin-top:10px;">직거래 셀프등록</button>
+                </div>
+              </div>
+
+              <!-- Simple 6M / 1Y Depreciation Forecast Bar -->
+              <div style="margin-top:10px;padding:10px 12px;border-radius:6px;background:var(--kc-gray11);display:flex;align-items:center;justify-content:space-between;font-size:12px;">
+                <span style="color:var(--kc-gray3);">📉 향후 감가 예측</span>
+                <span>6개월 후 <strong style="color:var(--kc-gray2);">-280만원</strong> · 1년 후 <strong style="color:var(--kc-red);">-560만원</strong></span>
+              </div>
+            </section>
+
+            <div class="kc-divider"></div>
+
+            <!-- [4] 내 차 팔고 케이카 갈아타기 (추가금 0원 ~ 금액별 직영차 추천) -->
+            <section class="kc-sec" id="v1SecTrade">
+              <div class="kc-sec-head" style="margin-bottom:6px;">
+                <h3 class="kc-sec-tit">내 차 팔고 케이카 갈아타기</h3>
+                <span class="kc-badge-red">대차 특가</span>
+              </div>
+              <p style="font-size:12.5px;color:var(--kc-gray3);margin-bottom:12px;">
+                내 차 예상 매각금(<strong style="color:var(--kc-red);"><span class="js-kcar-sell">6,480</span>만원</strong>) 기준으로 바꿀 수 있는 직영차예요.
+              </p>
+
+              <!-- Budget Pills -->
+              <div class="budget-pills" id="v1BudgetPills">
+                <button type="button" class="kc-pill is-active" onclick="filterTrade('v1', 0, this)">추가금 0원 (환급/동급)</button>
+                <button type="button" class="kc-pill" onclick="filterTrade('v1', 500, this)">+500만원 추가</button>
+                <button type="button" class="kc-pill" onclick="filterTrade('v1', 1500, this)">+1,500만원 추가</button>
+                <button type="button" class="kc-pill" onclick="filterTrade('v1', 3000, this)">+2,500만원 이상</button>
+              </div>
+
+              <!-- Real K Car Studio Trade-in Grid -->
+              <div class="trade-grid-2col" id="v1TradeGrid"></div>
+            </section>
+
+            <div class="kc-divider"></div>
+
+            <!-- [5 & 6] 관리이력 매각 우대 시스템 + 케이카 제휴 할인 -->
+            <section class="kc-sec" id="v1SecBenefit">
+              <div class="kc-sec-head">
+                <h3 class="kc-sec-tit">관리할수록 올라가는 매각 우대금</h3>
+                <span class="kc-badge-cert">K Car 특허 프로그램</span>
+              </div>
+
+              <!-- Care Score -> Sell Bonus Card -->
+              <div class="reward-card">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                  <div>
+                    <div style="font-size:11.5px;color:var(--kc-gray3);">내 차 케어 스코어 <strong class="js-care-score" style="color:var(--kc-gray2);">88점 (GOLD)</strong></div>
+                    <div style="font-size:18px;font-weight:700;color:var(--kc-red);margin-top:2px;">
+                      케이카 매각 시 +<span class="js-bonus-txt">60</span>만원 추가 지급!
+                    </div>
+                  </div>
+                  <img src="./assets/images/mycar/ico-ad-04.png" alt="" style="width:40px;height:40px;object-fit:contain;" />
+                </div>
+                <div class="maint-bar" style="margin:10px 0 8px;height:8px;">
+                  <div class="maint-fill js-score-bar" style="width:88%;background:linear-gradient(90deg,#b70f28,#f01d29);"></div>
+                </div>
+                <div style="font-size:11.5px;color:var(--kc-gray3);margin-bottom:10px;">
+                  ✓ 주행거리 인증(+15만) · ✓ 보험/검사 정상(+15만) · ✓ 무사고 유지(+30만) 확보됨
+                </div>
+                <button type="button" class="kc-btn-primary js-mission-btn" style="height:36px;font-size:12px;" onclick="completeCareMission()">
+                  + 제휴 엔진오일 정비 인증하고 +85만원(VIP)으로 올리기
+                </button>
+              </div>
+
+              <!-- K Car Official Partner Discounts -->
+              <div style="font-size:14px;font-weight:700;margin:16px 0 10px;">케이카 공식 제휴 관리 · 할인 쿠폰팩</div>
+
+              <div class="partner-row">
+                <div>
+                  <div style="display:flex;align-items:center;gap:5px;">
+                    <span class="kc-badge-red">정비연동 +25만</span>
+                    <strong style="font-size:13px;">스피드메이트 · 공임나라</strong>
+                  </div>
+                  <div style="font-size:12px;color:var(--kc-gray3);margin-top:3px;">수입/국산 엔진오일 세트 <strong>35% 할인</strong></div>
+                </div>
+                <button type="button" class="coupon-dl-btn" onclick="claimCoupon(this)">쿠폰받기</button>
+              </div>
+
+              <div class="partner-row">
+                <div>
+                  <div style="display:flex;align-items:center;gap:5px;">
+                    <span class="kc-badge-blue">정비연동 +15만</span>
+                    <strong style="font-size:13px;">T-Station (티스테이션)</strong>
+                  </div>
+                  <div style="font-size:12px;color:var(--kc-gray3);margin-top:3px;">타이어 <strong>30%</strong> · 휠얼라이먼트 <strong>50% 할인</strong></div>
+                </div>
+                <button type="button" class="coupon-dl-btn" onclick="claimCoupon(this)">쿠폰받기</button>
+              </div>
+
+              <div class="partner-row">
+                <div>
+                  <div style="display:flex;align-items:center;gap:5px;">
+                    <span class="kc-badge-gray">세차제휴</span>
+                    <strong style="font-size:13px;">갓차 출장세차 · 울트라레인보우</strong>
+                  </div>
+                  <div style="font-size:12px;color:var(--kc-gray3);margin-top:3px;">프리미엄 출장세차 <strong>45%</strong> · 세차용품 <strong>48% 할인</strong></div>
+                </div>
+                <button type="button" class="coupon-dl-btn" onclick="claimCoupon(this)">쿠폰받기</button>
+              </div>
+            </section>
+          </div>
+
+          <!-- Modal Sheet V1 -->
+          <div class="sheet-backdrop" id="modalV1" onclick="closeDetailModal('V1')">
+            <div class="sheet-panel" onclick="event.stopPropagation()">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid var(--kc-gray8);margin-bottom:12px;">
+                <strong style="font-size:16px;">기본 제원 및 내 차 히스토리 (7건)</strong>
+                <button type="button" onclick="closeDetailModal('V1')" style="font-size:14px;font-weight:700;color:var(--kc-gray3);">닫기 ✕</button>
+              </div>
+              <div style="font-size:12.5px;display:grid;gap:8px;">
+                <div style="padding:10px;border-radius:6px;background:var(--kc-gray11);"><strong>2024.07.22 보험처리 (내차피해)</strong> · 총 수리비 2,145,242원 (상대차보험 처리)</div>
+                <div style="padding:10px;border-radius:6px;background:var(--kc-gray11);"><strong>2025.02 / 03 보험처리 2건</strong> · 상대차 피해 101만원 / 104만원</div>
+                <div style="padding:10px;border-radius:6px;background:var(--kc-gray11);"><strong>2027.03.28 제조사 보증</strong> · 잔여 96,497km 유효</div>
+                <div style="padding:10px;border-radius:6px;background:var(--kc-gray11);"><strong>2022.03.28 신차출고</strong> · 경기도 고양시 개인 최초등록</div>
+              </div>
             </div>
           </div>
 
-          <!-- Spec Detail Bottom Sheet Overlay (Interactive) -->
-          <div id="specSheetOverlay" class="hidden absolute inset-0 z-40 bg-black/50 flex items-end">
-            <div class="w-full bg-white rounded-t-3xl p-5 space-y-3 animate-fade-in">
-              <div class="flex items-center justify-between border-b border-[#E8E8EE] pb-3">
-                <strong class="text-[16px] font-bold text-[#16171D]">내 차 기본 제원</strong>
-                <button onclick="toggleSpecSheet(false)" class="text-sm font-bold text-[#54555A] px-2 py-1">닫기 ✕</button>
-              </div>
-              <div class="grid grid-cols-2 gap-2.5 text-[13px]">
-                <div class="p-2.5 rounded-lg bg-[#F6F8FA]"><div class="text-[11px] text-[#82848B]">최초등록일</div><div class="font-bold text-[#16171D] mt-0.5">2022.03.28</div></div>
-                <div class="p-2.5 rounded-lg bg-[#F6F8FA]"><div class="text-[11px] text-[#82848B]">연료 / 구동</div><div class="font-bold text-[#16171D] mt-0.5">가솔린+전기 / 4WD</div></div>
-                <div class="p-2.5 rounded-lg bg-[#F6F8FA]"><div class="text-[11px] text-[#82848B]">배기량 / 인승</div><div class="font-bold text-[#16171D] mt-0.5">2,998cc / 5인승</div></div>
-                <div class="p-2.5 rounded-lg bg-[#F6F8FA]"><div class="text-[11px] text-[#82848B]">복합연비</div><div class="font-bold text-[#0B845F] mt-0.5">9.2km/ℓ + EV</div></div>
-              </div>
-            </div>
-          </div>
-
-          <nav class="bg-white border-t border-[#E8E8EE] px-3 py-2 grid grid-cols-5 text-center text-[10px] text-[#82848B]">
+          <!-- K Car Bottom TabBar -->
+          <nav class="kc-tabbar">
             <div>홈</div>
             <div>내차사기</div>
             <div>내차팔기</div>
-            <div class="font-bold text-[#B70F28]">마이카</div>
+            <div class="is-on">마이카</div>
             <div>전체메뉴</div>
           </nav>
         </div>
       </div>
 
-      <!-- =========================================================
-           TYPE B: REFINED DARK SHOWROOM — TABBED & AUTOMOTIVE LUXURY
-      ========================================================== -->
-      <div id="colTypeB" class="flex flex-col items-center shrink-0">
-        <div class="w-[375px] mb-3.5 p-4 rounded-2xl border border-slate-800 bg-slate-900/90">
-          <div class="flex items-center justify-between mb-1.5">
-            <span class="text-[11px] font-extrabold px-2.5 py-0.5 rounded bg-slate-700 text-white">TYPE B · 다크 계승 고도화</span>
-            <span class="text-[11px] font-semibold text-slate-400">Refined Dark + 3-Tab UX</span>
+      <!-- ====================================================================
+           VERSION 2: TRADE-IN & VALUE-UP SIMULATOR FIRST (대차 슬라이더 + 시세 전면형)
+           ==================================================================== -->
+      <div class="ver-col" id="verCol2">
+        <div class="ver-head-card">
+          <div class="ver-badge-row">
+            <span class="ver-badge dark">VERSION 2 · 대차·밸류업 중심형</span>
+            <span style="font-size:11px;color:var(--kc-gray4);">매각+대차 전환율 극대화</span>
           </div>
-          <h2 class="text-[15px] font-bold text-white m-0">프리미엄 쇼룸 다크 · 스티키 탭 몰입형</h2>
-          <p class="text-xs text-slate-400 m-0 mt-1 leading-relaxed">
-            현행 마이카의 다크 감성은 살리되 <strong class="text-slate-200">컬러 노이즈를 제거(Charcoal+Red 단일화)</strong>하고, 3개 탭으로 롱스크롤 피로도를 없앤 오토모티브 스타일
-          </p>
+          <div class="ver-head-tit">추가금 슬라이더 갈아타기 &amp; 우대보상 전면형</div>
+          <p class="ver-head-desc">상단 차량 프로필 직후 <strong>직영매입/직거래 시세 스위치 + 추가금 슬라이더(0원~3천만원) 대차 계산기</strong>를 배치하고, 정비·제휴를 시세 상승 미션으로 연결한 안</p>
         </div>
 
-        <div class="phone-frame" style="background:#111318; color:#F9FAFB;">
-          <!-- Header B -->
-          <div class="px-4 pt-3 pb-2.5 flex items-center justify-between border-b border-white/10 bg-[#111318]/95 sticky top-0 z-20">
-            <div class="flex items-center gap-2">
-              <button class="w-7 h-7 flex items-center justify-center rounded-full bg-white/5 text-white" aria-label="뒤로가기">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 18l-6-6 6-6"/></svg>
-              </button>
-              <span class="text-[17px] font-bold text-white">MY CAR</span>
+        <div class="kcar-phone">
+          <header class="kc-app-hdr">
+            <div class="kc-hdr-left">
+              <button type="button" class="kc-back-ico" aria-label="뒤로가기"></button>
+              <span class="kcar-logo"></span>
+              <span class="kc-hdr-tit" style="margin-left:2px;">마이카 밸류</span>
             </div>
-            <button onclick="toggleGarage('B')" class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/10 text-[12px] font-semibold text-white">
-              <span class="js-car-plate">300라 7716</span>
-              <span class="px-1.5 py-0.2 rounded-full bg-[#B70F28] text-[10px] font-bold">3대</span>
-              <span>▾</span>
+            <button type="button" class="kc-garage-pill" onclick="toggleGarageBar(2)">
+              내 차고 <strong>3</strong> ▾
             </button>
+          </header>
+
+          <div class="garage-bar" id="garageBar2"></div>
+
+          <div class="kc-scroll">
+            <!-- Compact Horizontal Real Photo Profile + Valuation Card -->
+            <section class="kc-sec" style="background:linear-gradient(180deg,#f6f8fa 0%,#ffffff 100%);padding-bottom:16px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+                <div style="min-width:0;">
+                  <div style="display:flex;align-items:center;gap:5px;margin-bottom:5px;">
+                    <span class="plate-box js-plate">300라 7716</span>
+                    <span class="kc-badge-cert">GOLD +<span class="js-bonus-txt">60</span>만</span>
+                  </div>
+                  <h2 class="js-title" style="font-size:18px;font-weight:700;">BMW X5 (G05)</h2>
+                  <p style="font-size:12px;color:var(--kc-gray3);margin-top:2px;"><span class="js-year">22년 3월</span> · <span class="js-km">103,503km</span> · 무사고</p>
+                </div>
+                <img src="./assets/images/mycar/my_x5_msport.png" alt="" class="js-hero-img" style="width:132px;height:74px;object-fit:contain;flex-shrink:0;" />
+              </div>
+
+              <!-- Sell Basis Switcher Card (Direct vs C2C) -->
+              <div style="margin-top:12px;border:1.5px solid var(--kc-gray2);border-radius:8px;background:#fff;padding:12px;">
+                <div style="display:flex;background:var(--kc-gray9);padding:3px;border-radius:6px;margin-bottom:10px;">
+                  <button type="button" id="v2SellModeKcar" onclick="setV2SellBasis('kcar')" style="flex:1;height:30px;border-radius:4px;font-size:12px;font-weight:700;background:#fff;color:var(--kc-gray2);box-shadow:0 1px 2px rgba(0,0,0,0.08);">
+                    케이카 직영매각 기준
+                  </button>
+                  <button type="button" id="v2SellModeC2c" onclick="setV2SellBasis('c2c')" style="flex:1;height:30px;border-radius:4px;font-size:12px;font-weight:500;color:var(--kc-gray3);">
+                    안심직거래 판매 기준
+                  </button>
+                </div>
+
+                <div style="display:flex;align-items:baseline;justify-content:space-between;">
+                  <div>
+                    <div style="font-size:11.5px;color:var(--kc-gray4);" id="v2BasisLabel">내차팔기 홈서비스 예상 매입가 (관리우대 포함)</div>
+                    <div style="font-size:24px;font-weight:700;color:var(--kc-red);margin-top:2px;">
+                      <span id="v2ActiveSellPrice">6,480</span><span style="font-size:15px;">만원</span>
+                    </div>
+                  </div>
+                  <button type="button" class="kc-btn-primary" style="width:auto;height:34px;padding:0 12px;font-size:12px;">내차팔기 신청</button>
+                </div>
+              </div>
+            </section>
+
+            <div class="kc-divider"></div>
+
+            <!-- Interactive Slider Trade-In Calculator (FRONT & CENTER!) -->
+            <section class="kc-sec">
+              <div class="kc-sec-head" style="margin-bottom:6px;">
+                <h3 class="kc-sec-tit">추가금 얼마면 어떤 차로 바꿀까?</h3>
+                <span class="kc-badge-red">실시간 계산</span>
+              </div>
+
+              <div style="background:var(--kc-gray11);border:1px solid var(--kc-gray8);border-radius:8px;padding:12px;margin-bottom:12px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                  <span style="font-size:12.5px;font-weight:700;color:var(--kc-gray2);">희망 추가금 설정</span>
+                  <strong id="v2ExtraReadout" style="font-size:15px;color:var(--kc-red);">추가금 0원 (환급/맞교환)</strong>
+                </div>
+
+                <input type="range" id="v2ExtraSlider" class="kc-slider" min="0" max="3000" step="500" value="0" oninput="updateV2Slider(this.value)" />
+
+                <div style="display:flex;justify-content:space-between;font-size:10.5px;color:var(--kc-gray4);margin-top:5px;">
+                  <span>0원 (추가금 없음)</span>
+                  <span>+1,000만</span>
+                  <span>+2,000만</span>
+                  <span>+3,000만</span>
+                </div>
+
+                <div style="margin-top:10px;padding-top:8px;border-top:1px dashed var(--kc-gray7);display:flex;justify-content:space-between;font-size:12px;">
+                  <span style="color:var(--kc-gray3);">총 대차 구매 가능 예산</span>
+                  <strong style="color:var(--kc-gray2);"><span id="v2TotalBudgetTxt">6,480</span>만원 이하 직영차</strong>
+                </div>
+              </div>
+
+              <!-- Dynamic Horizontal Real Photo Trade-In List -->
+              <div id="v2TradeList"></div>
+            </section>
+
+            <div class="kc-divider"></div>
+
+            <!-- Care Missions Linked Directly to Valuation Bonus & Partner Discounts -->
+            <section class="kc-sec">
+              <div class="kc-sec-head">
+                <h3 class="kc-sec-tit">내 차 값 올리는 제휴 관리 미션</h3>
+                <span class="kc-badge-cert">현재 +<span class="js-bonus-txt">60</span>만원 확보</span>
+              </div>
+              <p style="font-size:12px;color:var(--kc-gray3);margin-bottom:12px;">
+                케이카 제휴처에서 할인받고 관리하면 정비이력이 자동 인증되어 <strong>향후 케이카 매각 시 우대 가산금</strong>이 적립됩니다.
+              </p>
+
+              <div class="partner-row" style="border-color:#ffd7da;background:var(--kc-red-bg);">
+                <div>
+                  <div style="display:flex;align-items:center;gap:5px;">
+                    <span class="kc-badge-red">교체시기 도래 · 우대 +25만</span>
+                  </div>
+                  <div style="font-size:13px;font-weight:700;margin-top:4px;">엔진오일 교환 35% 할인 (스피드메이트)</div>
+                  <div style="font-size:11.5px;color:var(--kc-gray3);margin-top:1px;">잔여 1,490km · 정비 완료 시 시세 즉시 상승</div>
+                </div>
+                <button type="button" class="coupon-dl-btn" onclick="completeCareMission()">할인예약</button>
+              </div>
+
+              <div class="partner-row">
+                <div>
+                  <span class="kc-badge-blue">타이어 제휴 · 우대 +15만</span>
+                  <div style="font-size:13px;font-weight:700;margin-top:4px;">T-Station 타이어 30% + 얼라이먼트 50%</div>
+                  <div style="font-size:11.5px;color:var(--kc-gray3);margin-top:1px;">잔여 6,800km · 케이카 오너 전용 특가</div>
+                </div>
+                <button type="button" class="coupon-dl-btn" onclick="claimCoupon(this)">쿠폰받기</button>
+              </div>
+
+              <div class="partner-row">
+                <div>
+                  <span class="kc-badge-gray">필수일정 관리</span>
+                  <div style="font-size:13px;font-weight:700;margin-top:4px;">삼성화재 보험(26.04) · 정기검사(D-526)</div>
+                  <div style="font-size:11.5px;color:var(--kc-gray3);margin-top:1px;">과태료·하이패스 미납 0건 · 제조사보증 유효</div>
+                </div>
+                <span style="font-size:12px;font-weight:700;color:var(--kc-green);">정상 ✓</span>
+              </div>
+            </section>
           </div>
 
-          <div class="phone-scroll pb-8">
-            <div id="garageDrawerB" class="hidden bg-[#1A1D24] border-b border-white/10 px-4 py-3">
-              <div class="text-[11px] text-[#999EA1] mb-2 font-medium">내 차고 차량 선택 (3/5)</div>
-              <div class="grid grid-cols-3 gap-2">
-                <button onclick="switchCar(0)" class="p-2 rounded-xl bg-[#B70F28]/20 border border-[#F01D29] text-center">
-                  <div class="text-[12px] font-bold text-white">300라 7716</div>
-                  <div class="text-[10px] text-[#E3717B]">BMW X5</div>
-                </button>
-                <button onclick="switchCar(1)" class="p-2 rounded-xl bg-white/5 border border-white/10 text-center">
-                  <div class="text-[12px] font-medium text-[#D8DEE8]">55도 0589</div>
-                  <div class="text-[10px] text-[#82848B]">벤츠 CLA</div>
-                </button>
-                <button onclick="switchCar(2)" class="p-2 rounded-xl bg-white/5 border border-white/10 text-center">
-                  <div class="text-[12px] font-medium text-[#D8DEE8]">46더 1573</div>
-                  <div class="text-[10px] text-[#82848B]">그랜저</div>
-                </button>
-              </div>
-            </div>
-
-            <!-- Showroom Spotlight Hero -->
-            <div class="relative px-5 pt-5 pb-4 overflow-hidden" style="background: radial-gradient(circle at 50% 38%, rgba(183,15,40,0.28) 0%, rgba(17,19,24,0) 70%);">
-              <div class="flex items-start justify-between">
-                <div>
-                  <span class="text-[11px] font-bold tracking-wider uppercase text-[#EE4E5B] js-car-fuel">PHEV 4WD</span>
-                  <h3 class="text-[22px] font-bold text-white m-0 mt-0.5 js-car-model">BMW X5 (G05)</h3>
-                  <p class="text-[13px] text-[#B0B2BD] m-0 mt-0.5 js-car-trim">xDrive 45e M 스포츠 · 22년 3월식</p>
-                </div>
-                <div class="text-right bg-white/5 border border-white/10 rounded-xl px-2.5 py-1.5">
-                  <div class="text-[10px] text-[#999EA1]">주행거리 ✎</div>
-                  <div class="text-[13px] font-bold text-white tabular-nums js-car-km">103,503 km</div>
-                </div>
-              </div>
-
-              <div class="my-3 flex justify-center">
-                <svg width="265" height="96" viewBox="0 0 290 108">
-                  <use href="#suv-illustration" />
-                </svg>
-              </div>
-
-              <div class="grid grid-cols-3 gap-2 text-center bg-[#1A1D24] border border-white/10 rounded-xl p-2.5">
-                <div class="border-r border-white/10">
-                  <div class="text-[11px] text-[#82848B]">자동차보험</div>
-                  <div class="text-[12px] font-bold text-[#F53A44] mt-0.5">26.04 만료</div>
-                </div>
-                <div class="border-r border-white/10">
-                  <div class="text-[11px] text-[#82848B]">정기검사</div>
-                  <div class="text-[12px] font-bold text-white mt-0.5">D-526</div>
-                </div>
-                <div>
-                  <div class="text-[11px] text-[#82848B]">무사고/리콜</div>
-                  <div class="text-[12px] font-bold text-[#02B260] mt-0.5">리콜 0건</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- 3-Tab Segmented Navigation -->
-            <div class="px-5 sticky top-0 z-10 bg-[#111318] pt-1 pb-3">
-              <div class="grid grid-cols-3 rounded-xl bg-[#1A1D24] p-1 border border-white/10 text-[13px]">
-                <button onclick="switchDarkTab('val', this)" class="dark-tab-btn py-2 rounded-lg font-bold bg-[#B70F28] text-white transition">시세 · 판매</button>
-                <button onclick="switchDarkTab('hist', this)" class="dark-tab-btn py-2 rounded-lg font-medium text-[#999EA1] transition">히스토리 7</button>
-                <button onclick="switchDarkTab('care', this)" class="dark-tab-btn py-2 rounded-lg font-medium text-[#999EA1] transition">케어 · 혜택</button>
-              </div>
-            </div>
-
-            <!-- TAB 1: Valuation & Sell -->
-            <div id="darkPanelVal" class="px-5 space-y-3.5">
-              <div class="price-on-view rounded-2xl bg-[#1A1D24] border border-white/10 p-4">
-                <div class="flex items-center justify-between mb-1">
-                  <span class="text-[13px] font-semibold text-[#B0B2BD]">케이카 AI 내 차 시세 범위</span>
-                  <span class="text-[11px] text-[#02B260] font-bold">● 실시간 산정</span>
-                </div>
-                <div class="text-[24px] font-bold text-white"><span class="js-car-price">6,420 ~ 6,850</span>만원</div>
-                <div class="mt-4 pt-3 border-t border-white/10 flex items-end justify-between h-28 px-3">
-                  <div class="flex flex-col items-center gap-1.5">
-                    <span class="text-[10px] text-[#F53A44] font-bold">현재</span>
-                    <div class="w-2.5 h-14 rounded-full bg-gradient-to-b from-[#F01D29] to-[#B70F28]"></div>
-                    <span class="text-[11px] text-white font-bold">최고가</span>
-                  </div>
-                  <div class="flex flex-col items-center gap-1.5">
-                    <span class="text-[10px] text-[#82848B]">-290만</span>
-                    <div class="w-2.5 h-11 rounded-full bg-white/25"></div>
-                    <span class="text-[11px] text-[#82848B]">+6개월</span>
-                  </div>
-                  <div class="flex flex-col items-center gap-1.5">
-                    <span class="text-[10px] text-[#82848B]">-560만</span>
-                    <div class="w-2.5 h-9 rounded-full bg-white/15"></div>
-                    <span class="text-[11px] text-[#82848B]">+1년</span>
-                  </div>
-                  <div class="flex flex-col items-center gap-1.5">
-                    <span class="text-[10px] text-[#82848B]">-940만</span>
-                    <div class="w-2.5 h-7 rounded-full bg-white/10"></div>
-                    <span class="text-[11px] text-[#82848B]">+2년</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="price-off-view hidden rounded-2xl bg-[#1A1D24] border border-[#B70F28]/50 p-4">
-                <div class="inline-block text-[11px] font-bold px-2 py-0.5 rounded bg-[#B70F28]/25 text-[#EE4E5B] mb-2">수입 친환경 스페셜 트림</div>
-                <div class="text-[16px] font-bold text-white leading-snug">방문견적으로 가장 정확한 최고가를 확인하세요</div>
-                <p class="text-[12px] text-[#999EA1] mt-1.5 mb-0 leading-relaxed">
-                  xDrive 45e 모델은 고전압 배터리 및 M 스포츠 패키지 상태에 따라 일반 시세보다 높은 견적이 산출될 수 있습니다.
-                </p>
-              </div>
-
-              <button class="w-full py-3.5 px-4 rounded-xl text-white font-bold text-[14px] flex items-center justify-between" style="background:linear-gradient(90deg, #B70F28 0%, #9D0A2E 100%);">
-                <div class="text-left">
-                  <div class="text-[11px] font-normal text-white/80">내일보다 오늘 더 비싼 내 차 · 당일 +12만원</div>
-                  <div>내차팔기 홈서비스 무료 신청</div>
-                </div>
-                <span>&gt;</span>
-              </button>
-
-              <button class="w-full py-3.5 px-4 rounded-xl bg-[#1A1D24] border border-white/15 text-white font-bold text-[14px] flex items-center justify-between">
-                <div class="text-left">
-                  <div class="text-[11px] font-normal text-[#999EA1]">원하는 가격으로 안전하게 직거래</div>
-                  <div>케이카 안심직거래로 팔기</div>
-                </div>
-                <span class="text-[#EE4E5B]">&gt;</span>
-              </button>
-
-              <div class="rounded-xl bg-[#1A1D24] border border-white/10 p-3.5 flex items-center justify-between">
-                <div>
-                  <div class="text-[13px] font-bold text-white">과태료 · 하이패스 미납 조회</div>
-                  <div class="text-[11px] text-[#82848B] mt-0.5">판매/운행 전 미납 내역 10초 확인</div>
-                </div>
-                <span class="px-3 py-1.5 rounded-lg bg-white/10 text-[12px] font-semibold text-white">조회하기</span>
-              </div>
-            </div>
-
-            <!-- TAB 2: History -->
-            <div id="darkPanelHist" class="hidden px-5 space-y-3">
-              <div class="flex items-center justify-between text-[12px] text-[#999EA1] mb-1">
-                <span>총 <strong class="text-white">7건</strong>의 투명 이력</span>
-                <span>카히스토리 · 국토부 연동</span>
-              </div>
-              <div class="p-3.5 rounded-xl bg-[#1A1D24] border border-white/10">
-                <div class="flex justify-between text-[12px] mb-1"><span class="text-[#EE4E5B] font-bold">보험처리 (내차피해)</span><span class="text-[#82848B]">2024.07.22</span></div>
-                <div class="text-[14px] font-bold text-white">총 수리비 2,145,242원</div>
-                <div class="text-[12px] text-[#999EA1] mt-1">부품 144.8만 · 도장 45.9만 · 공임 23.7만</div>
-              </div>
-              <div class="p-3.5 rounded-xl bg-[#1A1D24] border border-white/10">
-                <div class="flex justify-between text-[12px] mb-1"><span class="text-[#EE4E5B] font-bold">보험처리 2건 (상대차피해)</span><span class="text-[#82848B]">2025.02 · 03</span></div>
-                <div class="text-[14px] font-bold text-white">1,017,950원 / 1,049,220원</div>
-              </div>
-              <div class="p-3.5 rounded-xl bg-[#1A1D24] border border-white/10">
-                <div class="flex justify-between text-[12px] mb-1"><span class="text-[#4EB6FF] font-bold">제조사 보증 & 정기검사</span><span class="text-[#82848B]">2027 ~ 2028</span></div>
-                <div class="text-[13px] text-[#D8DEE8]">보증 잔여 96,497km · 정기검사 28.04.27 만료</div>
-              </div>
-              <div class="p-3.5 rounded-xl bg-[#1A1D24] border border-white/10">
-                <div class="flex justify-between text-[12px] mb-1"><span class="text-[#02B260] font-bold">신차출고 · 생산</span><span class="text-[#82848B]">2022.03.28</span></div>
-                <div class="text-[13px] text-[#D8DEE8]">경기도 고양시 개인 등록 (2022.01.15 생산)</div>
-              </div>
-            </div>
-
-            <!-- TAB 3: Care & Benefits -->
-            <div id="darkPanelCare" class="hidden px-5 space-y-3">
-              <div class="p-3.5 rounded-xl bg-[#1A1D24] border border-[#F01D29]/40">
-                <div class="flex justify-between items-center">
-                  <span class="text-[12px] font-bold text-[#F53A44]">삼성화재 자동차보험 만료예정</span>
-                  <span class="text-[12px] text-white font-semibold">2026.04 &gt;</span>
-                </div>
-              </div>
-              <div class="p-3.5 rounded-xl bg-[#1A1D24] border border-white/10">
-                <div class="text-[12px] text-[#999EA1]">T-Station 제휴</div>
-                <div class="text-[14px] font-bold text-white mt-0.5">타이어 30% · 얼라이먼트 50% 할인 &gt;</div>
-              </div>
-              <div class="p-3.5 rounded-xl bg-[#1A1D24] border border-white/10">
-                <div class="text-[12px] text-[#999EA1]">갓차 · 울트라레인보우</div>
-                <div class="text-[14px] font-bold text-white mt-0.5">출장세차 45% · 세차타월 48% 할인 &gt;</div>
-              </div>
-            </div>
-          </div>
-
-          <nav class="bg-[#16181F] border-t border-white/10 px-3 py-2.5 grid grid-cols-5 text-center text-[10px] text-[#82848B]">
+          <nav class="kc-tabbar">
             <div>홈</div>
             <div>내차사기</div>
             <div>내차팔기</div>
-            <div class="font-bold text-[#F01D29]">마이카</div>
-            <div>전체</div>
+            <div class="is-on">마이카</div>
+            <div>전체메뉴</div>
           </nav>
         </div>
       </div>
 
-      <!-- =========================================================
-           TYPE C: SMART CARE HUB — D-DAY ACTION & LIFECYCLE FIRST
-      ========================================================== -->
-      <div id="colTypeC" class="flex flex-col items-center shrink-0">
-        <div class="w-[375px] mb-3.5 p-4 rounded-2xl border border-slate-800 bg-slate-900/90">
-          <div class="flex items-center justify-between mb-1.5">
-            <span class="text-[11px] font-extrabold px-2.5 py-0.5 rounded bg-[#0086FF] text-white">TYPE C · 케어/리텐션 중심</span>
-            <span class="text-[11px] font-semibold text-slate-400">Brand Header + Care Hub</span>
+      <!-- ====================================================================
+           VERSION 3: 4-TAB CLEAN MODULAR APP (목적별 화면 분리형 슈퍼앱)
+           ==================================================================== -->
+      <div class="ver-col" id="verCol3">
+        <div class="ver-head-card">
+          <div class="ver-badge-row">
+            <span class="ver-badge blue">VERSION 3 · 4-탭 모듈 분리형</span>
+            <span style="font-size:11px;color:var(--kc-gray4);">롱스크롤 제로 · 깔끔한 정보 밀도</span>
           </div>
-          <h2 class="text-[15px] font-bold text-white m-0">스마트 케어 허브 · 생애주기 & 알림 우선형</h2>
-          <p class="text-xs text-slate-400 m-0 mt-1 leading-relaxed">
-            비판매 시기에도 차주가 매달 방문하도록 <strong class="text-slate-200">챙겨야 할 일정(보험·미납·검사) + 가로 생애주기 요약 바</strong>를 전면에 배치한 리텐션 특화안
-          </p>
+          <div class="ver-head-tit">상단 고정 프로필 + 4대 기능 전용 탭 분리</div>
+          <p class="ver-head-desc">긴 스크롤 없이 상단 실사 요약 카드 아래 <strong>[내차·관리] · [예상시세] · [갈아타기] · [제휴·우대]</strong> 4개 탭을 전환해 필요한 업무만 집중 처리하는 깔끔한 앱 구조</p>
         </div>
 
-        <div class="phone-frame" style="background:#F6F8FA; color:#16171D;">
-          <div class="px-4 pt-3 pb-2.5 flex items-center justify-between text-white sticky top-0 z-20" style="background:#16171D;">
-            <div class="flex items-center gap-2">
-              <button class="w-7 h-7 flex items-center justify-center rounded-full hover:bg-white/10 text-white">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 18l-6-6 6-6"/></svg>
-              </button>
-              <span class="text-[17px] font-bold">마이카 케어</span>
+        <div class="kcar-phone">
+          <header class="kc-app-hdr">
+            <div class="kc-hdr-left">
+              <button type="button" class="kc-back-ico" aria-label="뒤로가기"></button>
+              <span class="kcar-logo"></span>
+              <span class="kc-hdr-tit" style="margin-left:2px;">마이카</span>
             </div>
-            <button onclick="toggleGarage('C')" class="text-[12px] font-semibold px-2.5 py-1 rounded-full bg-white/10 text-white">
-              <span class="js-car-plate">300라 7716</span> (내 차고 3) ▾
+            <button type="button" class="kc-garage-pill" onclick="toggleGarageBar(3)">
+              내 차고 <strong>3</strong> ▾
             </button>
+          </header>
+
+          <div class="garage-bar" id="garageBar3"></div>
+
+          <!-- Always-Visible Top Vehicle Summary Header -->
+          <div style="padding:14px 18px 12px;background:#fff;border-bottom:1px solid var(--kc-gray8);flex-shrink:0;">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+              <div>
+                <div style="display:flex;align-items:center;gap:5px;margin-bottom:4px;">
+                  <span class="plate-box js-plate">300라 7716</span>
+                  <span class="kc-badge-cert">케어 <span class="js-care-score-num">88</span>점</span>
+                </div>
+                <div class="js-title" style="font-size:17px;font-weight:700;">BMW X5 (G05)</div>
+                <div style="font-size:12px;color:var(--kc-gray3);margin-top:1px;">
+                  매각시세 <strong style="color:var(--kc-red);"><span class="js-kcar-sell">6,480</span>~<span class="js-c2c-sell">6,890</span>만원</strong>
+                </div>
+              </div>
+              <img src="./assets/images/mycar/my_x5_msport.png" alt="" class="js-hero-img" style="width:118px;height:64px;object-fit:contain;" />
+            </div>
           </div>
 
-          <div class="phone-scroll pb-8">
-            <div id="garageDrawerC" class="hidden bg-[#22242C] px-4 py-2.5 flex gap-2 overflow-x-auto no-scrollbar border-b border-white/10">
-              <button onclick="switchCar(0)" class="px-2.5 py-1 rounded-md text-xs font-bold bg-[#B70F28] text-white">300라 7716 (X5)</button>
-              <button onclick="switchCar(1)" class="px-2.5 py-1 rounded-md text-xs text-white/75 bg-white/10">55도 0589 (CLA)</button>
-              <button onclick="switchCar(2)" class="px-2.5 py-1 rounded-md text-xs text-white/75 bg-white/10">46더 1573 (그랜저)</button>
+          <!-- 4 Dedicated Screen Switch Tabs -->
+          <nav class="kc-tabs" style="flex-shrink:0;">
+            <button type="button" class="kc-tab is-active" onclick="switchV3Tab('care', this)">내차·관리</button>
+            <button type="button" class="kc-tab" onclick="switchV3Tab('price', this)">예상시세</button>
+            <button type="button" class="kc-tab" onclick="switchV3Tab('trade', this)">갈아타기</button>
+            <button type="button" class="kc-tab" onclick="switchV3Tab('partner', this)">제휴·우대</button>
+          </nav>
+
+          <div class="kc-scroll" style="background:var(--kc-gray11);">
+
+            <!-- V3 TAB 1: 내차 정보 & 관리 -->
+            <div id="v3PanelCare" style="padding:14px 16px;display:grid;gap:10px;">
+              <div style="background:#fff;border:1px solid var(--kc-gray8);border-radius:8px;padding:14px;">
+                <div style="font-size:14px;font-weight:700;margin-bottom:10px;">등록 차량 기본 정보</div>
+                <div class="spec-strip-4">
+                  <div><div class="spec-lbl">연식</div><div class="spec-val js-year">22년 3월</div></div>
+                  <div><div class="spec-lbl">주행거리</div><div class="spec-val js-km">103,503km</div></div>
+                  <div><div class="spec-lbl">연료</div><div class="spec-val js-fuel">PHEV·4WD</div></div>
+                  <div><div class="spec-lbl">리콜/사고</div><div class="spec-val">0건/무사고</div></div>
+                </div>
+                <div style="margin-top:10px;font-size:12px;color:var(--kc-gray3);display:flex;justify-content:space-between;">
+                  <span>보증 잔여 96,497km · 보험이력 3건</span>
+                  <strong style="color:var(--kc-gray2);">이력 타임라인 &gt;</strong>
+                </div>
+              </div>
+
+              <div style="background:#fff;border:1px solid var(--kc-gray8);border-radius:8px;padding:14px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+                  <strong style="font-size:14px;">소모품 · 필수 일정 체크</strong>
+                  <span class="kc-badge-red">교체임박 1건</span>
+                </div>
+                <div class="maint-row" style="border-color:#ffd7da;background:var(--kc-red-bg);">
+                  <div class="maint-top"><strong>엔진오일 세트</strong><strong style="color:var(--kc-red);">1,490km 남음</strong></div>
+                  <div class="maint-bar"><div class="maint-fill" style="width:88%;background:var(--kc-red);"></div></div>
+                </div>
+                <div class="maint-row">
+                  <div class="maint-top"><strong>브레이크 패드 / 타이어</strong><span style="color:var(--kc-gray3);">6,800km 남음</span></div>
+                  <div class="maint-bar"><div class="maint-fill" style="width:45%;background:var(--kc-blue);"></div></div>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-size:12px;padding-top:4px;color:var(--kc-gray3);">
+                  <span>자동차보험(삼성화재) <strong style="color:var(--kc-red);">26.04 만료</strong></span>
+                  <span>과태료·미납 <strong style="color:var(--kc-green);">0건</strong></span>
+                </div>
+              </div>
             </div>
 
-            <div class="px-5 pt-3 pb-10 text-white" style="background: linear-gradient(165deg, #16171D 45%, #3B0B14 100%);">
-              <div class="flex items-center justify-between">
+            <!-- V3 TAB 2: 예상시세 (직영매입 vs 안심직거래) -->
+            <div id="v3PanelPrice" style="display:none;padding:14px 16px;gap:10px;">
+              <div style="background:#fff;border:1px solid var(--kc-gray8);border-radius:8px;padding:14px;margin-bottom:10px;">
+                <span class="kc-badge-red">케이카 공식 당일매입</span>
+                <div style="font-size:14px;font-weight:700;margin-top:6px;">내차팔기 홈서비스 예상가</div>
+                <div style="font-size:26px;font-weight:700;color:var(--kc-red);margin:4px 0;">
+                  <span class="js-kcar-sell">6,480</span>만원
+                </div>
+                <p style="font-size:12px;color:var(--kc-gray3);margin-bottom:12px;">
+                  기본 시세에 회원님의 <strong>마이카 관리우대 가산금(+<span class="js-bonus-txt">60</span>만원)</strong>이 합산된 금액입니다.
+                </p>
+                <button type="button" class="kc-btn-primary">평가사 무료 방문견적 신청</button>
+              </div>
+
+              <div style="background:#fff;border:1px solid var(--kc-gray8);border-radius:8px;padding:14px;">
+                <span class="kc-badge-blue">수수료 없이 더 받는 직거래</span>
+                <div style="font-size:14px;font-weight:700;margin-top:6px;">케이카 안심직거래 예상 판매가</div>
+                <div style="font-size:24px;font-weight:700;color:var(--kc-gray2);margin:4px 0;">
+                  <span class="js-c2c-sell">6,890</span>만원 <span style="font-size:13px;color:var(--kc-blue);">(+<span class="js-c2c-gap">410</span>만원↑)</span>
+                </div>
+                <p style="font-size:12px;color:var(--kc-gray3);margin-bottom:12px;">
+                  마이카 관리이력이 구매자에게 ‘케이카 관리인증 배지’로 노출되어 일반 직거래보다 빠르게 판매됩니다.
+                </p>
+                <button type="button" class="kc-btn-outline">안심직거래 셀프등록 시작하기</button>
+              </div>
+            </div>
+
+            <!-- V3 TAB 3: 갈아타기 (추가금 0원 / 금액별 대차) -->
+            <div id="v3PanelTrade" style="display:none;padding:14px 16px;">
+              <div style="background:#fff;border:1px solid var(--kc-gray8);border-radius:8px;padding:14px;">
+                <div style="font-size:14px;font-weight:700;margin-bottom:4px;">추가금별 바꿀 수 있는 케이카 직영차</div>
+                <div style="font-size:12px;color:var(--kc-gray3);margin-bottom:10px;">
+                  내 차 매각금 <strong style="color:var(--kc-red);"><span class="js-kcar-sell">6,480</span>만원</strong> 차감 후 실제 필요 금액이에요.
+                </div>
+
+                <div class="budget-pills">
+                  <button type="button" class="kc-pill is-active" onclick="filterTrade('v3', 0, this)">추가금 0원</button>
+                  <button type="button" class="kc-pill" onclick="filterTrade('v3', 500, this)">+500만원</button>
+                  <button type="button" class="kc-pill" onclick="filterTrade('v3', 1500, this)">+1,500만원</button>
+                  <button type="button" class="kc-pill" onclick="filterTrade('v3', 3000, this)">+2,500만원↑</button>
+                </div>
+
+                <div id="v3TradeList"></div>
+              </div>
+            </div>
+
+            <!-- V3 TAB 4: 제휴 할인 & 관리이력 우대매각 -->
+            <div id="v3PanelPartner" style="display:none;padding:14px 16px;">
+              <div class="reward-card" style="background:#fff;">
+                <div style="font-size:12px;color:var(--kc-gray3);">관리이력 연동 매각 우대 보증서</div>
+                <div style="font-size:20px;font-weight:700;color:var(--kc-red);margin-top:3px;">
+                  우대 가산금 +<span class="js-bonus-txt">60</span>만원 적용중
+                </div>
+                <p style="font-size:12px;color:var(--kc-gray3);margin:6px 0 10px;">
+                  케이카 제휴 업체에서 할인받아 정비할 때마다 가산금이 최대 <strong>+100만원</strong>까지 누적됩니다.
+                </p>
+                <button type="button" class="kc-btn-primary js-mission-btn" style="height:36px;font-size:12px;" onclick="completeCareMission()">
+                  제휴 엔진오일 교체 인증 시뮬레이션 (+25만원 적립)
+                </button>
+              </div>
+
+              <div class="partner-row">
                 <div>
-                  <div class="flex items-center gap-1.5 mb-1">
-                    <span class="w-2 h-2 rounded-full bg-[#FBA900] pulse-dot"></span>
-                    <span class="text-[11px] font-bold text-[#FDCD49]">케어 알림 1건 · 보증 유효</span>
-                  </div>
-                  <h3 class="text-[19px] font-bold m-0 js-car-model">BMW X5 (G05)</h3>
-                  <p class="text-[12px] text-white/70 m-0 mt-0.5"><span class="js-car-km">103,503 km</span> <span class="underline ml-1">주행거리 갱신</span></p>
+                  <strong style="font-size:13px;">스피드메이트 엔진오일 35% 할인</strong>
+                  <div style="font-size:11.5px;color:var(--kc-red);font-weight:500;">이용 시 매각우대금 +25만원 자동적립</div>
                 </div>
-                <svg width="118" height="52" viewBox="0 0 290 108" class="shrink-0">
-                  <use href="#suv-illustration" />
-                </svg>
+                <button type="button" class="coupon-dl-btn" onclick="claimCoupon(this)">쿠폰받기</button>
+              </div>
+              <div class="partner-row">
+                <div>
+                  <strong style="font-size:13px;">T-Station 타이어 30% · 얼라이먼트 50%</strong>
+                  <div style="font-size:11.5px;color:var(--kc-blue);font-weight:500;">이용 시 매각우대금 +15만원 자동적립</div>
+                </div>
+                <button type="button" class="coupon-dl-btn" onclick="claimCoupon(this)">쿠폰받기</button>
+              </div>
+              <div class="partner-row">
+                <div>
+                  <strong style="font-size:13px;">갓차 출장세차 45% · 세차용품 48%</strong>
+                  <div style="font-size:11.5px;color:var(--kc-gray4);">케이카 마이카 등록고객 상시 특가</div>
+                </div>
+                <button type="button" class="coupon-dl-btn" onclick="claimCoupon(this)">쿠폰받기</button>
               </div>
             </div>
 
-            <div class="px-5 -mt-6 space-y-4">
-              <!-- Priority #1: Action Required Briefing Card -->
-              <div class="bg-white rounded-2xl p-4 z200 border border-[#E8E8EE]">
-                <div class="flex items-center justify-between mb-2.5">
-                  <span class="text-[13px] font-bold text-[#16171D]">지금 챙겨야 할 내 차 일정</span>
-                  <span class="text-[11px] font-bold text-[#B70F28]">우선순위순</span>
-                </div>
-
-                <div class="space-y-2">
-                  <div class="flex items-center justify-between p-2.5 rounded-xl bg-[#FFF9F9] border border-[#FDEEEF]">
-                    <div class="flex items-center gap-2.5">
-                      <span class="w-8 h-8 rounded-lg bg-[#B70F28] text-white flex items-center justify-center text-[11px] font-bold">보험</span>
-                      <div>
-                        <div class="text-[13px] font-bold text-[#16171D]">삼성화재 만료일 확인 필요</div>
-                        <div class="text-[11px] text-[#DD1540] font-medium">2026년 04월 만료예정 · 정보 업데이트</div>
-                      </div>
-                    </div>
-                    <span class="text-[#82848B] font-bold">&gt;</span>
-                  </div>
-
-                  <div class="flex items-center justify-between p-2.5 rounded-xl bg-[#F6F8FA]">
-                    <div class="flex items-center gap-2.5">
-                      <span class="w-8 h-8 rounded-lg bg-[#E5EEFC] text-[#0086FF] flex items-center justify-center text-[11px] font-bold">미납</span>
-                      <div>
-                        <div class="text-[13px] font-bold text-[#16171D]">과태료 · 하이패스 미납 점검</div>
-                        <div class="text-[11px] text-[#54555A]">범칙금·통행료 실시간 통합 조회</div>
-                      </div>
-                    </div>
-                    <span class="text-[12px] font-bold text-[#0086FF]">조회 &gt;</span>
-                  </div>
-
-                  <div class="flex items-center justify-between p-2.5 rounded-xl bg-[#F6F8FA]">
-                    <div class="flex items-center gap-2.5">
-                      <span class="w-8 h-8 rounded-lg bg-[#DDF2E5] text-[#0B845F] flex items-center justify-center text-[11px] font-bold">검사</span>
-                      <div>
-                        <div class="text-[13px] font-bold text-[#16171D]">법정정기검사 (28.04.27)</div>
-                        <div class="text-[11px] text-[#54555A]">526일 남음 · 사전 알림 켜짐</div>
-                      </div>
-                    </div>
-                    <span class="text-[11px] font-bold text-[#0B845F] bg-[#DDF2E5] px-2 py-0.5 rounded">여유</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Horizontal Vehicle Lifecycle Summary Strip -->
-              <div class="bg-white rounded-2xl p-4 z100 border border-[#E8E8EE]">
-                <div class="flex items-center justify-between mb-3">
-                  <h4 class="text-[15px] font-bold text-[#16171D] m-0">한눈에 보는 생애주기 리포트</h4>
-                  <button onclick="toggleElement('histModalC')" class="text-[12px] font-semibold text-[#54555A] underline">상세 타임라인(7) ▾</button>
-                </div>
-
-                <div class="grid grid-cols-4 gap-1 text-center">
-                  <div class="p-2 rounded-xl bg-[#F9FAFB]">
-                    <div class="text-[10px] text-[#82848B]">2022.03</div>
-                    <div class="text-[12px] font-bold text-[#0B845F] mt-0.5">신차출고</div>
-                    <div class="text-[10px] text-[#54555A] mt-0.5">소유변경 0</div>
-                  </div>
-                  <div class="p-2 rounded-xl bg-[#FFF9F9] border border-[#FDEEEF]">
-                    <div class="text-[10px] text-[#82848B]">2024~25</div>
-                    <div class="text-[12px] font-bold text-[#B70F28] mt-0.5">보험 3건</div>
-                    <div class="text-[10px] text-[#54555A] mt-0.5">내차1·상대2</div>
-                  </div>
-                  <div class="p-2 rounded-xl bg-[#F9FAFB]">
-                    <div class="text-[10px] text-[#82848B]">2027.03</div>
-                    <div class="text-[12px] font-bold text-[#0086FF] mt-0.5">보증유효</div>
-                    <div class="text-[10px] text-[#54555A] mt-0.5">9.6만km 남음</div>
-                  </div>
-                  <div class="p-2 rounded-xl bg-[#F9FAFB]">
-                    <div class="text-[10px] text-[#82848B]">2028.04</div>
-                    <div class="text-[12px] font-bold text-[#16171D] mt-0.5">정기검사</div>
-                    <div class="text-[10px] text-[#54555A] mt-0.5">D-526</div>
-                  </div>
-                </div>
-
-                <div id="histModalC" class="hidden mt-3 pt-3 border-t border-[#E8E8EE] space-y-2 text-[12px]">
-                  <div class="flex justify-between"><span>· 2025.03.18 보험처리 (상대차 피해)</span><span class="font-semibold">1,049,220원</span></div>
-                  <div class="flex justify-between"><span>· 2025.02.28 보험처리 (상대차 피해)</span><span class="font-semibold">1,017,950원</span></div>
-                  <div class="flex justify-between text-[#B70F28]"><span>· 2024.07.22 보험처리 (내차 피해)</span><span class="font-bold">2,145,242원</span></div>
-                </div>
-              </div>
-
-              <!-- Smart Sell Comparison Module -->
-              <div class="bg-white rounded-2xl p-4 z100 border border-[#E8E8EE]">
-                <div class="flex items-center justify-between mb-1">
-                  <h4 class="text-[15px] font-bold text-[#16171D] m-0">내 차 판매 플랜 비교</h4>
-                  <span class="price-on-view text-[12px] font-bold text-[#B70F28]">시세 <span class="js-car-price">6,420~6,850</span>만원</span>
-                  <span class="price-off-view hidden text-[11px] font-semibold text-[#54555A] bg-[#F1F1F4] px-2 py-0.5 rounded">방문견적 산정 모델</span>
-                </div>
-                <p class="text-[12px] text-[#82848B] m-0 mb-3">상황에 맞는 케이카 판매 방식을 선택해 보세요</p>
-
-                <div class="grid grid-cols-2 gap-2.5">
-                  <div class="p-3 rounded-xl border-2 border-[#B70F28] bg-[#FFF9F9] flex flex-col justify-between">
-                    <div>
-                      <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#B70F28] text-white">빠른 당일판매</span>
-                      <div class="text-[14px] font-bold text-[#16171D] mt-1.5">내차팔기 홈서비스</div>
-                      <p class="text-[11px] text-[#54555A] mt-1 mb-2 leading-snug">평가사 무료 방문 · 당일 판매 +12만원 혜택</p>
-                    </div>
-                    <button class="w-full py-2 rounded-lg text-[12px] font-bold text-white" style="background:#B70F28;">무료 견적신청</button>
-                  </div>
-
-                  <div class="p-3 rounded-xl border border-[#D8DEE8] bg-white flex flex-col justify-between">
-                    <div>
-                      <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#16171D] text-white">원하는 가격</span>
-                      <div class="text-[14px] font-bold text-[#16171D] mt-1.5">케이카 안심직거래</div>
-                      <p class="text-[11px] text-[#54555A] mt-1 mb-2 leading-snug">케이카 진단·보증 지원으로 높은 가격 직거래</p>
-                    </div>
-                    <button class="w-full py-2 rounded-lg text-[12px] font-bold text-[#16171D] bg-[#F1F1F4]">직거래 알아보기</button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Partner Benefits Compact List -->
-              <div class="bg-white rounded-2xl p-4 z100 border border-[#E8E8EE]">
-                <h4 class="text-[15px] font-bold text-[#16171D] m-0 mb-2.5">유지비 아끼는 제휴 쿠폰팩</h4>
-                <div class="divide-y divide-[#F1F1F4] text-[13px]">
-                  <div class="py-2 flex items-center justify-between">
-                    <span><strong>T-Station</strong> 타이어 30% · 얼라이먼트 50%</span>
-                    <span class="text-[11px] font-bold text-[#B70F28]">받기</span>
-                  </div>
-                  <div class="py-2 flex items-center justify-between">
-                    <span><strong>갓차</strong> 출장세차 최대 45% 할인</span>
-                    <span class="text-[11px] font-bold text-[#B70F28]">받기</span>
-                  </div>
-                  <div class="py-2 flex items-center justify-between">
-                    <span><strong>울트라레인보우</strong> 세차용품 최대 48% 할인</span>
-                    <span class="text-[11px] font-bold text-[#B70F28]">받기</span>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
 
-          <nav class="bg-white border-t border-[#E8E8EE] px-3 py-2 grid grid-cols-5 text-center text-[10px] text-[#82848B]">
+          <nav class="kc-tabbar">
             <div>홈</div>
             <div>내차사기</div>
             <div>내차팔기</div>
-            <div class="font-bold text-[#B70F28]">마이카</div>
+            <div class="is-on">마이카</div>
             <div>전체메뉴</div>
           </nav>
         </div>
@@ -944,131 +1613,360 @@
   </main>
 
   <script>
-    const GARAGE_CARS = [
-      { plate: '300라 7716', fuel: 'PHEV 4WD', model: 'BMW X5 (G05)', trim: 'xDrive 45e M 스포츠 · 22년 3월식', km: '103,503 km', price: '6,420 ~ 6,850' },
-      { plate: '55도 0589', fuel: '가솔린', model: '벤츠 CLA-클래스 (C118)', trim: 'CLA 250 4MATIC · 21년 8월식', km: '48,210 km', price: '3,180 ~ 3,450' },
-      { plate: '46더 1573', fuel: '가솔린', model: '현대 더 뉴 그랜저 IG', trim: '2.5 캘리그라피 · 20년 11월식', km: '62,900 km', price: '2,490 ~ 2,720' }
+    /* ==========================================================================
+       Registered Garage Vehicles & K Car Direct Trade-In Inventory Data
+       ========================================================================== */
+    const MY_GARAGE = [
+      {
+        plate: '300라 7716',
+        shortNm: 'BMW X5',
+        title: 'BMW X5 (G05)',
+        sub: '가솔린+전기 4WD xDrive 45e M 스포츠',
+        year: '22년 3월',
+        km: '103,503km',
+        fuel: 'PHEV·4WD',
+        insCnt: '3건 (경미)',
+        warranty: '제조사보증 유효',
+        img: './assets/images/mycar/my_x5_msport.png',
+        baseKcarSell: 6420,
+        c2cSell: 6890
+      },
+      {
+        plate: '55도 0589',
+        shortNm: '벤츠 CLA',
+        title: '벤츠 CLA-클래스 (C118)',
+        sub: '가솔린 2.0 CLA 250 4MATIC',
+        year: '21년 8월',
+        km: '48,210km',
+        fuel: '가솔린·4WD',
+        insCnt: '1건 (단순)',
+        warranty: 'KW6 보증가능',
+        img: './assets/images/mycar/my_cla_studio.png',
+        baseKcarSell: 3220,
+        c2cSell: 3540
+      },
+      {
+        plate: '46더 1573',
+        shortNm: '더 뉴 그랜저',
+        title: '현대 더 뉴 그랜저 IG',
+        sub: '가솔린 2.5 캘리그래피',
+        year: '20년 11월',
+        km: '62,900km',
+        fuel: '가솔린·2WD',
+        insCnt: '0건 (완전무사고)',
+        warranty: 'KW6 보증가능',
+        img: './assets/images/mycar/my_grandeur_studio.png',
+        baseKcarSell: 2480,
+        c2cSell: 2750
+      }
     ];
 
-    let currentViewMode = 'compare';
-    let currentSelectedType = 'A';
+    const KCAR_INVENTORY = [
+      { name: '현대 아이오닉 5 롱레인지 프레스티지', meta: '23년 4월 · 2.4만km · 직영', price: 3150, img: './assets/images/mycar/studio_ioniq5.png' },
+      { name: '기아 더 뉴 쏘렌토 4세대 HEV 노블레스', meta: '24년 6월 · 1.8만km · 직영', price: 3890, img: './assets/images/mycar/studio_sorento.png' },
+      { name: '현대 디 올 뉴 그랜저(GN7) 하이브리드', meta: '24년 3월 · 1.4만km · 직영', price: 4280, img: './assets/images/mycar/studio_grandeur_gn7.png' },
+      { name: '제네시스 GV70 (F/L) 2.5T AWD', meta: '24년 7월 · 2.1만km · 직영', price: 4850, img: './assets/images/mycar/studio_gv70.png' },
+      { name: '테슬라 모델 Y 롱레인지 AWD', meta: '24년 5월 · 1.6만km · 직영', price: 5690, img: './assets/images/mycar/studio_modely.png' },
+      { name: '제네시스 GV80 (F/L) 2.5T AWD', meta: '24년 11월 · 2.3만km · 직영', price: 6290, img: './assets/images/mycar/studio_gv80.png' },
+      { name: '벤츠 E-클래스(W214) E200 아방가르드', meta: '24년 6월 · 1.5만km · 직영', price: 6450, img: './assets/images/mycar/studio_eclass_w214.png' },
+      { name: '기아 더 뉴 카니발 HEV 시그니처 그래비티', meta: '25년 2월 · 6천km · 직영', price: 6820, img: './assets/images/mycar/studio_carnival_hevv.png' },
+      { name: '제네시스 G80 (RG3 F/L) 3.5T 스포츠', meta: '25년 1월 · 9천km · 직영', price: 6950, img: './assets/images/mycar/studio_g80_fl.png' },
+      { name: 'BMW X7 (G07) xDrive 40d M 스포츠', meta: '23년 7월 · 3.8만km · 직영', price: 7850, img: './assets/images/mycar/my_x7_studio.png' },
+      { name: 'BMW X6 (G06) xDrive 40i M 스포츠', meta: '23년 9월 · 2.9만km · 직영', price: 7920, img: './assets/images/mycar/studio_x6_g06.png' },
+      { name: '벤츠 GLE-클래스(W167) GLE450 4MATIC', meta: '25년 4월 · 6천km · 직영', price: 9180, img: './assets/images/mycar/studio_gle.png' }
+    ];
 
-    function switchCar(index) {
-      const car = GARAGE_CARS[index];
-      if (!car) return;
-      document.querySelectorAll('.js-car-plate').forEach(el => el.textContent = car.plate);
-      document.querySelectorAll('.js-car-fuel').forEach(el => el.textContent = car.fuel);
-      document.querySelectorAll('.js-car-model').forEach(el => el.textContent = car.model);
-      document.querySelectorAll('.js-car-trim').forEach(el => el.textContent = car.trim);
-      document.querySelectorAll('.js-car-km').forEach(el => el.textContent = car.km);
-      document.querySelectorAll('.js-car-price').forEach(el => el.textContent = car.price);
+    let activeCarIdx = 0;
+    let careBonus = 60; // 만원 (기본 GOLD 88점 = +60만원, 미션 완료 시 VIP 96점 = +85만원)
+    let careScore = 88;
+    let v1ExtraCap = 0;
+    let v2ExtraCap = 0;
+    let v3ExtraCap = 0;
+    let v2SellBasis = 'kcar';
+    let layoutMode = 'all';
+    let focusedVer = 1;
+
+    function fmtNum(n) {
+      return n.toLocaleString('ko-KR');
     }
 
-    function toggleSpecSheet(show) {
-      const el = document.getElementById('specSheetOverlay');
-      if (el) el.classList.toggle('hidden', !show);
+    function getMySellValue(basis) {
+      const car = MY_GARAGE[activeCarIdx];
+      if (basis === 'c2c') return car.c2cSell;
+      return car.baseKcarSell + careBonus;
     }
 
-    function setViewMode(mode) {
-      currentViewMode = mode;
-      const btnCompare = document.getElementById('btnViewCompare');
-      const btnSingle = document.getElementById('btnViewSingle');
-      const cols = {
-        A: document.getElementById('colTypeA'),
-        B: document.getElementById('colTypeB'),
-        C: document.getElementById('colTypeC')
-      };
+    function renderGarageBars() {
+      [1, 2, 3].forEach(num => {
+        const bar = document.getElementById('garageBar' + num);
+        if (!bar) return;
+        bar.innerHTML = MY_GARAGE.map((c, idx) => `
+          <button type="button" class="garage-chip ${idx === activeCarIdx ? 'is-active' : ''}" onclick="selectMyCar(${idx})">
+            <img src="${c.img}" alt="${c.shortNm}" />
+            <div>
+              <div class="g-no">${c.plate}</div>
+              <div class="g-nm">${c.shortNm}</div>
+            </div>
+          </button>
+        `).join('');
+      });
+    }
 
-      if (mode === 'compare') {
-        btnCompare.className = 'px-3 py-1.5 rounded-md font-bold transition-all bg-[#B70F28] text-white';
-        btnSingle.className = 'px-3 py-1.5 rounded-md font-medium text-slate-400 hover:text-white transition-all';
-        Object.values(cols).forEach(el => el.classList.remove('hidden'));
+    function selectMyCar(idx) {
+      activeCarIdx = idx;
+      const car = MY_GARAGE[idx];
+
+      [0, 1, 2].forEach(i => {
+        const btn = document.getElementById('topCar' + i);
+        if (btn) btn.classList.toggle('is-active', i === idx);
+      });
+
+      const kcarSell = getMySellValue('kcar');
+      const c2cGap = car.c2cSell - kcarSell;
+
+      document.querySelectorAll('.js-plate').forEach(el => el.textContent = car.plate);
+      document.querySelectorAll('.js-title').forEach(el => el.textContent = car.title);
+      document.querySelectorAll('.js-sub').forEach(el => el.textContent = car.sub);
+      document.querySelectorAll('.js-year').forEach(el => el.textContent = car.year);
+      document.querySelectorAll('.js-km').forEach(el => el.textContent = car.km);
+      document.querySelectorAll('.js-fuel').forEach(el => el.textContent = car.fuel);
+      document.querySelectorAll('.js-ins-cnt').forEach(el => el.textContent = car.insCnt);
+      document.querySelectorAll('.js-warranty-tag').forEach(el => el.textContent = car.warranty);
+      document.querySelectorAll('.js-hero-img').forEach(el => el.src = car.img);
+
+      document.querySelectorAll('.js-kcar-sell').forEach(el => el.textContent = fmtNum(kcarSell));
+      document.querySelectorAll('.js-c2c-sell').forEach(el => el.textContent = fmtNum(car.c2cSell));
+      document.querySelectorAll('.js-c2c-gap').forEach(el => el.textContent = fmtNum(Math.max(50, c2cGap)));
+      document.querySelectorAll('.js-bonus-txt').forEach(el => el.textContent = fmtNum(careBonus));
+
+      renderGarageBars();
+      renderAllTradeViews();
+    }
+
+    function pickTradeCars(myVal, extraMax) {
+      const budget = myVal + extraMax;
+      let matches;
+      if (extraMax === 0) {
+        // Cars priced <= myVal (0 won extra, or cash back!)
+        matches = KCAR_INVENTORY.filter(c => c.price <= myVal + 20 && c.price >= myVal - 1600)
+          .sort((a, b) => b.price - a.price);
+        if (matches.length < 2) {
+          matches = KCAR_INVENTORY.filter(c => c.price <= myVal + 100).sort((a, b) => b.price - a.price);
+        }
       } else {
-        btnSingle.className = 'px-3 py-1.5 rounded-md font-bold transition-all bg-[#B70F28] text-white';
-        btnCompare.className = 'px-3 py-1.5 rounded-md font-medium text-slate-400 hover:text-white transition-all';
-        selectType(currentSelectedType);
+        const minTarget = myVal + Math.max(50, extraMax - 1100);
+        matches = KCAR_INVENTORY.filter(c => c.price > minTarget && c.price <= budget + 150)
+          .sort((a, b) => a.price - b.price);
+        if (matches.length < 2) {
+          matches = KCAR_INVENTORY.filter(c => c.price <= budget + 300 && c.price > myVal)
+            .sort((a, b) => b.price - a.price);
+        }
+      }
+      return matches.slice(0, 4);
+    }
+
+    function formatDiffBadge(diff) {
+      if (diff <= 0) {
+        const payback = Math.abs(diff);
+        return {
+          cls: 'zero',
+          txt: payback === 0 ? '추가금 0원 맞교환' : `추가금 0원 (+${fmtNum(payback)}만원 환급)`
+        };
+      }
+      const monthly = Math.max(4, Math.round(diff / 48));
+      return {
+        cls: 'plus',
+        txt: `+${fmtNum(diff)}만원 추가 (월 ${monthly}만원)`
+      };
+    }
+
+    function renderAllTradeViews() {
+      // V1 Grid (2-col vertical K Car cards)
+      const myValV1 = getMySellValue('kcar');
+      const v1Cars = pickTradeCars(myValV1, v1ExtraCap);
+      const v1Grid = document.getElementById('v1TradeGrid');
+      if (v1Grid) {
+        v1Grid.innerHTML = v1Cars.map(c => {
+          const badge = formatDiffBadge(c.price - myValV1);
+          return `
+            <div class="trade-card">
+              <div class="trade-thumb">
+                <span class="kc-badge-red top-badge">K Car 직영</span>
+                <img src="${c.img}" alt="${c.name}" />
+              </div>
+              <div class="trade-body">
+                <div class="trade-name">${c.name}</div>
+                <div class="trade-meta">${c.meta}</div>
+                <div class="trade-price">${fmtNum(c.price)}만원</div>
+                <div class="trade-diff ${badge.cls}">${badge.txt}</div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // V2 Slider View
+      const myValV2 = getMySellValue(v2SellBasis);
+      document.getElementById('v2ActiveSellPrice').textContent = fmtNum(myValV2);
+      document.getElementById('v2TotalBudgetTxt').textContent = fmtNum(myValV2 + v2ExtraCap);
+      const v2Cars = pickTradeCars(myValV2, v2ExtraCap);
+      const v2List = document.getElementById('v2TradeList');
+      if (v2List) {
+        v2List.innerHTML = v2Cars.slice(0, 3).map(c => {
+          const badge = formatDiffBadge(c.price - myValV2);
+          return `
+            <div class="trade-row-card">
+              <img src="${c.img}" alt="${c.name}" />
+              <div style="flex:1;min-width:0;">
+                <div style="display:flex;align-items:center;gap:4px;margin-bottom:2px;">
+                  <span class="kc-badge-red" style="height:17px;font-size:10px;">직영</span>
+                  <span style="font-size:11px;color:var(--kc-gray4);">${c.meta}</span>
+                </div>
+                <div style="font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${c.name}</div>
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-top:4px;">
+                  <strong style="font-size:13.5px;">${fmtNum(c.price)}만원</strong>
+                  <span class="trade-diff ${badge.cls}" style="margin:0;padding:2px 7px;">${badge.txt}</span>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // V3 Tab Trade List
+      const v3Cars = pickTradeCars(myValV1, v3ExtraCap);
+      const v3List = document.getElementById('v3TradeList');
+      if (v3List) {
+        v3List.innerHTML = v3Cars.slice(0, 3).map(c => {
+          const badge = formatDiffBadge(c.price - myValV1);
+          return `
+            <div class="trade-row-card">
+              <img src="${c.img}" alt="${c.name}" />
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${c.name}</div>
+                <div style="font-size:11px;color:var(--kc-gray4);margin-top:1px;">${c.meta} · 차량가 ${fmtNum(c.price)}만원</div>
+                <div class="trade-diff ${badge.cls}" style="display:inline-block;margin-top:5px;padding:3px 8px;">${badge.txt}</div>
+              </div>
+            </div>
+          `;
+        }).join('');
       }
     }
 
-    function selectType(type) {
-      currentSelectedType = type;
-      ['A', 'B', 'C'].forEach(t => {
-        const tab = document.getElementById('tabType' + t);
-        if (t === type) {
-          tab.className = 'px-2.5 py-1.5 rounded-md font-bold transition-all text-white bg-slate-800 shadow-sm';
-        } else {
-          tab.className = 'px-2.5 py-1.5 rounded-md font-medium transition-all text-slate-400 hover:text-white';
-        }
-      });
+    function filterTrade(ver, extraWon, btn) {
+      btn.parentElement.querySelectorAll('.kc-pill').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      if (ver === 'v1') v1ExtraCap = extraWon;
+      if (ver === 'v3') v3ExtraCap = extraWon;
+      renderAllTradeViews();
+    }
 
-      if (currentViewMode === 'single') {
-        ['A', 'B', 'C'].forEach(t => {
-          const col = document.getElementById('colType' + t);
-          if (t === type) col.classList.remove('hidden');
-          else col.classList.add('hidden');
+    function updateV2Slider(val) {
+      v2ExtraCap = parseInt(val, 10) || 0;
+      const lbl = document.getElementById('v2ExtraReadout');
+      if (v2ExtraCap === 0) {
+        lbl.textContent = '추가금 0원 (환급/맞교환)';
+      } else {
+        lbl.textContent = '+' + fmtNum(v2ExtraCap) + '만원 추가';
+      }
+      renderAllTradeViews();
+    }
+
+    function setV2SellBasis(basis) {
+      v2SellBasis = basis;
+      const btnK = document.getElementById('v2SellModeKcar');
+      const btnC = document.getElementById('v2SellModeC2c');
+      const lbl = document.getElementById('v2BasisLabel');
+      if (basis === 'kcar') {
+        btnK.style.cssText = 'flex:1;height:30px;border-radius:4px;font-size:12px;font-weight:700;background:#fff;color:var(--kc-gray2);box-shadow:0 1px 2px rgba(0,0,0,0.08);';
+        btnC.style.cssText = 'flex:1;height:30px;border-radius:4px;font-size:12px;font-weight:500;color:var(--kc-gray3);';
+        lbl.textContent = '내차팔기 홈서비스 예상 매입가 (관리우대 포함)';
+      } else {
+        btnC.style.cssText = 'flex:1;height:30px;border-radius:4px;font-size:12px;font-weight:700;background:#fff;color:var(--kc-gray2);box-shadow:0 1px 2px rgba(0,0,0,0.08);';
+        btnK.style.cssText = 'flex:1;height:30px;border-radius:4px;font-size:12px;font-weight:500;color:var(--kc-gray3);';
+        lbl.textContent = '케이카 안심직거래 예상 판매가 (수수료 0원)';
+      }
+      renderAllTradeViews();
+    }
+
+    function completeCareMission() {
+      if (careBonus >= 85) return;
+      careBonus = 85;
+      careScore = 96;
+      document.querySelectorAll('.js-care-score').forEach(el => el.textContent = '96점 (VIP)');
+      document.querySelectorAll('.js-care-score-num').forEach(el => el.textContent = '96');
+      document.querySelectorAll('.js-score-bar').forEach(el => el.style.width = '96%');
+      document.querySelectorAll('.js-mission-btn').forEach(btn => {
+        btn.textContent = '✓ VIP 매각우대 +85만원 승급 완료 (내차 시세 반영됨)';
+        btn.style.background = '#086f4f';
+      });
+      selectMyCar(activeCarIdx);
+    }
+
+    function claimCoupon(btn) {
+      btn.textContent = '발급완료';
+      btn.classList.add('done');
+    }
+
+    function toggleGarageBar(num) {
+      const bar = document.getElementById('garageBar' + num);
+      if (bar) bar.classList.toggle('is-open');
+    }
+
+    function scrollSec(containerId, secId, btn) {
+      btn.parentElement.querySelectorAll('.kc-tab').forEach(t => t.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      const container = document.getElementById(containerId);
+      const sec = document.getElementById(secId);
+      if (container && sec) {
+        container.scrollTo({ top: sec.offsetTop - 95, behavior: 'smooth' });
+      }
+    }
+
+    function switchV3Tab(panelName, btn) {
+      btn.parentElement.querySelectorAll('.kc-tab').forEach(t => t.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      ['Care', 'Price', 'Trade', 'Partner'].forEach(p => {
+        const el = document.getElementById('v3Panel' + p);
+        if (el) el.style.display = (p.toLowerCase() === panelName) ? 'block' : 'none';
+      });
+    }
+
+    function openDetailModal(ver) {
+      document.getElementById('modal' + ver).classList.add('is-open');
+    }
+    function closeDetailModal(ver) {
+      document.getElementById('modal' + ver).classList.remove('is-open');
+    }
+
+    function setLayoutMode(mode) {
+      layoutMode = mode;
+      document.getElementById('btnModeAll').classList.toggle('is-active', mode === 'all');
+      document.getElementById('btnModeOne').classList.toggle('is-active', mode === 'one');
+      document.getElementById('btnModeOne').classList.toggle('is-red', mode === 'one');
+      if (mode === 'all') {
+        [1, 2, 3].forEach(v => document.getElementById('verCol' + v).classList.remove('is-hidden'));
+      } else {
+        focusVersion(focusedVer);
+      }
+    }
+
+    function focusVersion(ver) {
+      focusedVer = ver;
+      [1, 2, 3].forEach(v => {
+        document.getElementById('btnVer' + v).classList.toggle('is-active', v === ver);
+      });
+      if (layoutMode === 'one') {
+        [1, 2, 3].forEach(v => {
+          document.getElementById('verCol' + v).classList.toggle('is-hidden', v !== ver);
         });
       } else {
-        document.getElementById('colType' + type).scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        document.getElementById('verCol' + ver).scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
       }
     }
 
-    function setPriceState(hasPrice) {
-      const btnOn = document.getElementById('btnPriceOn');
-      const btnOff = document.getElementById('btnPriceOff');
-
-      if (hasPrice) {
-        btnOn.className = 'px-2.5 py-1.5 rounded-md font-bold transition-all bg-sky-500 text-slate-950';
-        btnOff.className = 'px-2.5 py-1.5 rounded-md font-medium transition-all text-slate-400 hover:text-white';
-      } else {
-        btnOff.className = 'px-2.5 py-1.5 rounded-md font-bold transition-all bg-sky-500 text-slate-950';
-        btnOn.className = 'px-2.5 py-1.5 rounded-md font-medium transition-all text-slate-400 hover:text-white';
-      }
-
-      document.querySelectorAll('.price-on-view').forEach(el => {
-        el.classList.toggle('hidden', !hasPrice);
-      });
-      document.querySelectorAll('.price-off-view').forEach(el => {
-        el.classList.toggle('hidden', hasPrice);
-      });
-    }
-
-    function toggleGarage(type) {
-      const drawer = document.getElementById('garageDrawer' + type);
-      if (drawer) drawer.classList.toggle('hidden');
-      const arrow = document.getElementById('garageArrow' + type);
-      if (arrow) arrow.classList.toggle('rotate-180');
-    }
-
-    function toggleElement(id) {
-      const el = document.getElementById(id);
-      if (el) el.classList.toggle('hidden');
-    }
-
-    function filterHistory(type, cat, btn) {
-      document.querySelectorAll('.hist-chip-' + type).forEach(b => {
-        b.className = 'hist-chip-' + type + ' shrink-0 px-3 py-1.5 rounded-full text-[12px] font-medium bg-[#F6F8FA] text-[#54555A] border border-[#E8E8EE]';
-      });
-      btn.className = 'hist-chip-' + type + ' shrink-0 px-3 py-1.5 rounded-full text-[12px] font-bold bg-[#B70F28] text-white';
-
-      document.querySelectorAll('.hist-item-' + type).forEach(item => {
-        if (cat === 'all' || item.getAttribute('data-cat') === cat) {
-          item.classList.remove('hidden');
-        } else {
-          item.classList.add('hidden');
-        }
-      });
-    }
-
-    function switchDarkTab(panel, btn) {
-      document.querySelectorAll('.dark-tab-btn').forEach(b => {
-        b.className = 'dark-tab-btn py-2 rounded-lg font-medium text-[#999EA1] transition';
-      });
-      btn.className = 'dark-tab-btn py-2 rounded-lg font-bold bg-[#B70F28] text-white transition';
-
-      document.getElementById('darkPanelVal').classList.toggle('hidden', panel !== 'val');
-      document.getElementById('darkPanelHist').classList.toggle('hidden', panel !== 'hist');
-      document.getElementById('darkPanelCare').classList.toggle('hidden', panel !== 'care');
-    }
+    // Initialize
+    selectMyCar(0);
   </script>
 </body>
 </html>

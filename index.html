@@ -73,7 +73,6 @@
       --r-sm: 6px;
       --r-md: 8px;
       --r-lg: 16px;
-      --r-xl: 24px;
 
       /* Elevation (Shadow) */
       --z100: 0 2px 4px 0 rgba(22, 23, 29, 0.04), 0 0 1px 0 rgba(22, 23, 29, 0.16);
@@ -364,13 +363,13 @@
       object-fit: contain;
     }
 
-    /* Sticky Anchor Navigation (48px) */
+    /* Sticky Anchor Navigation (46px) */
     .mo-nav {
       display: flex;
       padding: 0 20px;
       background: var(--gray-13);
       border-bottom: 1px solid var(--gray-8);
-      gap: 18px;
+      gap: 16px;
       overflow-x: auto;
     }
     .mo-nav::-webkit-scrollbar { display: none; }
@@ -443,6 +442,11 @@
       color: var(--info);
       font-weight: 700;
     }
+    .bdg-gray {
+      background: var(--gray-9);
+      color: var(--gray-3);
+      font-weight: 500;
+    }
 
     /* Hero Car Stage (Airy Studio Whitespace!) */
     .car-stage {
@@ -514,6 +518,98 @@
       font-weight: 500;
     }
 
+    /* ==========================================================================
+       Vehicle History Timeline (Restored — Clean, Airy K Car Design System Style)
+       ========================================================================== */
+    .hist-timeline {
+      position: relative;
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .hist-timeline::before {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 10px;
+      bottom: 10px;
+      width: 1.5px;
+      background: var(--gray-8);
+    }
+
+    .hist-node {
+      position: relative;
+      padding: 18px 20px;
+      border-radius: var(--r-md);
+    }
+
+    .hist-dot {
+      position: absolute;
+      left: -19px;
+      top: 24px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--gray-6);
+      box-shadow: 0 0 0 4px var(--gray-13);
+    }
+
+    .hist-dot.is-red   { background: var(--primary-3); }
+    .hist-dot.is-blue  { background: var(--info); }
+    .hist-dot.is-green { background: var(--green-5); }
+
+    .hist-cost-detail {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--gray-8);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* ==========================================================================
+       Valuation Range Card (Range Display + Visual Band + Exact Price Request CTA)
+       ========================================================================== */
+    .range-main-card {
+      padding: 24px 22px;
+      border-radius: var(--r-lg);
+      margin-bottom: 12px;
+    }
+
+    .range-bar-wrap {
+      margin-top: 18px;
+    }
+
+    .range-track {
+      position: relative;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--gray-8);
+      overflow: hidden;
+    }
+
+    .range-band {
+      position: absolute;
+      left: 22%;
+      width: 54%;
+      top: 0;
+      bottom: 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #EE4E5B 0%, #B70F28 100%);
+    }
+
+    .range-c2c-row {
+      padding: 18px 20px;
+      border-radius: var(--r-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
     /* Maintenance Gauges (Spacious 16px Gap) */
     .gauge-stack {
       display: flex;
@@ -559,22 +655,6 @@
       justify-content: space-between;
     }
 
-    /* Valuation 2-Card Comparison */
-    .val-stack {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .val-box {
-      padding: 20px 18px;
-      border-radius: var(--r-lg);
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
     /* Filter Chips (38px Height, Airy) */
     .chip-row {
       display: flex;
@@ -586,8 +666,8 @@
     .chip-row::-webkit-scrollbar { display: none; }
 
     .flt-chip {
-      height: 38px;
-      padding: 0 16px;
+      height: 36px;
+      padding: 0 15px;
       border-radius: 999px;
       font-size: 13px;
       font-weight: 500;
@@ -710,32 +790,23 @@
     .theme-t1 .mo-sec:last-of-type {
       border-bottom: none;
     }
-    .theme-t1 .car-stage {
+    .theme-t1 .car-stage,
+    .theme-t1 .hist-node,
+    .theme-t1 .gauge-item,
+    .theme-t1 .range-c2c-row,
+    .theme-t1 .trade-item,
+    .theme-t1 .benefit-item {
       background: var(--gray-12);
     }
     .theme-t1 .spec-row-3 {
       border-top: 1px solid var(--gray-8);
       border-bottom: 1px solid var(--gray-8);
     }
-    .theme-t1 .gauge-item {
-      background: var(--gray-12);
-    }
-    .theme-t1 .val-box {
-      background: var(--gray-12);
-    }
-    .theme-t1 .val-box.is-primary {
-      background: var(--primary-10);
-    }
-    .theme-t1 .trade-item {
-      background: var(--gray-12);
-    }
+    .theme-t1 .range-main-card,
     .theme-t1 .reward-box {
       padding: 24px;
       border-radius: var(--r-lg);
       background: var(--primary-10);
-    }
-    .theme-t1 .benefit-item {
-      background: var(--gray-12);
     }
 
     /* --------------------------------------------------------------------------
@@ -764,25 +835,21 @@
       background: var(--gray-11);
       border-radius: var(--r-md);
     }
-    .theme-t2 .gauge-item {
+    .theme-t2 .hist-node,
+    .theme-t2 .gauge-item,
+    .theme-t2 .range-c2c-row,
+    .theme-t2 .trade-item,
+    .theme-t2 .benefit-item {
       border: 1px solid var(--gray-8);
       background: var(--gray-13);
     }
-    .theme-t2 .val-box {
-      border: 1px solid var(--gray-8);
-      background: var(--gray-13);
-    }
-    .theme-t2 .val-box.is-primary {
+    .theme-t2 .range-main-card {
       border: 1.5px solid var(--primary-3);
       background: var(--primary-10);
     }
     .theme-t2 .flt-chip.is-active {
       background: var(--gray-2);
       border-color: var(--gray-2);
-    }
-    .theme-t2 .trade-item {
-      border: 1px solid var(--gray-8);
-      background: var(--gray-13);
     }
     .theme-t2 .trade-img-wrap {
       background: var(--gray-11);
@@ -794,10 +861,6 @@
       border-radius: var(--r-lg);
       border: 1px solid var(--gray-8);
       background: var(--gray-12);
-    }
-    .theme-t2 .benefit-item {
-      border: 1px solid var(--gray-8);
-      background: var(--gray-13);
     }
 
     /* --------------------------------------------------------------------------
@@ -867,15 +930,17 @@
       background: rgba(255, 255, 255, 0.1);
       color: var(--gray-13);
     }
+    .theme-t3 .hist-node,
     .theme-t3 .gauge-item,
-    .theme-t3 .val-box,
+    .theme-t3 .range-c2c-row,
     .theme-t3 .trade-item,
     .theme-t3 .benefit-item {
       border: 1px solid var(--gray-7);
       background: var(--gray-13);
     }
-    .theme-t3 .val-box.is-primary {
+    .theme-t3 .range-main-card {
       border: 2px solid var(--primary-3);
+      background: var(--gray-13);
     }
     .theme-t3 .reward-box {
       padding: 24px;
@@ -982,11 +1047,11 @@
     </div>
   </main>
 
-  <!-- Spec & History Detail Modal -->
+  <!-- Basic Spec Modal -->
   <div class="modal-dim" id="specModal" onclick="closeModal()">
     <div class="modal-box" onclick="event.stopPropagation()">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
-        <h3 class="ty-sub1">제원 및 내 차 히스토리</h3>
+        <h3 class="ty-sub1">내 차 기본 제원</h3>
         <button type="button" class="ty-b1-m" style="color:var(--gray-4);" onclick="closeModal()">닫기</button>
       </div>
       <div class="kv-list" id="modalContent"></div>
@@ -1013,14 +1078,29 @@
         tirePct: 45,
         insurer: '삼성화재 · 26.04 만기',
         inspectDate: '2028.04.27 (D-526)',
-        baseKcar: 6420,
-        c2cPrice: 6890,
+        kcarMin: 6180,
+        kcarMax: 6540,
+        c2cMin: 6650,
+        c2cMax: 6980,
         specs: [
           ['최초등록일', '2022.03.28'],
           ['연료 / 배기량', '가솔린+전기 · 2,998cc'],
-          ['제조사 보증', '잔여 96,497km 유효'],
-          ['보험처리 이력', '내차피해 1건 · 상대피해 2건'],
-          ['신차 출고정보', '경기도 고양시 개인 등록']
+          ['구동방식 / 인승', '4WD · 5인승'],
+          ['복합연비', '9.2km/ℓ + EV 주행'],
+          ['제조사 보증', '잔여 96,497km 유효']
+        ],
+        history: [
+          { cat: 'care', badge: '법정정기검사', bdgCls: 'bdg-gray', dotCls: 'is-blue', date: '2028.04.27', title: '정기검사 도래 예정 (D-526)' },
+          { cat: 'care', badge: '제조사 보증', bdgCls: 'bdg-blue', dotCls: 'is-blue', date: '2027.03.28', title: '동력전달 보증 만료 예정 (96,497km 남음)' },
+          { cat: 'ins',  badge: '보험처리',   bdgCls: 'bdg-red',  dotCls: 'is-red',  date: '2025.03.18', title: '상대차 피해 1,049,220원 (내차보험 수리)' },
+          { cat: 'ins',  badge: '보험처리',   bdgCls: 'bdg-red',  dotCls: 'is-red',  date: '2025.02.28', title: '상대차 피해 1,017,950원 (내차보험 수리)' },
+          {
+            cat: 'ins', badge: '보험처리', bdgCls: 'bdg-red', dotCls: 'is-red', date: '2024.07.22',
+            title: '내차 피해 2,145,242원 (상대차보험 수리)',
+            breakdown: [['부품', '1,448,100원'], ['공임', '237,500원'], ['도장', '459,642원']]
+          },
+          { cat: 'origin', badge: '신차출고', bdgCls: 'bdg-gold', dotCls: 'is-green', date: '2022.03.28', title: '개인 신차 등록 (경기도 고양시)' },
+          { cat: 'origin', badge: '생산정보', bdgCls: 'bdg-gray', dotCls: '',         date: '2022.01.15', title: 'BMW 미국 공장 출고' }
         ]
       },
       {
@@ -1037,14 +1117,20 @@
         tirePct: 32,
         insurer: '현대해상 · 26.09 만기',
         inspectDate: '2027.08.14 (D-270)',
-        baseKcar: 3220,
-        c2cPrice: 3540,
+        kcarMin: 3080,
+        kcarMax: 3340,
+        c2cMin: 3420,
+        c2cMax: 3680,
         specs: [
           ['최초등록일', '2021.08.14'],
           ['연료 / 배기량', '가솔린 · 1,991cc'],
-          ['케이카 보증', 'KW6 가입 가능'],
-          ['보험처리 이력', '단순 교환 1건'],
-          ['신차 출고정보', '서울 서초구 개인 등록']
+          ['구동방식 / 인승', '4WD · 5인승'],
+          ['케이카 보증', 'KW6 가입 가능']
+        ],
+        history: [
+          { cat: 'care',   badge: '법정정기검사', bdgCls: 'bdg-gray', dotCls: 'is-blue',  date: '2027.08.14', title: '정기검사 도래 예정 (D-270)' },
+          { cat: 'ins',    badge: '보험처리',     bdgCls: 'bdg-red',  dotCls: 'is-red',   date: '2023.11.05', title: '내차 피해 680,000원 (단순 도장)' },
+          { cat: 'origin', badge: '신차출고',     bdgCls: 'bdg-gold', dotCls: 'is-green', date: '2021.08.14', title: '개인 신차 등록 (서울 서초구)' }
         ]
       },
       {
@@ -1061,14 +1147,20 @@
         tirePct: 25,
         insurer: 'DB손해보험 · 26.11 만기',
         inspectDate: '2026.11.20 (D-62)',
-        baseKcar: 2480,
-        c2cPrice: 2750,
+        kcarMin: 2360,
+        kcarMax: 2580,
+        c2cMin: 2640,
+        c2cMax: 2850,
         specs: [
           ['최초등록일', '2020.11.20'],
           ['연료 / 배기량', '가솔린 · 2,497cc'],
-          ['케이카 보증', 'KW12 가입 가능'],
-          ['보험처리 이력', '0건 (완전 무사고)'],
-          ['신차 출고정보', '경기도 성남시 개인 등록']
+          ['구동방식 / 인승', '2WD · 5인승'],
+          ['케이카 보증', 'KW12 가입 가능']
+        ],
+        history: [
+          { cat: 'care',   badge: '법정정기검사', bdgCls: 'bdg-red',  dotCls: 'is-red',   date: '2026.11.20', title: '정기검사 기간 도래 (D-62)' },
+          { cat: 'care',   badge: '보험처리',     bdgCls: 'bdg-gold', dotCls: 'is-green', date: '2026.11 기준', title: '보험사고 이력 0건 (완전 무사고)' },
+          { cat: 'origin', badge: '신차출고',     bdgCls: 'bdg-gold', dotCls: 'is-green', date: '2020.11.20', title: '개인 신차 등록 (경기도 성남시)' }
         ]
       }
     ];
@@ -1090,7 +1182,10 @@
 
     let state = {
       carIdx: 0,
-      extraBudget: 0, // 0, 500, 1500, 3000
+      histFilter: 'all',     // 'all', 'ins', 'care', 'origin'
+      histExpanded: false,   // show top 3 by default to keep density clean
+      costOpen: false,       // repair breakdown toggle
+      extraBudget: 0,        // 0, 500, 1500, 3000
       careScore: 88,
       careBonus: 60,
       missionDone: false,
@@ -1102,21 +1197,21 @@
 
     const fmt = n => n.toLocaleString('ko-KR');
 
-    function getTradeRecommendations(myPrice, extra) {
-      const maxBudget = myPrice + extra;
+    function getTradeRecommendations(midPrice, maxPrice, extra) {
+      const targetMax = maxPrice + extra;
       let list;
       if (extra === 0) {
-        list = INVENTORY.filter(c => c.price <= myPrice + 20 && c.price >= myPrice - 1800)
+        list = INVENTORY.filter(c => c.price <= maxPrice && c.price >= midPrice - 1700)
           .sort((a, b) => b.price - a.price);
         if (list.length < 2) {
-          list = INVENTORY.filter(c => c.price <= myPrice + 150).sort((a, b) => b.price - a.price);
+          list = INVENTORY.filter(c => c.price <= maxPrice + 150).sort((a, b) => b.price - a.price);
         }
       } else {
-        const minPrice = myPrice + Math.max(50, extra - 1100);
-        list = INVENTORY.filter(c => c.price > minPrice && c.price <= maxBudget + 200)
+        const minTarget = midPrice + Math.max(50, extra - 1000);
+        list = INVENTORY.filter(c => c.price > minTarget && c.price <= targetMax + 200)
           .sort((a, b) => a.price - b.price);
         if (list.length < 2) {
-          list = INVENTORY.filter(c => c.price > myPrice && c.price <= maxBudget + 400)
+          list = INVENTORY.filter(c => c.price > midPrice && c.price <= targetMax + 400)
             .sort((a, b) => b.price - a.price);
         }
       }
@@ -1128,11 +1223,14 @@
        ========================================================================== */
     function buildAppHTML(typeNum) {
       const car = GARAGE[state.carIdx];
-      const kcarPrice = car.baseKcar + state.careBonus;
-      const c2cDiff = car.c2cPrice - kcarPrice;
-      const tradeCars = getTradeRecommendations(kcarPrice, state.extraBudget);
+      const bonusDelta = state.missionDone ? 25 : 0;
+      const minSell = car.kcarMin + bonusDelta;
+      const maxSell = car.kcarMax + bonusDelta;
+      const midSell = Math.round((minSell + maxSell) / 2);
+
       const isDarkHdr = typeNum === 3;
 
+      // Garage Switcher
       const garageItemsHTML = GARAGE.map((g, idx) => `
         <button type="button" class="g-item ${idx === state.carIdx ? 'is-active' : ''}" onclick="changeCar(${idx})">
           <img src="${g.img}" alt="${g.name}" />
@@ -1143,11 +1241,62 @@
         </button>
       `).join('');
 
+      // History Filter & Timeline
+      const allHist = car.history;
+      const insCount = allHist.filter(h => h.cat === 'ins').length;
+      const careCount = allHist.filter(h => h.cat === 'care').length;
+      const origCount = allHist.filter(h => h.cat === 'origin').length;
+
+      const filteredHist = state.histFilter === 'all'
+        ? allHist
+        : allHist.filter(h => h.cat === state.histFilter);
+
+      const visibleHist = state.histExpanded ? filteredHist : filteredHist.slice(0, 3);
+
+      const historyNodesHTML = visibleHist.map(h => {
+        const hasBreakdown = Array.isArray(h.breakdown);
+        return `
+          <div class="hist-node">
+            <span class="hist-dot ${h.dotCls}"></span>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+              <span class="bdg ${h.bdgCls}">${h.badge}</span>
+              <span class="ty-b2 num" style="color:var(--gray-4);">${h.date}</span>
+            </div>
+            <div class="ty-b1-m" style="font-weight:700;color:var(--gray-2);">${h.title}</div>
+            ${hasBreakdown ? `
+              <button type="button" class="ty-b2-m" style="color:var(--gray-3);margin-top:10px;display:inline-flex;align-items:center;gap:4px;" onclick="toggleRepairCost()">
+                수리비 내역 ${state.costOpen ? '접기 ▴' : '보기 ▾'}
+              </button>
+              ${state.costOpen ? `
+                <div class="hist-cost-detail">
+                  ${h.breakdown.map(r => `
+                    <div class="kv-row ty-b2">
+                      <span style="color:var(--gray-4);">${r[0]}</span>
+                      <span class="num" style="font-weight:500;color:var(--gray-2);">${r[1]}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              ` : ''}
+            ` : ''}
+          </div>
+        `;
+      }).join('');
+
+      // Trade-In Recommendations (Based on Price Range!)
+      const tradeCars = getTradeRecommendations(midSell, maxSell, state.extraBudget);
       const tradeCardsHTML = tradeCars.map(item => {
-        const diff = item.price - kcarPrice;
-        const badgeHTML = diff <= 0
-          ? `<span class="bdg bdg-gold">${diff === 0 ? '추가금 0원' : `0원 · ${fmt(Math.abs(diff))}만원 환급`}</span>`
-          : `<span class="bdg bdg-red">+${fmt(diff)}만원 추가</span>`;
+        // Compare against [minSell, maxSell] range!
+        const minNeed = item.price - maxSell;
+        const maxNeed = item.price - minSell;
+        let badgeHTML;
+        if (maxNeed <= 0) {
+          badgeHTML = `<span class="bdg bdg-gold">추가금 0원 (여유 환급)</span>`;
+        } else if (minNeed <= 0) {
+          badgeHTML = `<span class="bdg bdg-gold">추가금 0원 가능 구간</span>`;
+        } else {
+          const approx = Math.round(((minNeed + maxNeed) / 2) / 10) * 10;
+          badgeHTML = `<span class="bdg bdg-red">약 +${fmt(approx)}만원 내외</span>`;
+        }
 
         return `
           <div class="trade-item">
@@ -1189,6 +1338,7 @@
         <!-- Clean Anchor Bar -->
         <nav class="mo-nav">
           <button type="button" class="mo-nav-btn is-active" onclick="jumpToSec(${typeNum}, 'sec1')">내차정보</button>
+          <button type="button" class="mo-nav-btn" onclick="jumpToSec(${typeNum}, 'secHist')">히스토리</button>
           <button type="button" class="mo-nav-btn" onclick="jumpToSec(${typeNum}, 'sec2')">차량관리</button>
           <button type="button" class="mo-nav-btn" onclick="jumpToSec(${typeNum}, 'sec3')">예상시세</button>
           <button type="button" class="mo-nav-btn" onclick="jumpToSec(${typeNum}, 'sec4')">갈아타기</button>
@@ -1221,17 +1371,42 @@
                 <div class="ty-sub3 num">${car.km}</div>
               </div>
               <div class="spec-cell">
-                <div class="ty-b2 spec-lbl-txt" style="color:var(--gray-4);margin-bottom:4px;">이력</div>
+                <div class="ty-b2 spec-lbl-txt" style="color:var(--gray-4);margin-bottom:4px;">이력요약</div>
                 <div class="ty-sub3">${car.historyShort}</div>
               </div>
             </div>
 
             <button type="button" class="kc-btn kc-btn-soft" onclick="openModal()">
-              기본 제원 · 이력 상세보기
+              기본 제원 상세보기
             </button>
           </section>
 
-          <!-- 02. 차량 관리 -->
+          <!-- 02. 내 차 히스토리 (부활 — 깔끔한 필터 & 타임라인) -->
+          <section class="mo-sec" id="t${typeNum}_secHist">
+            <div class="sec-head">
+              <h3 class="ty-sub1">내 차 히스토리 <span class="num" style="color:var(--primary-3);">${allHist.length}</span></h3>
+              <span class="ty-b2" style="color:var(--gray-4);">미이행 리콜 0건</span>
+            </div>
+
+            <div class="chip-row">
+              <button type="button" class="flt-chip ${state.histFilter === 'all' ? 'is-active' : ''}" onclick="setHistFilter('all')">전체 ${allHist.length}</button>
+              <button type="button" class="flt-chip ${state.histFilter === 'ins' ? 'is-active' : ''}" onclick="setHistFilter('ins')">보험처리 ${insCount}</button>
+              <button type="button" class="flt-chip ${state.histFilter === 'care' ? 'is-active' : ''}" onclick="setHistFilter('care')">보증·검사 ${careCount}</button>
+              <button type="button" class="flt-chip ${state.histFilter === 'origin' ? 'is-active' : ''}" onclick="setHistFilter('origin')">출고·생산 ${origCount}</button>
+            </div>
+
+            <div class="hist-timeline">
+              ${historyNodesHTML}
+            </div>
+
+            ${filteredHist.length > 3 ? `
+              <button type="button" class="kc-btn kc-btn-soft" style="margin-top:18px;" onclick="toggleHistExpand()">
+                ${state.histExpanded ? '히스토리 접기 ▴' : `전체 히스토리 보기 (${filteredHist.length}건) ▾`}
+              </button>
+            ` : ''}
+          </section>
+
+          <!-- 03. 차량 관리 -->
           <section class="mo-sec" id="t${typeNum}_sec2">
             <div class="sec-head">
               <h3 class="ty-sub1">내 차 관리</h3>
@@ -1276,47 +1451,67 @@
             </div>
           </section>
 
-          <!-- 03. 예상 시세 (직영 vs 직거래) -->
+          <!-- 04. 예상 매각 시세 (시세 레인지 표현 + 정확한 견적은 내차팔기 신청!) -->
           <section class="mo-sec" id="t${typeNum}_sec3">
             <div class="sec-head">
               <h3 class="ty-sub1">예상 매각 시세</h3>
-              <span class="bdg bdg-gold">우대 +${state.careBonus}만원 반영</span>
+              <span class="bdg bdg-gold">우대 최대 +${state.careBonus}만원 포함</span>
             </div>
 
-            <div class="val-stack">
-              <div class="val-box is-primary">
-                <span class="ty-b2-m" style="color:var(--gray-3);">케이카 직영매각</span>
-                <strong class="ty-h3 num" style="color:var(--primary-3);">${fmt(kcarPrice)}만원</strong>
-                <span class="ty-cap2" style="color:var(--primary-3);">당일 무료 방문견적</span>
+            <!-- Primary Range Card (K Car 내차팔기) -->
+            <div class="range-main-card">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+                <span class="ty-b1-m" style="color:var(--gray-3);">케이카 내차팔기 예상 범위</span>
+                <span class="bdg bdg-red">시세 레인지</span>
+              </div>
+              <div class="ty-h2 num" style="color:var(--primary-3);">
+                ${fmt(minSell)} ~ ${fmt(maxSell)}만원
               </div>
 
-              <div class="val-box">
-                <span class="ty-b2-m" style="color:var(--gray-3);">안심직거래 예상가</span>
-                <strong class="ty-h3 num">${fmt(car.c2cPrice)}만원</strong>
-                <span class="ty-cap2" style="color:var(--info);">직영 대비 +${fmt(c2cDiff)}만원</span>
+              <div class="range-bar-wrap">
+                <div class="range-track">
+                  <div class="range-band"></div>
+                </div>
+                <div style="display:flex;justify-content:space-between;margin-top:8px;" class="ty-cap2 num">
+                  <span style="color:var(--gray-4);">감가 반영 최소 ${fmt(minSell)}만</span>
+                  <span style="color:var(--gray-2);font-weight:700;">무사고·우대 최대 ${fmt(maxSell)}만</span>
+                </div>
               </div>
             </div>
+
+            <!-- Secondary C2C Range Row -->
+            <div class="range-c2c-row">
+              <div>
+                <div class="ty-b2" style="color:var(--gray-4);">안심직거래 예상 범위</div>
+                <div class="ty-sub2 num" style="margin-top:2px;">${fmt(car.c2cMin)} ~ ${fmt(car.c2cMax)}만원</div>
+              </div>
+              <span class="bdg bdg-blue">수수료 0원</span>
+            </div>
+
+            <p class="ty-b2" style="color:var(--gray-3);margin-bottom:16px;">
+              옵션·컨디션에 따른 정확한 내 차 가격은 무료 방문견적으로 확인하세요.
+            </p>
 
             <div class="btn-row-2">
-              <button type="button" class="kc-btn kc-btn-red">내차팔기 신청</button>
-              <button type="button" class="kc-btn kc-btn-line">직거래 등록</button>
+              <button type="button" class="kc-btn kc-btn-red">내차팔기 정확견적 신청</button>
+              <button type="button" class="kc-btn kc-btn-line">직거래 셀프등록</button>
             </div>
           </section>
 
-          <!-- 04. 케이카 갈아타기 (추가금 0원 ~ 금액별) -->
+          <!-- 05. 케이카 갈아타기 (시세 범위 기준 추천) -->
           <section class="mo-sec" id="t${typeNum}_sec4">
             <div class="sec-head" style="margin-bottom:8px;">
               <h3 class="ty-sub1">내 차 팔고 갈아타기</h3>
             </div>
             <p class="ty-b1" style="color:var(--gray-3);margin-bottom:20px;">
-              내 차 시세 <strong style="color:var(--gray-2);">${fmt(kcarPrice)}만원</strong> 기준 추천 직영차
+              예상 시세(<strong class="num" style="color:var(--gray-2);">${fmt(minSell)}~${fmt(maxSell)}만원</strong>) 기준 추천 직영차
             </p>
 
             <div class="chip-row">
               <button type="button" class="flt-chip ${state.extraBudget === 0 ? 'is-active' : ''}" onclick="setExtraBudget(0)">추가금 0원</button>
-              <button type="button" class="flt-chip ${state.extraBudget === 500 ? 'is-active' : ''}" onclick="setExtraBudget(500)">+500만원</button>
-              <button type="button" class="flt-chip ${state.extraBudget === 1500 ? 'is-active' : ''}" onclick="setExtraBudget(1500)">+1,500만원</button>
-              <button type="button" class="flt-chip ${state.extraBudget === 3000 ? 'is-active' : ''}" onclick="setExtraBudget(3000)">+2,500만원</button>
+              <button type="button" class="flt-chip ${state.extraBudget === 500 ? 'is-active' : ''}" onclick="setExtraBudget(500)">+500만원대</button>
+              <button type="button" class="flt-chip ${state.extraBudget === 1500 ? 'is-active' : ''}" onclick="setExtraBudget(1500)">+1,500만원대</button>
+              <button type="button" class="flt-chip ${state.extraBudget === 3000 ? 'is-active' : ''}" onclick="setExtraBudget(3000)">+2,500만원↑</button>
             </div>
 
             <div class="car-list-stack">
@@ -1324,7 +1519,7 @@
             </div>
           </section>
 
-          <!-- 05 & 06. 관리이력 매각우대 & 케이카 제휴 할인 -->
+          <!-- 06. 관리이력 매각우대 & 케이카 제휴 할인 -->
           <section class="mo-sec" id="t${typeNum}_sec5">
             <div class="sec-head">
               <h3 class="ty-sub1">관리 우대 · 제휴 혜택</h3>
@@ -1337,13 +1532,13 @@
                 <span class="bdg bdg-gold">${state.missionDone ? 'VIP 등급' : 'GOLD 등급'}</span>
               </div>
               <div class="ty-h4 num reward-price" style="color:var(--primary-3);">
-                케이카 매각 시 +${state.careBonus}만원 우대
+                케이카 매각 시 최대 +${state.careBonus}만원 우대
               </div>
               <div class="gauge-track" style="margin:18px 0 20px;height:8px;">
                 <div class="gauge-fill" style="width:${state.careScore}%;background:var(--primary-3);"></div>
               </div>
               <button type="button" class="kc-btn ${state.missionDone ? 'kc-btn-soft' : 'kc-btn-red'}" onclick="runMission()">
-                ${state.missionDone ? '✓ 정비 인증 완료 (+85만원 적용됨)' : '제휴 정비 인증하고 +85만원 받기'}
+                ${state.missionDone ? '✓ 정비 인증 완료 (+85만원 우대 반영)' : '제휴 정비 인증하고 +85만원 우대받기'}
               </button>
             </div>
 
@@ -1402,9 +1597,28 @@
 
     function changeCar(idx) {
       state.carIdx = idx;
+      state.histFilter = 'all';
+      state.histExpanded = false;
+      state.costOpen = false;
       [0, 1, 2].forEach(i => {
         document.getElementById('carBtn' + i).classList.toggle('is-active', i === idx);
       });
+      renderAll();
+    }
+
+    function setHistFilter(flt) {
+      state.histFilter = flt;
+      state.histExpanded = true;
+      renderAll();
+    }
+
+    function toggleHistExpand() {
+      state.histExpanded = !state.histExpanded;
+      renderAll();
+    }
+
+    function toggleRepairCost() {
+      state.costOpen = !state.costOpen;
       renderAll();
     }
 

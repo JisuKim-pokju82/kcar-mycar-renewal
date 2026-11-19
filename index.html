@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>K Car 마이카(MyCar) 상세 리뉴얼 3가지 버전 | K Car 디자인 가이드 준수</title>
+  <title>K Car 마이카 리뉴얼 · 3가지 디자인 비교</title>
+  <link href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css" rel="stylesheet" type="text/css" />
   <style>
     /* ==========================================================================
-       1:1 K Car Production Typography & Design System Tokens
-       (Spoqa Han Sans Neo + Official K Car Color/Border/Badge/Card Rules)
+       🌈 KCar C2C Design System_Final (L7kRm8n4WaisKzIqLyzQbT)
+       1. Spoqa Han Sans Neo (ONLY 400 Regular, 500 Medium, 700 Bold)
+       2. Exact Color, Typography, Spacing (4px/8px grid), Radius & Elevation Tokens
        ========================================================================== */
     @font-face {
       font-family: 'Spoqa Han Sans Neo';
@@ -35,34 +37,50 @@
     }
 
     :root {
-      --kc-red: #b70f28;
-      --kc-red-bright: #da2631;
-      --kc-red-badge: #f01d29;
-      --kc-red-soft: #fdeeef;
-      --kc-red-bg: #fff9f9;
+      /* Brand & Primary Scale */
+      --primary-2: #9D0A2E;
+      --primary-3: #B70F28; /* Brand Red (Default) */
+      --primary-4: #F01D29; /* Active / Error */
+      --primary-9: #FDEEEF;
+      --primary-10: #FFF9F9;
 
-      --kc-gray1: #000000;
-      --kc-gray2: #16171d;
-      --kc-gray3: #54555a;
-      --kc-gray4: #82848b;
-      --kc-gray5: #999ea1;
-      --kc-gray6: #b0b2bd;
-      --kc-gray7: #d8dee8;
-      --kc-gray8: #e8e8ee;
-      --kc-gray9: #f1f1f4;
-      --kc-gray10: #f2f2f2;
-      --kc-gray11: #f6f8fa;
-      --kc-white: #ffffff;
+      /* Gray Scale */
+      --gray-1: #000000;
+      --gray-2: #16171D; /* 기본 본문 텍스트 */
+      --gray-3: #54555A; /* Sub Text */
+      --gray-4: #82848B; /* 보조 캡션 */
+      --gray-5: #999EA1;
+      --gray-6: #B0B2BD; /* Main BTN Border */
+      --gray-7: #D8DEE8; /* Main Border */
+      --gray-8: #E8E8EE; /* Main Sub Border */
+      --gray-9: #F1F1F4;
+      --gray-10: #F2F2F2;
+      --gray-11: #F6F8FA;
+      --gray-12: #F9FAFB; /* Page BG */
+      --gray-13: #FFFFFF; /* White */
 
-      --kc-green: #086f4f;
-      --kc-green-bright: #02b260;
-      --kc-green-bg: #ddf2e5;
-      --kc-blue: #0073fd;
-      --kc-blue-bg: #e5eefc;
-      --kc-warn: #fa6400;
-      --kc-warn-bg: #ffebd6;
+      /* Semantic & Sub Scales */
+      --info: #0086FF;
+      --blue-10: #E5EEFC;
+      --success: #02B260;
+      --green-5: #0B845F;
+      --green-10: #DDF2E5;
+      --warning: #FBA900;
+      --error: #DD1540;
 
-      --font-kcar: 'Spoqa Han Sans Neo', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+      /* Radius */
+      --r-xs: 4px;
+      --r-sm: 6px;
+      --r-md: 8px;
+      --r-lg: 16px;
+      --r-xl: 24px;
+
+      /* Elevation (Shadow) */
+      --z100: 0 2px 4px 0 rgba(22, 23, 29, 0.04), 0 0 1px 0 rgba(22, 23, 29, 0.16);
+      --z200: 0 4px 8px -2px rgba(22, 23, 29, 0.08), 0 0 1px 0 rgba(22, 23, 29, 0.16);
+      --z300: 0 8px 16px -4px rgba(22, 23, 29, 0.10), 0 0 1px 0 rgba(22, 23, 29, 0.16);
+
+      --font-kcar: 'Spoqa Han Sans Neo', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
     }
 
     *, *::before, *::after {
@@ -71,11 +89,18 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: var(--font-kcar);
-      background-color: #ebedf2;
-      color: var(--kc-gray2);
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
       letter-spacing: -0.5px;
+      color: var(--gray-2);
+      background: #ECEEF3;
       -webkit-font-smoothing: antialiased;
       word-break: keep-all;
     }
@@ -83,28 +108,59 @@
     button, input, select {
       font-family: var(--font-kcar);
       letter-spacing: -0.5px;
-      border: none;
-      background: transparent;
       color: inherit;
+      background: none;
+      border: none;
       cursor: pointer;
     }
 
     /* ==========================================================================
-       Top Presentation Control Bar (Clean K Car White/Gray Workbench)
+       Exact KCar C2C Typography Scale
        ========================================================================== */
-    .workbench-bar {
+    .ty-h2   { font-size: 26px; line-height: 34px; letter-spacing: -0.5px; font-weight: 700; }
+    .ty-h3   { font-size: 24px; line-height: 30px; letter-spacing: -0.5px; font-weight: 700; }
+    .ty-h4   { font-size: 22px; line-height: 28px; letter-spacing: -0.5px; font-weight: 700; }
+    .ty-sub1 { font-size: 20px; line-height: 26px; letter-spacing: -0.5px; font-weight: 700; }
+    .ty-sub2 { font-size: 18px; line-height: 24px; letter-spacing: -0.5px; font-weight: 700; }
+    .ty-sub3 { font-size: 16px; line-height: 22px; letter-spacing: -0.5px; font-weight: 700; }
+    .ty-b1   { font-size: 14px; line-height: 20px; letter-spacing: -0.5px; font-weight: 400; }
+    .ty-b1-m { font-size: 14px; line-height: 20px; letter-spacing: -0.5px; font-weight: 500; }
+    .ty-b2   { font-size: 13px; line-height: 18px; letter-spacing: -0.5px; font-weight: 400; }
+    .ty-b2-m { font-size: 13px; line-height: 18px; letter-spacing: -0.5px; font-weight: 500; }
+    .ty-cap2 { font-size: 12px; line-height: 16px; letter-spacing: 0px;    font-weight: 500; }
+    .num     { font-variant-numeric: tabular-nums; }
+
+    /* ==========================================================================
+       Official K Car Logo (Figma 22624:6418)
+       ========================================================================== */
+    .kcar-logo {
+      display: inline-block;
+      width: 72px;
+      height: 19px;
+      flex-shrink: 0;
+      background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='31' fill='none' viewBox='0 0 120 31'%3E%3Cpath fill='%23B70F28' d='M51.694 14.822 61.851 3.087h-6.636L46.873 13.09V3.087h-5.646v24.847h5.647V17.052l6.445 8.378a6.4 6.4 0 0 0 5.065 2.504h3.852l-10.548-13.12zM107.073 24.086v-7.272c0-5.24-2.356-7.682-7.414-7.682-2.058 0-4.062.573-5.951 1.712l-.21.13.027.382c.04.655.392 1.248.94 1.603a1.97 1.97 0 0 0 1.802.178 7.9 7.9 0 0 1 2.884-.574c2.675 0 3.799 1.058 3.9 3.753-1.063-.048-1.902-.048-3.013-.048-3.162 0-8.51 1.303-8.51 6.194 0 3.739 2.477 5.888 6.797 5.888 2.675 0 4.34-1.269 5.221-2.217a2.67 2.67 0 0 0 2.518 1.808h1.212l-.061-.457c-.088-.676-.135-1.788-.135-3.391m-4.029-4.544v1.153c0 2.6-1.706 4.216-4.455 4.216-1.15 0-2.85-.777-2.85-2.456 0-2.585 3.54-2.974 5.653-2.974.339 0 .671.02 1.009.034.217.014.427.02.643.027M119.604 9.364c-.65-.13-1.164-.232-2.132-.232-1.659 0-3.352.982-4.401 2.483a3.11 3.11 0 0 0-2.919-2.067h-.711v18.393h4.022v-8.405c0-4.107 1.707-6.768 4.354-6.768.63 0 1.178.096 1.625.28l.555.232V9.446zM89.828 22.367l-.339.164s-.514.245-.697.327c-1.327.594-3.345 1.044-4.692 1.044-4.632 0-7.997-3.527-7.997-8.391s3.359-8.392 8.159-8.392c.711 0 1.415.082 2.085.246a2.98 2.98 0 0 0 2.458-.484 3 3 0 0 0 1.233-2.204l.06-.73-.487-.218c-1.625-.717-3.426-1.071-5.518-1.071-7.658 0-13.007 5.24-13.007 12.737s5.092 12.941 12.973 12.941c2.282 0 4.15-.3 5.566-.893l.487-.205-.298-4.885zM29.336.004C22.173.59 16.458 6.342 15.883 13.559c-.055.662.494 1.215 1.15 1.215H29.39a1.15 1.15 0 0 0 1.151-1.16V1.164c0-.662-.548-1.215-1.205-1.16'/%3E%3Cpath fill='%23B0B2BD' d='M15.883 17.441c.582 7.218 6.29 12.976 13.453 13.556.657.055 1.206-.498 1.206-1.16v-12.45a1.15 1.15 0 0 0-1.152-1.16H17.035c-.657 0-1.206.553-1.151 1.214'/%3E%3Cpath fill='%23B70F28' d='M13.284.229H1.158C.518.229 0 .751 0 1.396v12.218c0 .644.518 1.167 1.158 1.167h12.126c.64 0 1.158-.523 1.158-1.167V1.396c0-.645-.518-1.167-1.158-1.167'/%3E%3Cpath fill='%23B0B2BD' d='M13.284 16.234H1.158C.518 16.234 0 16.756 0 17.4V29.62c0 .644.518 1.167 1.158 1.167h12.126c.64 0 1.158-.523 1.158-1.167V17.401c0-.645-.518-1.167-1.158-1.167'/%3E%3C/svg%3E") no-repeat 50% 50% / contain;
+    }
+
+    .kcar-logo.on-dark {
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='31' fill='none' viewBox='0 0 120 31'%3E%3Cpath fill='%23FFFFFF' d='M51.694 14.822 61.851 3.087h-6.636L46.873 13.09V3.087h-5.646v24.847h5.647V17.052l6.445 8.378a6.4 6.4 0 0 0 5.065 2.504h3.852l-10.548-13.12zM107.073 24.086v-7.272c0-5.24-2.356-7.682-7.414-7.682-2.058 0-4.062.573-5.951 1.712l-.21.13.027.382c.04.655.392 1.248.94 1.603a1.97 1.97 0 0 0 1.802.178 7.9 7.9 0 0 1 2.884-.574c2.675 0 3.799 1.058 3.9 3.753-1.063-.048-1.902-.048-3.013-.048-3.162 0-8.51 1.303-8.51 6.194 0 3.739 2.477 5.888 6.797 5.888 2.675 0 4.34-1.269 5.221-2.217a2.67 2.67 0 0 0 2.518 1.808h1.212l-.061-.457c-.088-.676-.135-1.788-.135-3.391m-4.029-4.544v1.153c0 2.6-1.706 4.216-4.455 4.216-1.15 0-2.85-.777-2.85-2.456 0-2.585 3.54-2.974 5.653-2.974.339 0 .671.02 1.009.034.217.014.427.02.643.027M119.604 9.364c-.65-.13-1.164-.232-2.132-.232-1.659 0-3.352.982-4.401 2.483a3.11 3.11 0 0 0-2.919-2.067h-.711v18.393h4.022v-8.405c0-4.107 1.707-6.768 4.354-6.768.63 0 1.178.096 1.625.28l.555.232V9.446zM89.828 22.367l-.339.164s-.514.245-.697.327c-1.327.594-3.345 1.044-4.692 1.044-4.632 0-7.997-3.527-7.997-8.391s3.359-8.392 8.159-8.392c.711 0 1.415.082 2.085.246a2.98 2.98 0 0 0 2.458-.484 3 3 0 0 0 1.233-2.204l.06-.73-.487-.218c-1.625-.717-3.426-1.071-5.518-1.071-7.658 0-13.007 5.24-13.007 12.737s5.092 12.941 12.973 12.941c2.282 0 4.15-.3 5.566-.893l.487-.205-.298-4.885zM29.336.004C22.173.59 16.458 6.342 15.883 13.559c-.055.662.494 1.215 1.15 1.215H29.39a1.15 1.15 0 0 0 1.151-1.16V1.164c0-.662-.548-1.215-1.205-1.16'/%3E%3Cpath fill='%2382848B' d='M15.883 17.441c.582 7.218 6.29 12.976 13.453 13.556.657.055 1.206-.498 1.206-1.16v-12.45a1.15 1.15 0 0 0-1.152-1.16H17.035c-.657 0-1.206.553-1.151 1.214'/%3E%3Cpath fill='%23F01D29' d='M13.284.229H1.158C.518.229 0 .751 0 1.396v12.218c0 .644.518 1.167 1.158 1.167h12.126c.64 0 1.158-.523 1.158-1.167V1.396c0-.645-.518-1.167-1.158-1.167'/%3E%3Cpath fill='%2382848B' d='M13.284 16.234H1.158C.518 16.234 0 16.756 0 17.4V29.62c0 .644.518 1.167 1.158 1.167h12.126c.64 0 1.158-.523 1.158-1.167V17.401c0-.645-.518-1.167-1.158-1.167'/%3E%3C/svg%3E");
+    }
+
+    /* ==========================================================================
+       Top Control Bar (Clean Minimal K Car GNB)
+       ========================================================================== */
+    .top-gnb {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: #ffffff;
-      border-bottom: 1px solid var(--kc-gray7);
-      padding: 12px 20px;
-      box-shadow: 0 2px 8px rgba(22, 23, 29, 0.05);
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gray-8);
     }
 
-    .wb-inner {
+    .top-gnb-inner {
       max-width: 1320px;
       margin: 0 auto;
+      padding: 12px 24px;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -112,1861 +168,1324 @@
       gap: 12px;
     }
 
-    .wb-brand {
+    .gnb-left {
       display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .gnb-controls {
+      display: flex;
+      flex-wrap: wrap;
       align-items: center;
       gap: 10px;
     }
 
-    /* Official K Car Vector Logo */
-    .kcar-logo {
-      display: inline-block;
-      width: 68px;
-      height: 18px;
-      flex-shrink: 0;
-      background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='31' fill='none' viewBox='0 0 120 31'%3E%3Cpath fill='%23da2631' d='M51.694 14.822 61.851 3.087h-6.636L46.873 13.09V3.087h-5.646v24.847h5.647V17.052l6.445 8.378a6.4 6.4 0 0 0 5.065 2.504h3.852l-10.548-13.12zM107.073 24.086v-7.272c0-5.24-2.356-7.682-7.414-7.682-2.058 0-4.062.573-5.951 1.712l-.21.13.027.382c.04.655.392 1.248.94 1.603a1.97 1.97 0 0 0 1.802.178 7.9 7.9 0 0 1 2.884-.574c2.675 0 3.799 1.058 3.9 3.753-1.063-.048-1.902-.048-3.013-.048-3.162 0-8.51 1.303-8.51 6.194 0 3.739 2.477 5.888 6.797 5.888 2.675 0 4.34-1.269 5.221-2.217a2.67 2.67 0 0 0 2.518 1.808h1.212l-.061-.457c-.088-.676-.135-1.788-.135-3.391m-4.029-4.544v1.153c0 2.6-1.706 4.216-4.455 4.216-1.15 0-2.85-.777-2.85-2.456 0-2.585 3.54-2.974 5.653-2.974.339 0 .671.02 1.009.034.217.014.427.02.643.027M119.604 9.364c-.65-.13-1.164-.232-2.132-.232-1.659 0-3.352.982-4.401 2.483a3.11 3.11 0 0 0-2.919-2.067h-.711v18.393h4.022v-8.405c0-4.107 1.707-6.768 4.354-6.768.63 0 1.178.096 1.625.28l.555.232V9.446zM89.828 22.367l-.339.164s-.514.245-.697.327c-1.327.594-3.345 1.044-4.692 1.044-4.632 0-7.997-3.527-7.997-8.391s3.359-8.392 8.159-8.392c.711 0 1.415.082 2.085.246a2.98 2.98 0 0 0 2.458-.484 3 3 0 0 0 1.233-2.204l.06-.73-.487-.218c-1.625-.717-3.426-1.071-5.518-1.071-7.658 0-13.007 5.24-13.007 12.737s5.092 12.941 12.973 12.941c2.282 0 4.15-.3 5.566-.893l.487-.205-.298-4.885zM29.336.004C22.173.59 16.458 6.342 15.883 13.559c-.055.662.494 1.215 1.15 1.215H29.39a1.15 1.15 0 0 0 1.151-1.16V1.164c0-.662-.548-1.215-1.205-1.16'/%3E%3Cpath fill='%23b2b1b3' d='M15.883 17.441c.582 7.218 6.29 12.976 13.453 13.556.657.055 1.206-.498 1.206-1.16v-12.45a1.15 1.15 0 0 0-1.152-1.16H17.035c-.657 0-1.206.553-1.151 1.214'/%3E%3Cpath fill='%23da2631' d='M13.284.229H1.158C.518.229 0 .751 0 1.396v12.218c0 .644.518 1.167 1.158 1.167h12.126c.64 0 1.158-.523 1.158-1.167V1.396c0-.645-.518-1.167-1.158-1.167'/%3E%3Cpath fill='%23b2b1b3' d='M13.284 16.234H1.158C.518 16.234 0 16.756 0 17.4V29.62c0 .644.518 1.167 1.158 1.167h12.126c.64 0 1.158-.523 1.158-1.167V17.401c0-.645-.518-1.167-1.158-1.167'/%3E%3C/svg%3E") no-repeat 50% 50% / 100%;
-    }
-
-    .wb-title {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--kc-gray2);
-    }
-
-    .wb-sub {
-      font-size: 12px;
-      color: var(--kc-gray4);
-      margin-top: 1px;
-    }
-
-    .wb-controls {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .seg-group {
+    .ctrl-seg {
       display: inline-flex;
-      background: var(--kc-gray9);
-      padding: 3px;
+      padding: 4px;
+      background: var(--gray-9);
+      border-radius: 8px;
+      gap: 4px;
+    }
+
+    .ctrl-btn {
+      height: 34px;
+      padding: 0 14px;
       border-radius: 6px;
-      border: 1px solid var(--kc-gray8);
-    }
-
-    .seg-btn {
-      padding: 6px 11px;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 500;
-      color: var(--kc-gray3);
-      border-radius: 4px;
-      transition: all 0.15s;
+      color: var(--gray-3);
+      transition: all 0.16s ease;
     }
 
-    .seg-btn.is-active {
-      background: #fff;
-      color: var(--kc-gray2);
+    .ctrl-btn.is-active {
+      background: var(--gray-13);
+      color: var(--gray-2);
       font-weight: 700;
-      box-shadow: 0 1px 3px rgba(22, 23, 29, 0.1);
+      box-shadow: var(--z100);
     }
 
-    .seg-btn.is-red.is-active {
-      background: var(--kc-red);
-      color: #fff;
+    .ctrl-btn.is-brand.is-active {
+      background: var(--primary-3);
+      color: var(--gray-13);
     }
 
     /* ==========================================================================
-       6 Core Pillars Summary Strip
+       Showcase Canvas (Natural Scroll — Zero Nested Cramped Scrollbars!)
        ========================================================================== */
-    .main-wrap {
+    .stage-wrap {
       max-width: 1320px;
       margin: 0 auto;
-      padding: 18px 20px 48px;
+      padding: 32px 20px 80px;
     }
 
-    .pillars-banner {
-      background: #fff;
-      border: 1px solid var(--kc-gray7);
-      border-radius: 8px;
-      padding: 12px 16px;
-      margin-bottom: 18px;
+    .stage-grid {
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    .pillar-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .p-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      height: 24px;
-      padding: 0 9px;
-      border-radius: 4px;
-      background: var(--kc-gray11);
-      border: 1px solid var(--kc-gray8);
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--kc-gray2);
-    }
-
-    .p-tag strong {
-      color: var(--kc-red);
-      font-weight: 700;
-    }
-
-    /* ==========================================================================
-       3-Column Mobile Device Showcase Grid
-       ========================================================================== */
-    .phones-row {
-      display: flex;
-      gap: 24px;
-      overflow-x: auto;
-      padding-bottom: 16px;
+      gap: 32px;
       align-items: flex-start;
       justify-content: flex-start;
+      overflow-x: auto;
+      padding-bottom: 16px;
     }
 
-    @media (min-width: 1260px) {
-      .phones-row {
+    @media (min-width: 1280px) {
+      .stage-grid {
         justify-content: center;
       }
     }
 
-    .ver-col {
-      width: 392px;
-      min-width: 392px;
+    .design-col {
+      width: 396px;
+      min-width: 396px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 16px;
     }
 
-    .ver-col.is-hidden {
+    .stage-grid.single-mode .design-col {
+      width: 420px;
+      min-width: 420px;
+    }
+
+    .design-col.is-hidden {
       display: none;
     }
 
-    .ver-head-card {
-      background: #fff;
-      border: 1px solid var(--kc-gray7);
-      border-radius: 8px;
-      padding: 12px 15px;
-    }
-
-    .ver-badge-row {
+    .design-label-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 5px;
+      padding: 0 4px;
     }
 
-    .ver-badge {
+    .design-tag {
       display: inline-flex;
       align-items: center;
-      height: 20px;
-      padding: 0 7px;
-      border-radius: 3px;
-      background: var(--kc-red);
-      color: #fff;
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    .ver-badge.dark { background: var(--kc-gray2); }
-    .ver-badge.blue { background: var(--kc-blue); }
-
-    .ver-head-tit {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--kc-gray2);
-      margin-bottom: 3px;
-    }
-
-    .ver-head-desc {
+      height: 24px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: var(--gray-2);
+      color: var(--gray-13);
       font-size: 12px;
-      line-height: 17px;
-      color: var(--kc-gray3);
+      font-weight: 700;
+    }
+
+    .design-tag.red { background: var(--primary-3); }
+    .design-tag.blue { background: var(--info); }
+
+    /* ==========================================================================
+       Mobile App Shell (360~420dp K Car Standard Mobile Viewport)
+       ========================================================================== */
+    .mo-shell {
+      width: 100%;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 48px -12px rgba(22, 23, 29, 0.16), 0 0 0 1px rgba(22, 23, 29, 0.08);
+      background: var(--gray-13);
+      position: relative;
+    }
+
+    /* 1. Common App Header (56px, 20px side margin) */
+    .mo-hdr {
+      height: 56px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--gray-13);
+      border-bottom: 1px solid var(--gray-8);
+    }
+
+    .mo-hdr-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ico-back {
+      width: 24px;
+      height: 24px;
+      margin-left: -6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .garage-btn {
+      height: 32px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid var(--gray-7);
+      background: var(--gray-13);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gray-2);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .garage-btn strong {
+      color: var(--primary-3);
+      font-weight: 700;
+    }
+
+    /* Garage Drawer */
+    .mo-garage-drawer {
+      display: none;
+      padding: 16px 20px;
+      background: var(--gray-11);
+      border-bottom: 1px solid var(--gray-8);
+      gap: 10px;
+      overflow-x: auto;
+    }
+    .mo-garage-drawer.is-open {
+      display: flex;
+    }
+
+    .g-item {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px 8px 10px;
+      border-radius: var(--r-md);
+      background: var(--gray-13);
+      border: 1px solid var(--gray-7);
+    }
+    .g-item.is-active {
+      border-color: var(--primary-3);
+      background: var(--primary-10);
+    }
+    .g-item img {
+      width: 44px;
+      height: 28px;
+      object-fit: contain;
+    }
+
+    /* Sticky Anchor Navigation (48px) */
+    .mo-nav {
+      display: flex;
+      padding: 0 20px;
+      background: var(--gray-13);
+      border-bottom: 1px solid var(--gray-8);
+      gap: 18px;
+      overflow-x: auto;
+    }
+    .mo-nav::-webkit-scrollbar { display: none; }
+
+    .mo-nav-btn {
+      height: 46px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gray-4);
+      position: relative;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .mo-nav-btn.is-active {
+      color: var(--gray-2);
+      font-weight: 700;
+    }
+
+    .mo-nav-btn.is-active::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+      background: var(--primary-3);
     }
 
     /* ==========================================================================
-       Authentic 1:1 K Car Mobile Frame (.kcar-phone)
+       Generous Section Spacing & Common Primitives
+       (Side Margin: 24px | Section Gap: 36px~40px | Title->Content: 20px)
        ========================================================================== */
-    .kcar-phone {
-      width: 392px;
-      height: 820px;
-      background: #ffffff;
-      border-radius: 28px;
-      border: 6px solid #22252e;
-      box-shadow: 0 16px 36px rgba(22, 23, 29, 0.16);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      position: relative;
-    }
-
-    /* 1:1 K Car Mobile Header (52px) */
-    .kc-app-hdr {
-      height: 52px;
-      padding: 0 18px;
-      background: #fff;
-      border-bottom: 1px solid var(--kc-gray8);
+    .sec-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-shrink: 0;
-      z-index: 30;
+      margin-bottom: 20px;
     }
 
-    .kc-hdr-left {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .kc-back-ico {
-      width: 22px;
-      height: 22px;
-      margin-left: -5px;
-      background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E%3Cpath fill='%2316171d' d='M14.515 4.2a.686.686 0 1 1 .97.97L8.655 12l6.83 6.83a.686.686 0 1 1-.97.97l-7.314-7.315a.686.686 0 0 1 0-.97z'/%3E%3C/svg%3E") no-repeat 50% / 20px 20px;
-    }
-
-    .kc-hdr-tit {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--kc-gray2);
-    }
-
-    .kc-garage-pill {
-      height: 28px;
-      padding: 0 10px;
-      border-radius: 100px;
-      border: 1px solid var(--kc-gray7);
-      background: #fff;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--kc-gray2);
+    /* Badges (Minimal & Clean) */
+    .bdg {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
-    }
-
-    .kc-garage-pill strong {
-      color: var(--kc-red);
-      font-weight: 700;
-    }
-
-    /* Scroll Body */
-    .kc-scroll {
-      flex: 1;
-      overflow-y: auto;
-      overflow-x: hidden;
-      background: #fff;
-      scroll-behavior: smooth;
-    }
-    .kc-scroll::-webkit-scrollbar { width: 4px; }
-    .kc-scroll::-webkit-scrollbar-thumb { background: #d8dee8; border-radius: 99px; }
-
-    /* Signature K Car 8px Section Divider */
-    .kc-divider {
-      height: 8px;
-      background: var(--kc-gray9);
-      border-top: 1px solid var(--kc-gray8);
-    }
-
-    /* Garage Switcher Bar (Non-overlapping, Clean Studio Thumbnails!) */
-    .garage-bar {
-      display: none;
-      background: var(--kc-gray11);
-      border-bottom: 1px solid var(--kc-gray8);
-      padding: 10px 16px;
-      gap: 8px;
-      overflow-x: auto;
-    }
-    .garage-bar.is-open {
-      display: flex;
-    }
-    .garage-chip {
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      padding: 5px 10px 5px 6px;
-      border-radius: 6px;
-      background: #fff;
-      border: 1px solid var(--kc-gray7);
-      text-align: left;
-    }
-    .garage-chip.is-active {
-      border-color: var(--kc-red);
-      background: var(--kc-red-bg);
-    }
-    .garage-chip img {
-      width: 38px;
-      height: 24px;
-      object-fit: contain;
-    }
-    .garage-chip .g-no {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--kc-gray2);
-      line-height: 15px;
-    }
-    .garage-chip .g-nm {
-      font-size: 10px;
-      color: var(--kc-gray4);
-    }
-
-    /* Sticky Anchor / Sub-Tab Bar (Exact K Car Underline Tab Style) */
-    .kc-tabs {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: #fff;
-      border-bottom: 1px solid var(--kc-gray8);
-      display: flex;
-      padding: 0 12px;
-    }
-
-    .kc-tab {
-      flex: 1;
-      height: 42px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--kc-gray4);
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      white-space: nowrap;
-    }
-
-    .kc-tab.is-active {
-      color: var(--kc-gray2);
-      font-weight: 700;
-    }
-
-    .kc-tab.is-active::after {
-      content: '';
-      position: absolute;
-      left: 8px;
-      right: 8px;
-      bottom: 0;
-      height: 2px;
-      background: var(--kc-red);
-    }
-
-    /* Section Container */
-    .kc-sec {
-      padding: 20px 18px;
-    }
-
-    .kc-sec-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 12px;
-    }
-
-    .kc-sec-tit {
-      font-size: 16px;
-      font-weight: 700;
-      line-height: 22px;
-      color: var(--kc-gray2);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .kc-sec-more {
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--kc-gray4);
-    }
-
-    /* Official K Car Square/Small Labels */
-    .kc-badge-red {
-      display: inline-flex;
-      align-items: center;
-      height: 20px;
-      padding: 0 6px;
-      border-radius: 2px;
-      background: var(--kc-red-badge);
-      color: #fff;
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    .kc-badge-cert {
-      display: inline-flex;
-      align-items: center;
-      gap: 3px;
-      height: 20px;
-      padding: 0 6px;
-      border-radius: 2px;
-      background: var(--kc-green-bg);
-      color: var(--kc-green);
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    .kc-badge-gray {
-      display: inline-flex;
-      align-items: center;
-      height: 20px;
-      padding: 0 6px;
-      border-radius: 2px;
-      background: var(--kc-gray9);
-      color: var(--kc-gray3);
-      font-size: 11px;
-      font-weight: 500;
-    }
-
-    .kc-badge-blue {
-      display: inline-flex;
-      align-items: center;
-      height: 20px;
-      padding: 0 6px;
-      border-radius: 2px;
-      background: var(--kc-blue-bg);
-      color: var(--kc-blue);
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    /* Korean License Plate Mini Component */
-    .plate-box {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
       height: 24px;
       padding: 0 8px;
-      border: 1.5px solid var(--kc-gray2);
-      border-radius: 4px;
-      background: #fff;
+      border-radius: var(--r-xs);
       font-size: 12px;
-      font-weight: 700;
-      color: var(--kc-gray2);
+      line-height: 16px;
+      letter-spacing: 0px;
+      font-weight: 500;
     }
-    .plate-box::before {
-      content: 'KOR';
-      font-size: 8px;
+    .bdg-plate {
+      background: var(--gray-9);
+      color: var(--gray-2);
       font-weight: 700;
-      color: #fff;
-      background: #1d4ed8;
-      padding: 1px 3px;
-      border-radius: 2px;
+    }
+    .bdg-gold {
+      background: var(--green-10);
+      color: var(--green-5);
+      font-weight: 700;
+    }
+    .bdg-red {
+      background: var(--primary-9);
+      color: var(--primary-3);
+      font-weight: 700;
+    }
+    .bdg-blue {
+      background: var(--blue-10);
+      color: var(--info);
+      font-weight: 700;
     }
 
-    /* Studio Real Car Podium Box */
-    .studio-podium {
-      position: relative;
-      background: linear-gradient(180deg, #f5f7fa 0%, #ffffff 78%);
-      border: 1px solid var(--kc-gray8);
-      border-radius: 8px;
-      padding: 12px 14px 10px;
-      text-align: center;
-      margin: 12px 0;
+    /* Hero Car Stage (Airy Studio Whitespace!) */
+    .car-stage {
+      height: 164px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 20px 0 24px;
+      border-radius: var(--r-lg);
     }
 
-    .studio-podium img.hero-car-img {
-      width: 236px;
-      height: 112px;
+    .car-stage img {
+      width: 268px;
+      height: 136px;
       object-fit: contain;
       display: block;
-      margin: 0 auto;
     }
 
-    /* 4-Cell Spec Summary Strip */
-    .spec-strip-4 {
+    /* 3-Column Clean Spec Row */
+    .spec-row-3 {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border: 1px solid var(--kc-gray8);
-      border-radius: 6px;
-      background: var(--kc-gray11);
-      overflow: hidden;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 18px 0;
+      margin-bottom: 20px;
     }
 
-    .spec-strip-4 > div {
-      padding: 9px 6px;
+    .spec-cell {
       text-align: center;
-      border-right: 1px solid var(--kc-gray8);
+      border-right: 1px solid var(--gray-8);
     }
-    .spec-strip-4 > div:last-child { border-right: none; }
-    .spec-lbl { font-size: 11px; color: var(--kc-gray4); margin-bottom: 2px; }
-    .spec-val { font-size: 12.5px; font-weight: 700; color: var(--kc-gray2); }
+    .spec-cell:last-child { border-right: none; }
 
-    /* K Car Standard Buttons */
-    .kc-btn-primary {
+    /* Standard K Car 48px Large Action Buttons */
+    .btn-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .kc-btn {
       width: 100%;
-      height: 44px;
-      border-radius: 6px;
-      background: var(--kc-red);
-      color: #fff;
+      height: 48px;
+      border-radius: var(--r-md);
+      font-size: 15px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+
+    .kc-btn-red {
+      background: var(--primary-3);
+      color: var(--gray-13);
+    }
+    .kc-btn-red:hover { background: var(--primary-2); }
+
+    .kc-btn-line {
+      background: var(--gray-13);
+      border: 1px solid var(--gray-6);
+      color: var(--gray-2);
+    }
+    .kc-btn-line:hover { background: var(--gray-11); }
+
+    .kc-btn-soft {
+      background: var(--gray-11);
+      color: var(--gray-2);
       font-size: 14px;
-      font-weight: 700;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
+      font-weight: 500;
     }
-    .kc-btn-primary:hover { background: #9d0a22; }
 
-    .kc-btn-outline {
-      width: 100%;
-      height: 44px;
-      border-radius: 6px;
-      border: 1px solid var(--kc-gray7);
-      background: #fff;
-      color: var(--kc-gray2);
-      font-size: 13.5px;
-      font-weight: 700;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
+    /* Maintenance Gauges (Spacious 16px Gap) */
+    .gauge-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 24px;
     }
-    .kc-btn-outline:hover { background: var(--kc-gray11); }
 
-    /* Maintenance Progress Rows */
-    .maint-row {
-      padding: 10px 12px;
-      border: 1px solid var(--kc-gray8);
-      border-radius: 6px;
-      background: #fff;
-      margin-bottom: 8px;
+    .gauge-item {
+      padding: 18px 20px;
+      border-radius: var(--r-md);
     }
-    .maint-top {
+
+    .gauge-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 13px;
-      margin-bottom: 6px;
-    }
-    .maint-bar {
-      height: 6px;
-      border-radius: 99px;
-      background: var(--kc-gray9);
-      overflow: hidden;
-    }
-    .maint-fill {
-      height: 100%;
-      border-radius: 99px;
-    }
-
-    /* Valuation Dual Box (K Car Direct vs C2C Direct) */
-    .val-dual-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-    .val-card {
-      border: 1px solid var(--kc-gray7);
-      border-radius: 8px;
-      padding: 12px;
-      background: #fff;
-      position: relative;
-    }
-    .val-card.is-highlight {
-      border-color: var(--kc-red);
-      background: var(--kc-red-bg);
-    }
-    .val-price {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--kc-gray2);
-      margin: 4px 0 2px;
-    }
-    .val-card.is-highlight .val-price {
-      color: var(--kc-red);
-    }
-
-    /* Budget Filter Pills (Exact K Car .kcar-stroke-pill) */
-    .budget-pills {
-      display: flex;
-      gap: 6px;
-      overflow-x: auto;
-      padding-bottom: 4px;
       margin-bottom: 12px;
     }
-    .budget-pills::-webkit-scrollbar { display: none; }
 
-    .kc-pill {
-      height: 32px;
-      padding: 0 12px;
-      border-radius: 100px;
-      border: 1px solid var(--kc-gray7);
-      background: #fff;
-      color: var(--kc-gray3);
-      font-size: 12px;
+    .gauge-track {
+      height: 6px;
+      border-radius: 999px;
+      background: var(--gray-8);
+      overflow: hidden;
+    }
+
+    .gauge-fill {
+      height: 100%;
+      border-radius: 999px;
+    }
+
+    /* Simple Key-Value Schedule List */
+    .kv-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .kv-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Valuation 2-Card Comparison */
+    .val-stack {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .val-box {
+      padding: 20px 18px;
+      border-radius: var(--r-lg);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* Filter Chips (38px Height, Airy) */
+    .chip-row {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      margin-bottom: 20px;
+      padding-bottom: 2px;
+    }
+    .chip-row::-webkit-scrollbar { display: none; }
+
+    .flt-chip {
+      height: 38px;
+      padding: 0 16px;
+      border-radius: 999px;
+      font-size: 13px;
       font-weight: 500;
       white-space: nowrap;
       flex-shrink: 0;
+      border: 1px solid var(--gray-7);
+      background: var(--gray-13);
+      color: var(--gray-3);
     }
-    .kc-pill.is-active {
-      border-color: var(--kc-red);
-      background: var(--kc-red);
-      color: #fff;
+
+    .flt-chip.is-active {
+      border-color: var(--primary-3);
+      background: var(--primary-3);
+      color: var(--gray-13);
       font-weight: 700;
     }
 
-    /* Trade-In K Car Listing Cards (Real Studio Car + Price Diff Badge!) */
-    .trade-grid-2col {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px 10px;
-    }
-
-    .trade-card {
-      border: 1px solid var(--kc-gray8);
-      border-radius: 6px;
-      overflow: hidden;
-      background: #fff;
+    /* Trade-In Recommended Car Cards (Spacious, Uncluttered!) */
+    .car-list-stack {
       display: flex;
       flex-direction: column;
+      gap: 14px;
     }
 
-    .trade-thumb {
-      position: relative;
-      height: 104px;
-      background: linear-gradient(180deg, #f4f6f9 0%, #ffffff 100%);
-      border-bottom: 1px solid var(--kc-gray9);
+    .trade-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px;
+      border-radius: var(--r-lg);
+    }
+
+    .trade-img-wrap {
+      width: 112px;
+      height: 72px;
+      flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 8px;
     }
 
-    .trade-thumb img {
+    .trade-img-wrap img {
       max-width: 100%;
-      max-height: 84px;
+      max-height: 100%;
       object-fit: contain;
     }
 
-    .trade-thumb .top-badge {
-      position: absolute;
-      top: 6px;
-      left: 6px;
-    }
-
-    .trade-body {
-      padding: 9px 10px 11px;
+    .trade-info {
+      flex: 1;
+      min-width: 0;
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 4px;
     }
 
-    .trade-name {
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 17px;
-      color: var(--kc-gray2);
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      min-height: 34px;
-    }
-
-    .trade-meta {
-      font-size: 11px;
-      color: var(--kc-gray4);
-    }
-
-    .trade-price {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--kc-gray2);
-      margin-top: 2px;
-    }
-
-    .trade-diff {
-      margin-top: 3px;
-      padding: 4px 6px;
-      border-radius: 4px;
-      font-size: 11px;
-      font-weight: 700;
-      text-align: center;
-    }
-    .trade-diff.zero {
-      background: var(--kc-green-bg);
-      color: var(--kc-green);
-    }
-    .trade-diff.plus {
-      background: var(--kc-red-soft);
-      color: var(--kc-red);
-    }
-
-    /* Horizontal Trade-In Card (for Version 2 & 3) */
-    .trade-row-card {
+    /* Partner Benefit Rows */
+    .benefit-stack {
       display: flex;
-      align-items: center;
+      flex-direction: column;
       gap: 12px;
-      padding: 10px 12px;
-      border: 1px solid var(--kc-gray8);
-      border-radius: 8px;
-      background: #fff;
-      margin-bottom: 8px;
-    }
-    .trade-row-card img {
-      width: 96px;
-      height: 60px;
-      object-fit: contain;
-      background: var(--kc-gray11);
-      border-radius: 6px;
-      padding: 4px;
-      flex-shrink: 0;
     }
 
-    /* Partner Coupon Row */
-    .partner-row {
+    .benefit-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      padding: 11px 12px;
-      border: 1px solid var(--kc-gray8);
-      border-radius: 6px;
-      background: #fff;
-      margin-bottom: 8px;
+      gap: 12px;
+      padding: 18px 20px;
+      border-radius: var(--r-md);
     }
 
-    .coupon-dl-btn {
-      height: 28px;
-      padding: 0 10px;
-      border-radius: 4px;
-      border: 1px solid var(--kc-red);
-      color: var(--kc-red);
-      background: var(--kc-red-bg);
-      font-size: 11.5px;
+    .btn-coupon {
+      height: 36px;
+      padding: 0 14px;
+      border-radius: var(--r-sm);
+      font-size: 13px;
       font-weight: 700;
+      color: var(--primary-3);
+      background: var(--primary-9);
       flex-shrink: 0;
     }
-    .coupon-dl-btn.done {
-      border-color: var(--kc-gray6);
-      color: var(--kc-gray4);
-      background: var(--kc-gray9);
+
+    .btn-coupon.is-done {
+      color: var(--gray-4);
+      background: var(--gray-9);
     }
 
-    /* Care Reward Bonus Card */
-    .reward-card {
-      border: 1.5px solid var(--kc-gray2);
-      border-radius: 8px;
-      padding: 14px;
-      background: linear-gradient(180deg, #fff9f9 0%, #ffffff 100%);
-      margin-bottom: 12px;
-    }
-
-    /* Bottom Navigation Bar (1:1 K Car Mobile TabBar) */
-    .kc-tabbar {
-      height: 54px;
-      border-top: 1px solid var(--kc-gray8);
-      background: #fff;
+    /* Bottom Navigation (56px) */
+    .mo-tabbar {
+      height: 56px;
+      border-top: 1px solid var(--gray-8);
+      background: var(--gray-13);
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       align-items: center;
       text-align: center;
-      font-size: 10.5px;
-      color: var(--kc-gray4);
-      flex-shrink: 0;
+      font-size: 12px;
+      color: var(--gray-4);
     }
-    .kc-tabbar .is-on {
-      color: var(--kc-red);
+    .mo-tabbar .is-on {
+      color: var(--primary-3);
       font-weight: 700;
     }
 
-    /* Range Slider Styling */
-    input[type="range"].kc-slider {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 100%;
-      height: 6px;
-      border-radius: 99px;
-      background: var(--kc-gray8);
-      outline: none;
+    /* ==========================================================================
+       3 DISTINCT VISUAL DESIGNS (SAME FUNCTIONALITY, DIFFERENT K CAR STYLING)
+       ========================================================================== */
+
+    /* --------------------------------------------------------------------------
+       DESIGN TYPE 01: PURE EDITORIAL FLAT (순백 미니멀 플랫 & 10px 디바이더)
+       -------------------------------------------------------------------------- */
+    .theme-t1 {
+      background: var(--gray-13);
     }
-    input[type="range"].kc-slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: var(--kc-red);
-      border: 2px solid #fff;
-      box-shadow: 0 2px 6px rgba(183, 15, 40, 0.35);
-      cursor: pointer;
+    .theme-t1 .mo-sec {
+      padding: 36px 24px;
+      background: var(--gray-13);
+      border-bottom: 10px solid var(--gray-9);
+    }
+    .theme-t1 .mo-sec:last-of-type {
+      border-bottom: none;
+    }
+    .theme-t1 .car-stage {
+      background: var(--gray-12);
+    }
+    .theme-t1 .spec-row-3 {
+      border-top: 1px solid var(--gray-8);
+      border-bottom: 1px solid var(--gray-8);
+    }
+    .theme-t1 .gauge-item {
+      background: var(--gray-12);
+    }
+    .theme-t1 .val-box {
+      background: var(--gray-12);
+    }
+    .theme-t1 .val-box.is-primary {
+      background: var(--primary-10);
+    }
+    .theme-t1 .trade-item {
+      background: var(--gray-12);
+    }
+    .theme-t1 .reward-box {
+      padding: 24px;
+      border-radius: var(--r-lg);
+      background: var(--primary-10);
+    }
+    .theme-t1 .benefit-item {
+      background: var(--gray-12);
     }
 
-    /* Modal Bottom Sheet */
-    .sheet-backdrop {
-      display: none;
-      position: absolute;
-      inset: 0;
-      background: rgba(22, 23, 29, 0.52);
-      z-index: 50;
-      align-items: flex-end;
+    /* --------------------------------------------------------------------------
+       DESIGN TYPE 02: SOFT MODULE CARD & ELEVATION (Gray 11 배경 + Z100 라운드 카드)
+       -------------------------------------------------------------------------- */
+    .theme-t2 {
+      background: var(--gray-11);
     }
-    .sheet-backdrop.is-open {
+    .theme-t2 .mo-body {
+      padding: 20px 16px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .theme-t2 .mo-sec {
+      padding: 28px 22px;
+      background: var(--gray-13);
+      border-radius: var(--r-lg);
+      box-shadow: var(--z100);
+    }
+    .theme-t2 .car-stage {
+      background: linear-gradient(180deg, #F1F3F7 0%, #FFFFFF 100%);
+      border: 1px solid var(--gray-8);
+    }
+    .theme-t2 .spec-row-3 {
+      background: var(--gray-11);
+      border-radius: var(--r-md);
+    }
+    .theme-t2 .gauge-item {
+      border: 1px solid var(--gray-8);
+      background: var(--gray-13);
+    }
+    .theme-t2 .val-box {
+      border: 1px solid var(--gray-8);
+      background: var(--gray-13);
+    }
+    .theme-t2 .val-box.is-primary {
+      border: 1.5px solid var(--primary-3);
+      background: var(--primary-10);
+    }
+    .theme-t2 .flt-chip.is-active {
+      background: var(--gray-2);
+      border-color: var(--gray-2);
+    }
+    .theme-t2 .trade-item {
+      border: 1px solid var(--gray-8);
+      background: var(--gray-13);
+    }
+    .theme-t2 .trade-img-wrap {
+      background: var(--gray-11);
+      border-radius: var(--r-md);
+      padding: 6px;
+    }
+    .theme-t2 .reward-box {
+      padding: 24px;
+      border-radius: var(--r-lg);
+      border: 1px solid var(--gray-8);
+      background: var(--gray-12);
+    }
+    .theme-t2 .benefit-item {
+      border: 1px solid var(--gray-8);
+      background: var(--gray-13);
+    }
+
+    /* --------------------------------------------------------------------------
+       DESIGN TYPE 03: SIGNATURE BRAND CONTRAST (시그니처 다크 쇼룸 헤더 + 보더형)
+       -------------------------------------------------------------------------- */
+    .theme-t3 {
+      background: var(--gray-12);
+    }
+    .theme-t3 .mo-hdr {
+      background: var(--gray-2);
+      border-bottom-color: rgba(255, 255, 255, 0.08);
+      color: var(--gray-13);
+    }
+    .theme-t3 .garage-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.16);
+      color: var(--gray-13);
+    }
+    .theme-t3 .garage-btn strong {
+      color: var(--primary-4);
+    }
+    .theme-t3 .mo-nav {
+      background: var(--gray-2);
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+    .theme-t3 .mo-nav-btn {
+      color: var(--gray-4);
+    }
+    .theme-t3 .mo-nav-btn.is-active {
+      color: var(--gray-13);
+    }
+    .theme-t3 .mo-nav-btn.is-active::after {
+      background: var(--primary-4);
+    }
+    .theme-t3 .mo-sec {
+      padding: 36px 24px;
+      border-bottom: 1px solid var(--gray-8);
+      background: var(--gray-13);
+    }
+    .theme-t3 .mo-sec.sec-hero {
+      background: linear-gradient(180deg, #16171D 0%, #22242E 100%);
+      color: var(--gray-13);
+      border-bottom: none;
+    }
+    .theme-t3 .sec-hero .ty-sub-txt {
+      color: var(--gray-6) !important;
+    }
+    .theme-t3 .sec-hero .bdg-plate {
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--gray-13);
+    }
+    .theme-t3 .sec-hero .car-stage {
+      background: radial-gradient(ellipse at 50% 60%, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.02) 70%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .theme-t3 .sec-hero .spec-row-3 {
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: var(--r-md);
+    }
+    .theme-t3 .sec-hero .spec-cell {
+      border-right-color: rgba(255, 255, 255, 0.1);
+    }
+    .theme-t3 .sec-hero .spec-lbl-txt {
+      color: var(--gray-5) !important;
+    }
+    .theme-t3 .sec-hero .kc-btn-soft {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--gray-13);
+    }
+    .theme-t3 .gauge-item,
+    .theme-t3 .val-box,
+    .theme-t3 .trade-item,
+    .theme-t3 .benefit-item {
+      border: 1px solid var(--gray-7);
+      background: var(--gray-13);
+    }
+    .theme-t3 .val-box.is-primary {
+      border: 2px solid var(--primary-3);
+    }
+    .theme-t3 .reward-box {
+      padding: 24px;
+      border-radius: var(--r-lg);
+      background: var(--gray-2);
+      color: var(--gray-13);
+    }
+    .theme-t3 .reward-box .ty-sub-txt {
+      color: var(--gray-6) !important;
+    }
+    .theme-t3 .reward-box .reward-price {
+      color: #FFFFFF !important;
+    }
+
+    /* Simple Modal Overlay */
+    .modal-dim {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(22, 23, 29, 0.56);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-dim.is-open {
       display: flex;
     }
-    .sheet-panel {
+    .modal-box {
       width: 100%;
-      max-height: 78%;
-      overflow-y: auto;
-      background: #fff;
-      border-radius: 16px 16px 0 0;
-      padding: 18px;
+      max-width: 380px;
+      background: var(--gray-13);
+      border-radius: var(--r-lg);
+      padding: 28px 24px;
+      box-shadow: var(--z300);
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Workbench Bar -->
-  <header class="workbench-bar">
-    <div class="wb-inner">
-      <div class="wb-brand">
+  <!-- Top GNB Switcher -->
+  <header class="top-gnb">
+    <div class="top-gnb-inner">
+      <div class="gnb-left">
         <span class="kcar-logo" aria-label="K Car"></span>
-        <div>
-          <div class="wb-title">마이카(MyCar) 상세페이지 리뉴얼 · 3가지 버전 비교</div>
-          <div class="wb-sub">실사 차량 이미지 + K Car 네이티브 UI 가이드 유지 · 6대 핵심 기능(내차정보·관리·시세·갈아타기·제휴·매각우대) 완비</div>
-        </div>
+        <span class="ty-sub3">마이카 리뉴얼 시안 비교</span>
       </div>
 
-      <div class="wb-controls">
+      <div class="gnb-controls">
         <!-- View Mode -->
-        <div class="seg-group">
-          <button type="button" id="btnModeAll" class="seg-btn is-red is-active" onclick="setLayoutMode('all')">3버전 한눈에 보기</button>
-          <button type="button" id="btnModeOne" class="seg-btn" onclick="setLayoutMode('one')">1버전씩 크게 보기</button>
+        <div class="ctrl-seg">
+          <button type="button" id="modeCompareBtn" class="ctrl-btn is-brand is-active" onclick="setViewMode('compare')">3안 나란히 보기</button>
+          <button type="button" id="modeSingleBtn" class="ctrl-btn" onclick="setViewMode('single')">1안씩 크게 보기</button>
         </div>
 
-        <!-- Version Focus Selector -->
-        <div class="seg-group">
-          <button type="button" id="btnVer1" class="seg-btn is-active" onclick="focusVersion(1)">Ver 1 · 정통 올인원형</button>
-          <button type="button" id="btnVer2" class="seg-btn" onclick="focusVersion(2)">Ver 2 · 대차·시세 집중형</button>
-          <button type="button" id="btnVer3" class="seg-btn" onclick="focusVersion(3)">Ver 3 · 4-탭 분리형</button>
+        <!-- Design Selector -->
+        <div class="ctrl-seg">
+          <button type="button" id="selT1" class="ctrl-btn is-active" onclick="selectDesign(1)">Type 01 · 미니멀 플랫</button>
+          <button type="button" id="selT2" class="ctrl-btn" onclick="selectDesign(2)">Type 02 · 소프트 카드</button>
+          <button type="button" id="selT3" class="ctrl-btn" onclick="selectDesign(3)">Type 03 · 시그니처 다크헤더</button>
         </div>
 
-        <!-- Global Garage Switcher Shortcut -->
-        <div class="seg-group" title="등록된 내 차고 차량을 바꾸면 실사·시세·갈아타기 추천차가 모두 연동됩니다">
-          <button type="button" id="topCar0" class="seg-btn is-active" onclick="selectMyCar(0)">300라7716 (X5)</button>
-          <button type="button" id="topCar1" class="seg-btn" onclick="selectMyCar(1)">55도0589 (CLA)</button>
-          <button type="button" id="topCar2" class="seg-btn" onclick="selectMyCar(2)">46더1573 (그랜저)</button>
+        <!-- Registered Vehicle Switcher -->
+        <div class="ctrl-seg">
+          <button type="button" id="carBtn0" class="ctrl-btn is-active" onclick="changeCar(0)">BMW X5</button>
+          <button type="button" id="carBtn1" class="ctrl-btn" onclick="changeCar(1)">벤츠 CLA</button>
+          <button type="button" id="carBtn2" class="ctrl-btn" onclick="changeCar(2)">더 뉴 그랜저</button>
         </div>
       </div>
     </div>
   </header>
 
-  <main class="main-wrap">
-    <!-- 6 Functional Requirements Checklist Banner -->
-    <section class="pillars-banner">
-      <div class="pillar-tags">
-        <span class="p-tag"><strong>01</strong> 등록차량 실사·제원·이력</span>
-        <span class="p-tag"><strong>02</strong> 소모품·보험·검사 밀착관리</span>
-        <span class="p-tag"><strong>03</strong> 매각시세 (직영매입 vs 안심직거래)</span>
-        <span class="p-tag"><strong>04</strong> 추가금 0원 / 금액별 케이카 갈아타기</span>
-        <span class="p-tag"><strong>05</strong> 케이카 공식 제휴 관리·할인</span>
-        <span class="p-tag"><strong>06</strong> 관리이력 연동 매각 우대(+가산금)</span>
-      </div>
-      <span style="font-size:12px;color:var(--kc-gray4);">💡 추가금 버튼/슬라이더와 정비 인증 미션을 직접 클릭해 테스트해 보세요.</span>
-    </section>
+  <!-- Main Stage (All 3 Designs Have 100% Identical Features & Flow!) -->
+  <main class="stage-wrap">
+    <div class="stage-grid" id="stageGrid">
 
-    <div class="phones-row">
-
-      <!-- ====================================================================
-           VERSION 1: K CAR STANDARD ALL-IN-ONE FEED (정통 섹션 피드 + 상단 앵커탭)
-           ==================================================================== -->
-      <div class="ver-col" id="verCol1">
-        <div class="ver-head-card">
-          <div class="ver-badge-row">
-            <span class="ver-badge">VERSION 1 · K Car 정통 피드형</span>
-            <span style="font-size:11px;color:var(--kc-gray4);">현행 케이카 UI 감성 100% 계승</span>
-          </div>
-          <div class="ver-head-tit">올인원 스크롤 + 스티키 앵커 네비게이션</div>
-          <p class="ver-head-desc">케이카 고객에게 가장 익숙한 화이트 섹션 &amp; 8px 디바이더 구조로, <strong>내 차 정보 → 관리 → 시세 → 갈아타기 → 제휴·매각우대</strong>가 한 흐름으로 이어지는 표준안</p>
+      <!-- TYPE 01 -->
+      <div class="design-col" id="col1">
+        <div class="design-label-bar">
+          <span class="design-tag red">Type 01 · 미니멀 플랫 화이트</span>
+          <span class="ty-b2" style="color:var(--gray-3);">순백 여백 &amp; 10px 디바이더</span>
         </div>
-
-        <div class="kcar-phone">
-          <!-- App Header -->
-          <header class="kc-app-hdr">
-            <div class="kc-hdr-left">
-              <button type="button" class="kc-back-ico" aria-label="뒤로가기"></button>
-              <span class="kcar-logo"></span>
-              <span class="kc-hdr-tit" style="margin-left:2px;">마이카</span>
-            </div>
-            <button type="button" class="kc-garage-pill" onclick="toggleGarageBar(1)">
-              내 차고 <strong>3</strong> ▾
-            </button>
-          </header>
-
-          <!-- Garage Bar 1 -->
-          <div class="garage-bar" id="garageBar1"></div>
-
-          <!-- Sticky Section Anchor Tabs -->
-          <nav class="kc-tabs">
-            <button type="button" class="kc-tab is-active" onclick="scrollSec('scrollV1','v1SecInfo',this)">내차정보</button>
-            <button type="button" class="kc-tab" onclick="scrollSec('scrollV1','v1SecCare',this)">차량관리</button>
-            <button type="button" class="kc-tab" onclick="scrollSec('scrollV1','v1SecPrice',this)">예상시세</button>
-            <button type="button" class="kc-tab" onclick="scrollSec('scrollV1','v1SecTrade',this)">갈아타기</button>
-            <button type="button" class="kc-tab" onclick="scrollSec('scrollV1','v1SecBenefit',this)">제휴·우대</button>
-          </nav>
-
-          <!-- Scrollable Feed V1 -->
-          <div class="kc-scroll" id="scrollV1">
-
-            <!-- [1] 내 등록 차량 실사 & 기본 정보 -->
-            <section class="kc-sec" id="v1SecInfo">
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-                <span class="plate-box js-plate">300라 7716</span>
-                <span class="kc-badge-cert">✓ 마이카 관리인증 GOLD</span>
-              </div>
-
-              <h2 class="js-title" style="font-size:20px;font-weight:700;line-height:26px;">BMW X5 (G05)</h2>
-              <p class="js-sub" style="font-size:13px;color:var(--kc-gray3);margin-top:2px;">가솔린+전기 4WD xDrive 45e M 스포츠</p>
-
-              <!-- Real K Car Studio Cutout Photo -->
-              <div class="studio-podium">
-                <img src="./assets/images/mycar/my_x5_msport.png" alt="등록 차량 실사" class="hero-car-img js-hero-img" />
-                <div style="display:flex;justify-content:center;gap:6px;margin-top:8px;">
-                  <span class="kc-badge-gray">소유자변경 0회</span>
-                  <span class="kc-badge-gray">미이행 리콜 0건</span>
-                  <span class="kc-badge-blue js-warranty-tag">제조사보증 유효</span>
-                </div>
-              </div>
-
-              <!-- 4-Column Core Specs -->
-              <div class="spec-strip-4">
-                <div>
-                  <div class="spec-lbl">최초등록</div>
-                  <div class="spec-val js-year">22년 3월</div>
-                </div>
-                <div>
-                  <div class="spec-lbl">주행거리 ✎</div>
-                  <div class="spec-val js-km">103,503km</div>
-                </div>
-                <div>
-                  <div class="spec-lbl">연료/구동</div>
-                  <div class="spec-val js-fuel">PHEV·4WD</div>
-                </div>
-                <div>
-                  <div class="spec-lbl">보험이력</div>
-                  <div class="spec-val js-ins-cnt">3건 (경미)</div>
-                </div>
-              </div>
-
-              <button type="button" class="kc-btn-outline" style="height:38px;margin-top:10px;font-size:12.5px;" onclick="openDetailModal('V1')">
-                제원 · 내 차 히스토리 7건 상세보기 &gt;
-              </button>
-            </section>
-
-            <div class="kc-divider"></div>
-
-            <!-- [2] 내 차 밀착 관리 기능 (소모품 & 보험/검사/미납) -->
-            <section class="kc-sec" id="v1SecCare">
-              <div class="kc-sec-head">
-                <h3 class="kc-sec-tit">
-                  내 차 컨디션 · 소모품 관리
-                  <span class="kc-badge-red">점검 1</span>
-                </h3>
-                <span class="kc-sec-more">정비기록 등록 +</span>
-              </div>
-
-              <div class="maint-row" style="border-color:#ffd7da;background:var(--kc-red-bg);">
-                <div class="maint-top">
-                  <span><strong>엔진오일 · 오일필터</strong> <span class="kc-badge-red" style="margin-left:4px;">교체임박</span></span>
-                  <strong style="color:var(--kc-red);font-size:12px;">잔여 1,490km</strong>
-                </div>
-                <div class="maint-bar"><div class="maint-fill" style="width:88%;background:var(--kc-red);"></div></div>
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-top:7px;font-size:11.5px;color:var(--kc-gray3);">
-                  <span>케이카 제휴 정비소 35% 할인 적용 가능</span>
-                  <strong style="color:var(--kc-red);">예약 시 우대금 +25만원 &gt;</strong>
-                </div>
-              </div>
-
-              <div class="maint-row">
-                <div class="maint-top">
-                  <span><strong>타이어 위치교환 · 편마모 점검</strong></span>
-                  <span style="color:var(--kc-gray3);font-size:12px;">잔여 6,800km</span>
-                </div>
-                <div class="maint-bar"><div class="maint-fill" style="width:48%;background:var(--kc-blue);"></div></div>
-              </div>
-
-              <!-- Insurance / Inspection / Fines 3-Box -->
-              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px;">
-                <div style="border:1px solid var(--kc-gray8);border-radius:6px;padding:9px 8px;background:#fff;">
-                  <div style="font-size:11px;color:var(--kc-gray4);">자동차보험</div>
-                  <div style="font-size:12.5px;font-weight:700;margin-top:2px;">삼성화재</div>
-                  <div style="font-size:11px;color:var(--kc-red);font-weight:700;">26.04 만기</div>
-                </div>
-                <div style="border:1px solid var(--kc-gray8);border-radius:6px;padding:9px 8px;background:#fff;">
-                  <div style="font-size:11px;color:var(--kc-gray4);">법정정기검사</div>
-                  <div style="font-size:12.5px;font-weight:700;margin-top:2px;">28.04.27</div>
-                  <div style="font-size:11px;color:var(--kc-green);font-weight:700;">D-526 여유</div>
-                </div>
-                <div style="border:1px solid var(--kc-gray8);border-radius:6px;padding:9px 8px;background:#fff;">
-                  <div style="font-size:11px;color:var(--kc-gray4);">과태료·미납</div>
-                  <div style="font-size:12.5px;font-weight:700;margin-top:2px;">0건 (완납)</div>
-                  <div style="font-size:11px;color:var(--kc-blue);font-weight:500;">실시간 조회 &gt;</div>
-                </div>
-              </div>
-            </section>
-
-            <div class="kc-divider"></div>
-
-            <!-- [3] 이 차를 팔면 얼마? (케이카 직영매입 vs 안심직거래 시세) -->
-            <section class="kc-sec" id="v1SecPrice">
-              <div class="kc-sec-head">
-                <h3 class="kc-sec-tit">지금 내 차를 팔면 얼마 받을까?</h3>
-                <span style="font-size:11px;color:var(--kc-green);font-weight:700;">관리우대 가산금 포함</span>
-              </div>
-
-              <div class="val-dual-grid">
-                <!-- K Car Home Service -->
-                <div class="val-card is-highlight">
-                  <span class="kc-badge-red">당일 빠른 매각</span>
-                  <div style="font-size:12px;font-weight:700;color:var(--kc-gray2);margin-top:6px;">내차팔기 홈서비스</div>
-                  <div class="val-price"><span class="js-kcar-sell">6,480</span><span style="font-size:14px;">만원</span></div>
-                  <div style="font-size:11px;color:var(--kc-red);font-weight:500;">기본시세 + 관리우대 <span class="js-bonus-txt">60</span>만원</div>
-                  <button type="button" class="kc-btn-primary" style="height:34px;font-size:12px;margin-top:10px;">무료 방문견적 신청</button>
-                </div>
-
-                <!-- K Car Safe Direct C2C -->
-                <div class="val-card">
-                  <span class="kc-badge-blue">수수료 0원 · 최고가</span>
-                  <div style="font-size:12px;font-weight:700;color:var(--kc-gray2);margin-top:6px;">케이카 안심직거래</div>
-                  <div class="val-price"><span class="js-c2c-sell">6,890</span><span style="font-size:14px;">만원</span></div>
-                  <div style="font-size:11px;color:var(--kc-blue);font-weight:700;">직영매입 대비 +<span class="js-c2c-gap">410</span>만원↑</div>
-                  <button type="button" class="kc-btn-outline" style="height:34px;font-size:12px;margin-top:10px;">직거래 셀프등록</button>
-                </div>
-              </div>
-
-              <!-- Simple 6M / 1Y Depreciation Forecast Bar -->
-              <div style="margin-top:10px;padding:10px 12px;border-radius:6px;background:var(--kc-gray11);display:flex;align-items:center;justify-content:space-between;font-size:12px;">
-                <span style="color:var(--kc-gray3);">📉 향후 감가 예측</span>
-                <span>6개월 후 <strong style="color:var(--kc-gray2);">-280만원</strong> · 1년 후 <strong style="color:var(--kc-red);">-560만원</strong></span>
-              </div>
-            </section>
-
-            <div class="kc-divider"></div>
-
-            <!-- [4] 내 차 팔고 케이카 갈아타기 (추가금 0원 ~ 금액별 직영차 추천) -->
-            <section class="kc-sec" id="v1SecTrade">
-              <div class="kc-sec-head" style="margin-bottom:6px;">
-                <h3 class="kc-sec-tit">내 차 팔고 케이카 갈아타기</h3>
-                <span class="kc-badge-red">대차 특가</span>
-              </div>
-              <p style="font-size:12.5px;color:var(--kc-gray3);margin-bottom:12px;">
-                내 차 예상 매각금(<strong style="color:var(--kc-red);"><span class="js-kcar-sell">6,480</span>만원</strong>) 기준으로 바꿀 수 있는 직영차예요.
-              </p>
-
-              <!-- Budget Pills -->
-              <div class="budget-pills" id="v1BudgetPills">
-                <button type="button" class="kc-pill is-active" onclick="filterTrade('v1', 0, this)">추가금 0원 (환급/동급)</button>
-                <button type="button" class="kc-pill" onclick="filterTrade('v1', 500, this)">+500만원 추가</button>
-                <button type="button" class="kc-pill" onclick="filterTrade('v1', 1500, this)">+1,500만원 추가</button>
-                <button type="button" class="kc-pill" onclick="filterTrade('v1', 3000, this)">+2,500만원 이상</button>
-              </div>
-
-              <!-- Real K Car Studio Trade-in Grid -->
-              <div class="trade-grid-2col" id="v1TradeGrid"></div>
-            </section>
-
-            <div class="kc-divider"></div>
-
-            <!-- [5 & 6] 관리이력 매각 우대 시스템 + 케이카 제휴 할인 -->
-            <section class="kc-sec" id="v1SecBenefit">
-              <div class="kc-sec-head">
-                <h3 class="kc-sec-tit">관리할수록 올라가는 매각 우대금</h3>
-                <span class="kc-badge-cert">K Car 특허 프로그램</span>
-              </div>
-
-              <!-- Care Score -> Sell Bonus Card -->
-              <div class="reward-card">
-                <div style="display:flex;justify-content:space-between;align-items:flex-start;">
-                  <div>
-                    <div style="font-size:11.5px;color:var(--kc-gray3);">내 차 케어 스코어 <strong class="js-care-score" style="color:var(--kc-gray2);">88점 (GOLD)</strong></div>
-                    <div style="font-size:18px;font-weight:700;color:var(--kc-red);margin-top:2px;">
-                      케이카 매각 시 +<span class="js-bonus-txt">60</span>만원 추가 지급!
-                    </div>
-                  </div>
-                  <img src="./assets/images/mycar/ico-ad-04.png" alt="" style="width:40px;height:40px;object-fit:contain;" />
-                </div>
-                <div class="maint-bar" style="margin:10px 0 8px;height:8px;">
-                  <div class="maint-fill js-score-bar" style="width:88%;background:linear-gradient(90deg,#b70f28,#f01d29);"></div>
-                </div>
-                <div style="font-size:11.5px;color:var(--kc-gray3);margin-bottom:10px;">
-                  ✓ 주행거리 인증(+15만) · ✓ 보험/검사 정상(+15만) · ✓ 무사고 유지(+30만) 확보됨
-                </div>
-                <button type="button" class="kc-btn-primary js-mission-btn" style="height:36px;font-size:12px;" onclick="completeCareMission()">
-                  + 제휴 엔진오일 정비 인증하고 +85만원(VIP)으로 올리기
-                </button>
-              </div>
-
-              <!-- K Car Official Partner Discounts -->
-              <div style="font-size:14px;font-weight:700;margin:16px 0 10px;">케이카 공식 제휴 관리 · 할인 쿠폰팩</div>
-
-              <div class="partner-row">
-                <div>
-                  <div style="display:flex;align-items:center;gap:5px;">
-                    <span class="kc-badge-red">정비연동 +25만</span>
-                    <strong style="font-size:13px;">스피드메이트 · 공임나라</strong>
-                  </div>
-                  <div style="font-size:12px;color:var(--kc-gray3);margin-top:3px;">수입/국산 엔진오일 세트 <strong>35% 할인</strong></div>
-                </div>
-                <button type="button" class="coupon-dl-btn" onclick="claimCoupon(this)">쿠폰받기</button>
-              </div>
-
-              <div class="partner-row">
-                <div>
-                  <div style="display:flex;align-items:center;gap:5px;">
-                    <span class="kc-badge-blue">정비연동 +15만</span>
-                    <strong style="font-size:13px;">T-Station (티스테이션)</strong>
-                  </div>
-                  <div style="font-size:12px;color:var(--kc-gray3);margin-top:3px;">타이어 <strong>30%</strong> · 휠얼라이먼트 <strong>50% 할인</strong></div>
-                </div>
-                <button type="button" class="coupon-dl-btn" onclick="claimCoupon(this)">쿠폰받기</button>
-              </div>
-
-              <div class="partner-row">
-                <div>
-                  <div style="display:flex;align-items:center;gap:5px;">
-                    <span class="kc-badge-gray">세차제휴</span>
-                    <strong style="font-size:13px;">갓차 출장세차 · 울트라레인보우</strong>
-                  </div>
-                  <div style="font-size:12px;color:var(--kc-gray3);margin-top:3px;">프리미엄 출장세차 <strong>45%</strong> · 세차용품 <strong>48% 할인</strong></div>
-                </div>
-                <button type="button" class="coupon-dl-btn" onclick="claimCoupon(this)">쿠폰받기</button>
-              </div>
-            </section>
-          </div>
-
-          <!-- Modal Sheet V1 -->
-          <div class="sheet-backdrop" id="modalV1" onclick="closeDetailModal('V1')">
-            <div class="sheet-panel" onclick="event.stopPropagation()">
-              <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid var(--kc-gray8);margin-bottom:12px;">
-                <strong style="font-size:16px;">기본 제원 및 내 차 히스토리 (7건)</strong>
-                <button type="button" onclick="closeDetailModal('V1')" style="font-size:14px;font-weight:700;color:var(--kc-gray3);">닫기 ✕</button>
-              </div>
-              <div style="font-size:12.5px;display:grid;gap:8px;">
-                <div style="padding:10px;border-radius:6px;background:var(--kc-gray11);"><strong>2024.07.22 보험처리 (내차피해)</strong> · 총 수리비 2,145,242원 (상대차보험 처리)</div>
-                <div style="padding:10px;border-radius:6px;background:var(--kc-gray11);"><strong>2025.02 / 03 보험처리 2건</strong> · 상대차 피해 101만원 / 104만원</div>
-                <div style="padding:10px;border-radius:6px;background:var(--kc-gray11);"><strong>2027.03.28 제조사 보증</strong> · 잔여 96,497km 유효</div>
-                <div style="padding:10px;border-radius:6px;background:var(--kc-gray11);"><strong>2022.03.28 신차출고</strong> · 경기도 고양시 개인 최초등록</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- K Car Bottom TabBar -->
-          <nav class="kc-tabbar">
-            <div>홈</div>
-            <div>내차사기</div>
-            <div>내차팔기</div>
-            <div class="is-on">마이카</div>
-            <div>전체메뉴</div>
-          </nav>
-        </div>
+        <div class="mo-shell theme-t1" id="mount1"></div>
       </div>
 
-      <!-- ====================================================================
-           VERSION 2: TRADE-IN & VALUE-UP SIMULATOR FIRST (대차 슬라이더 + 시세 전면형)
-           ==================================================================== -->
-      <div class="ver-col" id="verCol2">
-        <div class="ver-head-card">
-          <div class="ver-badge-row">
-            <span class="ver-badge dark">VERSION 2 · 대차·밸류업 중심형</span>
-            <span style="font-size:11px;color:var(--kc-gray4);">매각+대차 전환율 극대화</span>
-          </div>
-          <div class="ver-head-tit">추가금 슬라이더 갈아타기 &amp; 우대보상 전면형</div>
-          <p class="ver-head-desc">상단 차량 프로필 직후 <strong>직영매입/직거래 시세 스위치 + 추가금 슬라이더(0원~3천만원) 대차 계산기</strong>를 배치하고, 정비·제휴를 시세 상승 미션으로 연결한 안</p>
+      <!-- TYPE 02 -->
+      <div class="design-col" id="col2">
+        <div class="design-label-bar">
+          <span class="design-tag">Type 02 · 소프트 모듈 카드</span>
+          <span class="ty-b2" style="color:var(--gray-3);">Gray 11 배경 &amp; Z100 라운드 카드</span>
         </div>
-
-        <div class="kcar-phone">
-          <header class="kc-app-hdr">
-            <div class="kc-hdr-left">
-              <button type="button" class="kc-back-ico" aria-label="뒤로가기"></button>
-              <span class="kcar-logo"></span>
-              <span class="kc-hdr-tit" style="margin-left:2px;">마이카 밸류</span>
-            </div>
-            <button type="button" class="kc-garage-pill" onclick="toggleGarageBar(2)">
-              내 차고 <strong>3</strong> ▾
-            </button>
-          </header>
-
-          <div class="garage-bar" id="garageBar2"></div>
-
-          <div class="kc-scroll">
-            <!-- Compact Horizontal Real Photo Profile + Valuation Card -->
-            <section class="kc-sec" style="background:linear-gradient(180deg,#f6f8fa 0%,#ffffff 100%);padding-bottom:16px;">
-              <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
-                <div style="min-width:0;">
-                  <div style="display:flex;align-items:center;gap:5px;margin-bottom:5px;">
-                    <span class="plate-box js-plate">300라 7716</span>
-                    <span class="kc-badge-cert">GOLD +<span class="js-bonus-txt">60</span>만</span>
-                  </div>
-                  <h2 class="js-title" style="font-size:18px;font-weight:700;">BMW X5 (G05)</h2>
-                  <p style="font-size:12px;color:var(--kc-gray3);margin-top:2px;"><span class="js-year">22년 3월</span> · <span class="js-km">103,503km</span> · 무사고</p>
-                </div>
-                <img src="./assets/images/mycar/my_x5_msport.png" alt="" class="js-hero-img" style="width:132px;height:74px;object-fit:contain;flex-shrink:0;" />
-              </div>
-
-              <!-- Sell Basis Switcher Card (Direct vs C2C) -->
-              <div style="margin-top:12px;border:1.5px solid var(--kc-gray2);border-radius:8px;background:#fff;padding:12px;">
-                <div style="display:flex;background:var(--kc-gray9);padding:3px;border-radius:6px;margin-bottom:10px;">
-                  <button type="button" id="v2SellModeKcar" onclick="setV2SellBasis('kcar')" style="flex:1;height:30px;border-radius:4px;font-size:12px;font-weight:700;background:#fff;color:var(--kc-gray2);box-shadow:0 1px 2px rgba(0,0,0,0.08);">
-                    케이카 직영매각 기준
-                  </button>
-                  <button type="button" id="v2SellModeC2c" onclick="setV2SellBasis('c2c')" style="flex:1;height:30px;border-radius:4px;font-size:12px;font-weight:500;color:var(--kc-gray3);">
-                    안심직거래 판매 기준
-                  </button>
-                </div>
-
-                <div style="display:flex;align-items:baseline;justify-content:space-between;">
-                  <div>
-                    <div style="font-size:11.5px;color:var(--kc-gray4);" id="v2BasisLabel">내차팔기 홈서비스 예상 매입가 (관리우대 포함)</div>
-                    <div style="font-size:24px;font-weight:700;color:var(--kc-red);margin-top:2px;">
-                      <span id="v2ActiveSellPrice">6,480</span><span style="font-size:15px;">만원</span>
-                    </div>
-                  </div>
-                  <button type="button" class="kc-btn-primary" style="width:auto;height:34px;padding:0 12px;font-size:12px;">내차팔기 신청</button>
-                </div>
-              </div>
-            </section>
-
-            <div class="kc-divider"></div>
-
-            <!-- Interactive Slider Trade-In Calculator (FRONT & CENTER!) -->
-            <section class="kc-sec">
-              <div class="kc-sec-head" style="margin-bottom:6px;">
-                <h3 class="kc-sec-tit">추가금 얼마면 어떤 차로 바꿀까?</h3>
-                <span class="kc-badge-red">실시간 계산</span>
-              </div>
-
-              <div style="background:var(--kc-gray11);border:1px solid var(--kc-gray8);border-radius:8px;padding:12px;margin-bottom:12px;">
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-                  <span style="font-size:12.5px;font-weight:700;color:var(--kc-gray2);">희망 추가금 설정</span>
-                  <strong id="v2ExtraReadout" style="font-size:15px;color:var(--kc-red);">추가금 0원 (환급/맞교환)</strong>
-                </div>
-
-                <input type="range" id="v2ExtraSlider" class="kc-slider" min="0" max="3000" step="500" value="0" oninput="updateV2Slider(this.value)" />
-
-                <div style="display:flex;justify-content:space-between;font-size:10.5px;color:var(--kc-gray4);margin-top:5px;">
-                  <span>0원 (추가금 없음)</span>
-                  <span>+1,000만</span>
-                  <span>+2,000만</span>
-                  <span>+3,000만</span>
-                </div>
-
-                <div style="margin-top:10px;padding-top:8px;border-top:1px dashed var(--kc-gray7);display:flex;justify-content:space-between;font-size:12px;">
-                  <span style="color:var(--kc-gray3);">총 대차 구매 가능 예산</span>
-                  <strong style="color:var(--kc-gray2);"><span id="v2TotalBudgetTxt">6,480</span>만원 이하 직영차</strong>
-                </div>
-              </div>
-
-              <!-- Dynamic Horizontal Real Photo Trade-In List -->
-              <div id="v2TradeList"></div>
-            </section>
-
-            <div class="kc-divider"></div>
-
-            <!-- Care Missions Linked Directly to Valuation Bonus & Partner Discounts -->
-            <section class="kc-sec">
-              <div class="kc-sec-head">
-                <h3 class="kc-sec-tit">내 차 값 올리는 제휴 관리 미션</h3>
-                <span class="kc-badge-cert">현재 +<span class="js-bonus-txt">60</span>만원 확보</span>
-              </div>
-              <p style="font-size:12px;color:var(--kc-gray3);margin-bottom:12px;">
-                케이카 제휴처에서 할인받고 관리하면 정비이력이 자동 인증되어 <strong>향후 케이카 매각 시 우대 가산금</strong>이 적립됩니다.
-              </p>
-
-              <div class="partner-row" style="border-color:#ffd7da;background:var(--kc-red-bg);">
-                <div>
-                  <div style="display:flex;align-items:center;gap:5px;">
-                    <span class="kc-badge-red">교체시기 도래 · 우대 +25만</span>
-                  </div>
-                  <div style="font-size:13px;font-weight:700;margin-top:4px;">엔진오일 교환 35% 할인 (스피드메이트)</div>
-                  <div style="font-size:11.5px;color:var(--kc-gray3);margin-top:1px;">잔여 1,490km · 정비 완료 시 시세 즉시 상승</div>
-                </div>
-                <button type="button" class="coupon-dl-btn" onclick="completeCareMission()">할인예약</button>
-              </div>
-
-              <div class="partner-row">
-                <div>
-                  <span class="kc-badge-blue">타이어 제휴 · 우대 +15만</span>
-                  <div style="font-size:13px;font-weight:700;margin-top:4px;">T-Station 타이어 30% + 얼라이먼트 50%</div>
-                  <div style="font-size:11.5px;color:var(--kc-gray3);margin-top:1px;">잔여 6,800km · 케이카 오너 전용 특가</div>
-                </div>
-                <button type="button" class="coupon-dl-btn" onclick="claimCoupon(this)">쿠폰받기</button>
-              </div>
-
-              <div class="partner-row">
-                <div>
-                  <span class="kc-badge-gray">필수일정 관리</span>
-                  <div style="font-size:13px;font-weight:700;margin-top:4px;">삼성화재 보험(26.04) · 정기검사(D-526)</div>
-                  <div style="font-size:11.5px;color:var(--kc-gray3);margin-top:1px;">과태료·하이패스 미납 0건 · 제조사보증 유효</div>
-                </div>
-                <span style="font-size:12px;font-weight:700;color:var(--kc-green);">정상 ✓</span>
-              </div>
-            </section>
-          </div>
-
-          <nav class="kc-tabbar">
-            <div>홈</div>
-            <div>내차사기</div>
-            <div>내차팔기</div>
-            <div class="is-on">마이카</div>
-            <div>전체메뉴</div>
-          </nav>
-        </div>
+        <div class="mo-shell theme-t2" id="mount2"></div>
       </div>
 
-      <!-- ====================================================================
-           VERSION 3: 4-TAB CLEAN MODULAR APP (목적별 화면 분리형 슈퍼앱)
-           ==================================================================== -->
-      <div class="ver-col" id="verCol3">
-        <div class="ver-head-card">
-          <div class="ver-badge-row">
-            <span class="ver-badge blue">VERSION 3 · 4-탭 모듈 분리형</span>
-            <span style="font-size:11px;color:var(--kc-gray4);">롱스크롤 제로 · 깔끔한 정보 밀도</span>
-          </div>
-          <div class="ver-head-tit">상단 고정 프로필 + 4대 기능 전용 탭 분리</div>
-          <p class="ver-head-desc">긴 스크롤 없이 상단 실사 요약 카드 아래 <strong>[내차·관리] · [예상시세] · [갈아타기] · [제휴·우대]</strong> 4개 탭을 전환해 필요한 업무만 집중 처리하는 깔끔한 앱 구조</p>
+      <!-- TYPE 03 -->
+      <div class="design-col" id="col3">
+        <div class="design-label-bar">
+          <span class="design-tag blue">Type 03 · 시그니처 다크헤더</span>
+          <span class="ty-b2" style="color:var(--gray-3);">블랙 쇼룸 상단 &amp; 보더 카드</span>
         </div>
-
-        <div class="kcar-phone">
-          <header class="kc-app-hdr">
-            <div class="kc-hdr-left">
-              <button type="button" class="kc-back-ico" aria-label="뒤로가기"></button>
-              <span class="kcar-logo"></span>
-              <span class="kc-hdr-tit" style="margin-left:2px;">마이카</span>
-            </div>
-            <button type="button" class="kc-garage-pill" onclick="toggleGarageBar(3)">
-              내 차고 <strong>3</strong> ▾
-            </button>
-          </header>
-
-          <div class="garage-bar" id="garageBar3"></div>
-
-          <!-- Always-Visible Top Vehicle Summary Header -->
-          <div style="padding:14px 18px 12px;background:#fff;border-bottom:1px solid var(--kc-gray8);flex-shrink:0;">
-            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
-              <div>
-                <div style="display:flex;align-items:center;gap:5px;margin-bottom:4px;">
-                  <span class="plate-box js-plate">300라 7716</span>
-                  <span class="kc-badge-cert">케어 <span class="js-care-score-num">88</span>점</span>
-                </div>
-                <div class="js-title" style="font-size:17px;font-weight:700;">BMW X5 (G05)</div>
-                <div style="font-size:12px;color:var(--kc-gray3);margin-top:1px;">
-                  매각시세 <strong style="color:var(--kc-red);"><span class="js-kcar-sell">6,480</span>~<span class="js-c2c-sell">6,890</span>만원</strong>
-                </div>
-              </div>
-              <img src="./assets/images/mycar/my_x5_msport.png" alt="" class="js-hero-img" style="width:118px;height:64px;object-fit:contain;" />
-            </div>
-          </div>
-
-          <!-- 4 Dedicated Screen Switch Tabs -->
-          <nav class="kc-tabs" style="flex-shrink:0;">
-            <button type="button" class="kc-tab is-active" onclick="switchV3Tab('care', this)">내차·관리</button>
-            <button type="button" class="kc-tab" onclick="switchV3Tab('price', this)">예상시세</button>
-            <button type="button" class="kc-tab" onclick="switchV3Tab('trade', this)">갈아타기</button>
-            <button type="button" class="kc-tab" onclick="switchV3Tab('partner', this)">제휴·우대</button>
-          </nav>
-
-          <div class="kc-scroll" style="background:var(--kc-gray11);">
-
-            <!-- V3 TAB 1: 내차 정보 & 관리 -->
-            <div id="v3PanelCare" style="padding:14px 16px;display:grid;gap:10px;">
-              <div style="background:#fff;border:1px solid var(--kc-gray8);border-radius:8px;padding:14px;">
-                <div style="font-size:14px;font-weight:700;margin-bottom:10px;">등록 차량 기본 정보</div>
-                <div class="spec-strip-4">
-                  <div><div class="spec-lbl">연식</div><div class="spec-val js-year">22년 3월</div></div>
-                  <div><div class="spec-lbl">주행거리</div><div class="spec-val js-km">103,503km</div></div>
-                  <div><div class="spec-lbl">연료</div><div class="spec-val js-fuel">PHEV·4WD</div></div>
-                  <div><div class="spec-lbl">리콜/사고</div><div class="spec-val">0건/무사고</div></div>
-                </div>
-                <div style="margin-top:10px;font-size:12px;color:var(--kc-gray3);display:flex;justify-content:space-between;">
-                  <span>보증 잔여 96,497km · 보험이력 3건</span>
-                  <strong style="color:var(--kc-gray2);">이력 타임라인 &gt;</strong>
-                </div>
-              </div>
-
-              <div style="background:#fff;border:1px solid var(--kc-gray8);border-radius:8px;padding:14px;">
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
-                  <strong style="font-size:14px;">소모품 · 필수 일정 체크</strong>
-                  <span class="kc-badge-red">교체임박 1건</span>
-                </div>
-                <div class="maint-row" style="border-color:#ffd7da;background:var(--kc-red-bg);">
-                  <div class="maint-top"><strong>엔진오일 세트</strong><strong style="color:var(--kc-red);">1,490km 남음</strong></div>
-                  <div class="maint-bar"><div class="maint-fill" style="width:88%;background:var(--kc-red);"></div></div>
-                </div>
-                <div class="maint-row">
-                  <div class="maint-top"><strong>브레이크 패드 / 타이어</strong><span style="color:var(--kc-gray3);">6,800km 남음</span></div>
-                  <div class="maint-bar"><div class="maint-fill" style="width:45%;background:var(--kc-blue);"></div></div>
-                </div>
-                <div style="display:flex;justify-content:space-between;font-size:12px;padding-top:4px;color:var(--kc-gray3);">
-                  <span>자동차보험(삼성화재) <strong style="color:var(--kc-red);">26.04 만료</strong></span>
-                  <span>과태료·미납 <strong style="color:var(--kc-green);">0건</strong></span>
-                </div>
-              </div>
-            </div>
-
-            <!-- V3 TAB 2: 예상시세 (직영매입 vs 안심직거래) -->
-            <div id="v3PanelPrice" style="display:none;padding:14px 16px;gap:10px;">
-              <div style="background:#fff;border:1px solid var(--kc-gray8);border-radius:8px;padding:14px;margin-bottom:10px;">
-                <span class="kc-badge-red">케이카 공식 당일매입</span>
-                <div style="font-size:14px;font-weight:700;margin-top:6px;">내차팔기 홈서비스 예상가</div>
-                <div style="font-size:26px;font-weight:700;color:var(--kc-red);margin:4px 0;">
-                  <span class="js-kcar-sell">6,480</span>만원
-                </div>
-                <p style="font-size:12px;color:var(--kc-gray3);margin-bottom:12px;">
-                  기본 시세에 회원님의 <strong>마이카 관리우대 가산금(+<span class="js-bonus-txt">60</span>만원)</strong>이 합산된 금액입니다.
-                </p>
-                <button type="button" class="kc-btn-primary">평가사 무료 방문견적 신청</button>
-              </div>
-
-              <div style="background:#fff;border:1px solid var(--kc-gray8);border-radius:8px;padding:14px;">
-                <span class="kc-badge-blue">수수료 없이 더 받는 직거래</span>
-                <div style="font-size:14px;font-weight:700;margin-top:6px;">케이카 안심직거래 예상 판매가</div>
-                <div style="font-size:24px;font-weight:700;color:var(--kc-gray2);margin:4px 0;">
-                  <span class="js-c2c-sell">6,890</span>만원 <span style="font-size:13px;color:var(--kc-blue);">(+<span class="js-c2c-gap">410</span>만원↑)</span>
-                </div>
-                <p style="font-size:12px;color:var(--kc-gray3);margin-bottom:12px;">
-                  마이카 관리이력이 구매자에게 ‘케이카 관리인증 배지’로 노출되어 일반 직거래보다 빠르게 판매됩니다.
-                </p>
-                <button type="button" class="kc-btn-outline">안심직거래 셀프등록 시작하기</button>
-              </div>
-            </div>
-
-            <!-- V3 TAB 3: 갈아타기 (추가금 0원 / 금액별 대차) -->
-            <div id="v3PanelTrade" style="display:none;padding:14px 16px;">
-              <div style="background:#fff;border:1px solid var(--kc-gray8);border-radius:8px;padding:14px;">
-                <div style="font-size:14px;font-weight:700;margin-bottom:4px;">추가금별 바꿀 수 있는 케이카 직영차</div>
-                <div style="font-size:12px;color:var(--kc-gray3);margin-bottom:10px;">
-                  내 차 매각금 <strong style="color:var(--kc-red);"><span class="js-kcar-sell">6,480</span>만원</strong> 차감 후 실제 필요 금액이에요.
-                </div>
-
-                <div class="budget-pills">
-                  <button type="button" class="kc-pill is-active" onclick="filterTrade('v3', 0, this)">추가금 0원</button>
-                  <button type="button" class="kc-pill" onclick="filterTrade('v3', 500, this)">+500만원</button>
-                  <button type="button" class="kc-pill" onclick="filterTrade('v3', 1500, this)">+1,500만원</button>
-                  <button type="button" class="kc-pill" onclick="filterTrade('v3', 3000, this)">+2,500만원↑</button>
-                </div>
-
-                <div id="v3TradeList"></div>
-              </div>
-            </div>
-
-            <!-- V3 TAB 4: 제휴 할인 & 관리이력 우대매각 -->
-            <div id="v3PanelPartner" style="display:none;padding:14px 16px;">
-              <div class="reward-card" style="background:#fff;">
-                <div style="font-size:12px;color:var(--kc-gray3);">관리이력 연동 매각 우대 보증서</div>
-                <div style="font-size:20px;font-weight:700;color:var(--kc-red);margin-top:3px;">
-                  우대 가산금 +<span class="js-bonus-txt">60</span>만원 적용중
-                </div>
-                <p style="font-size:12px;color:var(--kc-gray3);margin:6px 0 10px;">
-                  케이카 제휴 업체에서 할인받아 정비할 때마다 가산금이 최대 <strong>+100만원</strong>까지 누적됩니다.
-                </p>
-                <button type="button" class="kc-btn-primary js-mission-btn" style="height:36px;font-size:12px;" onclick="completeCareMission()">
-                  제휴 엔진오일 교체 인증 시뮬레이션 (+25만원 적립)
-                </button>
-              </div>
-
-              <div class="partner-row">
-                <div>
-                  <strong style="font-size:13px;">스피드메이트 엔진오일 35% 할인</strong>
-                  <div style="font-size:11.5px;color:var(--kc-red);font-weight:500;">이용 시 매각우대금 +25만원 자동적립</div>
-                </div>
-                <button type="button" class="coupon-dl-btn" onclick="claimCoupon(this)">쿠폰받기</button>
-              </div>
-              <div class="partner-row">
-                <div>
-                  <strong style="font-size:13px;">T-Station 타이어 30% · 얼라이먼트 50%</strong>
-                  <div style="font-size:11.5px;color:var(--kc-blue);font-weight:500;">이용 시 매각우대금 +15만원 자동적립</div>
-                </div>
-                <button type="button" class="coupon-dl-btn" onclick="claimCoupon(this)">쿠폰받기</button>
-              </div>
-              <div class="partner-row">
-                <div>
-                  <strong style="font-size:13px;">갓차 출장세차 45% · 세차용품 48%</strong>
-                  <div style="font-size:11.5px;color:var(--kc-gray4);">케이카 마이카 등록고객 상시 특가</div>
-                </div>
-                <button type="button" class="coupon-dl-btn" onclick="claimCoupon(this)">쿠폰받기</button>
-              </div>
-            </div>
-
-          </div>
-
-          <nav class="kc-tabbar">
-            <div>홈</div>
-            <div>내차사기</div>
-            <div>내차팔기</div>
-            <div class="is-on">마이카</div>
-            <div>전체메뉴</div>
-          </nav>
-        </div>
+        <div class="mo-shell theme-t3" id="mount3"></div>
       </div>
 
     </div>
   </main>
 
+  <!-- Spec & History Detail Modal -->
+  <div class="modal-dim" id="specModal" onclick="closeModal()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+        <h3 class="ty-sub1">제원 및 내 차 히스토리</h3>
+        <button type="button" class="ty-b1-m" style="color:var(--gray-4);" onclick="closeModal()">닫기</button>
+      </div>
+      <div class="kv-list" id="modalContent"></div>
+      <button type="button" class="kc-btn kc-btn-red" style="margin-top:24px;" onclick="closeModal()">확인</button>
+    </div>
+  </div>
+
   <script>
     /* ==========================================================================
-       Registered Garage Vehicles & K Car Direct Trade-In Inventory Data
+       Data Model (Identical Across All 3 Designs)
        ========================================================================== */
-    const MY_GARAGE = [
+    const GARAGE = [
       {
         plate: '300라 7716',
-        shortNm: 'BMW X5',
-        title: 'BMW X5 (G05)',
-        sub: '가솔린+전기 4WD xDrive 45e M 스포츠',
+        name: 'BMW X5 (G05)',
+        trim: 'xDrive 45e M 스포츠',
         year: '22년 3월',
         km: '103,503km',
-        fuel: 'PHEV·4WD',
-        insCnt: '3건 (경미)',
-        warranty: '제조사보증 유효',
+        historyShort: '리콜 0 · 보험 3',
         img: './assets/images/mycar/my_x5_msport.png',
-        baseKcarSell: 6420,
-        c2cSell: 6890
+        oilRemain: '1,490km 남음',
+        oilPct: 86,
+        tireRemain: '6,800km 남음',
+        tirePct: 45,
+        insurer: '삼성화재 · 26.04 만기',
+        inspectDate: '2028.04.27 (D-526)',
+        baseKcar: 6420,
+        c2cPrice: 6890,
+        specs: [
+          ['최초등록일', '2022.03.28'],
+          ['연료 / 배기량', '가솔린+전기 · 2,998cc'],
+          ['제조사 보증', '잔여 96,497km 유효'],
+          ['보험처리 이력', '내차피해 1건 · 상대피해 2건'],
+          ['신차 출고정보', '경기도 고양시 개인 등록']
+        ]
       },
       {
         plate: '55도 0589',
-        shortNm: '벤츠 CLA',
-        title: '벤츠 CLA-클래스 (C118)',
-        sub: '가솔린 2.0 CLA 250 4MATIC',
+        name: '벤츠 CLA (C118)',
+        trim: 'CLA 250 4MATIC',
         year: '21년 8월',
         km: '48,210km',
-        fuel: '가솔린·4WD',
-        insCnt: '1건 (단순)',
-        warranty: 'KW6 보증가능',
+        historyShort: '리콜 0 · 보험 1',
         img: './assets/images/mycar/my_cla_studio.png',
-        baseKcarSell: 3220,
-        c2cSell: 3540
+        oilRemain: '4,200km 남음',
+        oilPct: 58,
+        tireRemain: '9,100km 남음',
+        tirePct: 32,
+        insurer: '현대해상 · 26.09 만기',
+        inspectDate: '2027.08.14 (D-270)',
+        baseKcar: 3220,
+        c2cPrice: 3540,
+        specs: [
+          ['최초등록일', '2021.08.14'],
+          ['연료 / 배기량', '가솔린 · 1,991cc'],
+          ['케이카 보증', 'KW6 가입 가능'],
+          ['보험처리 이력', '단순 교환 1건'],
+          ['신차 출고정보', '서울 서초구 개인 등록']
+        ]
       },
       {
         plate: '46더 1573',
-        shortNm: '더 뉴 그랜저',
-        title: '현대 더 뉴 그랜저 IG',
-        sub: '가솔린 2.5 캘리그래피',
+        name: '더 뉴 그랜저 IG',
+        trim: '2.5 가솔린 캘리그래피',
         year: '20년 11월',
         km: '62,900km',
-        fuel: '가솔린·2WD',
-        insCnt: '0건 (완전무사고)',
-        warranty: 'KW6 보증가능',
+        historyShort: '완전 무사고',
         img: './assets/images/mycar/my_grandeur_studio.png',
-        baseKcarSell: 2480,
-        c2cSell: 2750
+        oilRemain: '2,100km 남음',
+        oilPct: 78,
+        tireRemain: '11,000km 남음',
+        tirePct: 25,
+        insurer: 'DB손해보험 · 26.11 만기',
+        inspectDate: '2026.11.20 (D-62)',
+        baseKcar: 2480,
+        c2cPrice: 2750,
+        specs: [
+          ['최초등록일', '2020.11.20'],
+          ['연료 / 배기량', '가솔린 · 2,497cc'],
+          ['케이카 보증', 'KW12 가입 가능'],
+          ['보험처리 이력', '0건 (완전 무사고)'],
+          ['신차 출고정보', '경기도 성남시 개인 등록']
+        ]
       }
     ];
 
-    const KCAR_INVENTORY = [
-      { name: '현대 아이오닉 5 롱레인지 프레스티지', meta: '23년 4월 · 2.4만km · 직영', price: 3150, img: './assets/images/mycar/studio_ioniq5.png' },
-      { name: '기아 더 뉴 쏘렌토 4세대 HEV 노블레스', meta: '24년 6월 · 1.8만km · 직영', price: 3890, img: './assets/images/mycar/studio_sorento.png' },
-      { name: '현대 디 올 뉴 그랜저(GN7) 하이브리드', meta: '24년 3월 · 1.4만km · 직영', price: 4280, img: './assets/images/mycar/studio_grandeur_gn7.png' },
-      { name: '제네시스 GV70 (F/L) 2.5T AWD', meta: '24년 7월 · 2.1만km · 직영', price: 4850, img: './assets/images/mycar/studio_gv70.png' },
-      { name: '테슬라 모델 Y 롱레인지 AWD', meta: '24년 5월 · 1.6만km · 직영', price: 5690, img: './assets/images/mycar/studio_modely.png' },
-      { name: '제네시스 GV80 (F/L) 2.5T AWD', meta: '24년 11월 · 2.3만km · 직영', price: 6290, img: './assets/images/mycar/studio_gv80.png' },
-      { name: '벤츠 E-클래스(W214) E200 아방가르드', meta: '24년 6월 · 1.5만km · 직영', price: 6450, img: './assets/images/mycar/studio_eclass_w214.png' },
-      { name: '기아 더 뉴 카니발 HEV 시그니처 그래비티', meta: '25년 2월 · 6천km · 직영', price: 6820, img: './assets/images/mycar/studio_carnival_hevv.png' },
-      { name: '제네시스 G80 (RG3 F/L) 3.5T 스포츠', meta: '25년 1월 · 9천km · 직영', price: 6950, img: './assets/images/mycar/studio_g80_fl.png' },
-      { name: 'BMW X7 (G07) xDrive 40d M 스포츠', meta: '23년 7월 · 3.8만km · 직영', price: 7850, img: './assets/images/mycar/my_x7_studio.png' },
-      { name: 'BMW X6 (G06) xDrive 40i M 스포츠', meta: '23년 9월 · 2.9만km · 직영', price: 7920, img: './assets/images/mycar/studio_x6_g06.png' },
-      { name: '벤츠 GLE-클래스(W167) GLE450 4MATIC', meta: '25년 4월 · 6천km · 직영', price: 9180, img: './assets/images/mycar/studio_gle.png' }
+    const INVENTORY = [
+      { name: '아이오닉 5 롱레인지 프레스티지', sub: '23년 4월 · 2.4만km', price: 3150, img: './assets/images/mycar/studio_ioniq5.png' },
+      { name: '더 뉴 쏘렌토 HEV 노블레스', sub: '24년 6월 · 1.8만km', price: 3890, img: './assets/images/mycar/studio_sorento.png' },
+      { name: '디 올 뉴 그랜저 하이브리드', sub: '24년 3월 · 1.4만km', price: 4280, img: './assets/images/mycar/studio_grandeur_gn7.png' },
+      { name: '제네시스 GV70 2.5T AWD', sub: '24년 7월 · 2.1만km', price: 4850, img: './assets/images/mycar/studio_gv70.png' },
+      { name: '테슬라 모델 Y 롱레인지 AWD', sub: '24년 5월 · 1.6만km', price: 5690, img: './assets/images/mycar/studio_modely.png' },
+      { name: '제네시스 GV80 (F/L) 2.5T AWD', sub: '24년 11월 · 2.3만km', price: 6290, img: './assets/images/mycar/studio_gv80.png' },
+      { name: '벤츠 E-클래스(W214) E200', sub: '24년 6월 · 1.5만km', price: 6450, img: './assets/images/mycar/studio_eclass_w214.png' },
+      { name: '더 뉴 카니발 HEV 시그니처', sub: '25년 2월 · 6천km', price: 6820, img: './assets/images/mycar/studio_carnival_hevv.png' },
+      { name: '제네시스 G80 (F/L) 3.5T 스포츠', sub: '25년 1월 · 9천km', price: 6950, img: './assets/images/mycar/studio_g80_fl.png' },
+      { name: 'BMW X7 xDrive 40d M 스포츠', sub: '23년 7월 · 3.8만km', price: 7850, img: './assets/images/mycar/my_x7_studio.png' },
+      { name: 'BMW X6 xDrive 40i M 스포츠', sub: '23년 9월 · 2.9만km', price: 7920, img: './assets/images/mycar/studio_x6_g06.png' },
+      { name: '벤츠 GLE 450 4MATIC', sub: '25년 4월 · 6천km', price: 9180, img: './assets/images/mycar/studio_gle.png' }
     ];
 
-    let activeCarIdx = 0;
-    let careBonus = 60; // 만원 (기본 GOLD 88점 = +60만원, 미션 완료 시 VIP 96점 = +85만원)
-    let careScore = 88;
-    let v1ExtraCap = 0;
-    let v2ExtraCap = 0;
-    let v3ExtraCap = 0;
-    let v2SellBasis = 'kcar';
-    let layoutMode = 'all';
-    let focusedVer = 1;
+    let state = {
+      carIdx: 0,
+      extraBudget: 0, // 0, 500, 1500, 3000
+      careScore: 88,
+      careBonus: 60,
+      missionDone: false,
+      coupons: { c1: false, c2: false, c3: false },
+      garageOpen: { 1: false, 2: false, 3: false },
+      viewMode: 'compare',
+      selectedType: 1
+    };
 
-    function fmtNum(n) {
-      return n.toLocaleString('ko-KR');
-    }
+    const fmt = n => n.toLocaleString('ko-KR');
 
-    function getMySellValue(basis) {
-      const car = MY_GARAGE[activeCarIdx];
-      if (basis === 'c2c') return car.c2cSell;
-      return car.baseKcarSell + careBonus;
-    }
-
-    function renderGarageBars() {
-      [1, 2, 3].forEach(num => {
-        const bar = document.getElementById('garageBar' + num);
-        if (!bar) return;
-        bar.innerHTML = MY_GARAGE.map((c, idx) => `
-          <button type="button" class="garage-chip ${idx === activeCarIdx ? 'is-active' : ''}" onclick="selectMyCar(${idx})">
-            <img src="${c.img}" alt="${c.shortNm}" />
-            <div>
-              <div class="g-no">${c.plate}</div>
-              <div class="g-nm">${c.shortNm}</div>
-            </div>
-          </button>
-        `).join('');
-      });
-    }
-
-    function selectMyCar(idx) {
-      activeCarIdx = idx;
-      const car = MY_GARAGE[idx];
-
-      [0, 1, 2].forEach(i => {
-        const btn = document.getElementById('topCar' + i);
-        if (btn) btn.classList.toggle('is-active', i === idx);
-      });
-
-      const kcarSell = getMySellValue('kcar');
-      const c2cGap = car.c2cSell - kcarSell;
-
-      document.querySelectorAll('.js-plate').forEach(el => el.textContent = car.plate);
-      document.querySelectorAll('.js-title').forEach(el => el.textContent = car.title);
-      document.querySelectorAll('.js-sub').forEach(el => el.textContent = car.sub);
-      document.querySelectorAll('.js-year').forEach(el => el.textContent = car.year);
-      document.querySelectorAll('.js-km').forEach(el => el.textContent = car.km);
-      document.querySelectorAll('.js-fuel').forEach(el => el.textContent = car.fuel);
-      document.querySelectorAll('.js-ins-cnt').forEach(el => el.textContent = car.insCnt);
-      document.querySelectorAll('.js-warranty-tag').forEach(el => el.textContent = car.warranty);
-      document.querySelectorAll('.js-hero-img').forEach(el => el.src = car.img);
-
-      document.querySelectorAll('.js-kcar-sell').forEach(el => el.textContent = fmtNum(kcarSell));
-      document.querySelectorAll('.js-c2c-sell').forEach(el => el.textContent = fmtNum(car.c2cSell));
-      document.querySelectorAll('.js-c2c-gap').forEach(el => el.textContent = fmtNum(Math.max(50, c2cGap)));
-      document.querySelectorAll('.js-bonus-txt').forEach(el => el.textContent = fmtNum(careBonus));
-
-      renderGarageBars();
-      renderAllTradeViews();
-    }
-
-    function pickTradeCars(myVal, extraMax) {
-      const budget = myVal + extraMax;
-      let matches;
-      if (extraMax === 0) {
-        // Cars priced <= myVal (0 won extra, or cash back!)
-        matches = KCAR_INVENTORY.filter(c => c.price <= myVal + 20 && c.price >= myVal - 1600)
+    function getTradeRecommendations(myPrice, extra) {
+      const maxBudget = myPrice + extra;
+      let list;
+      if (extra === 0) {
+        list = INVENTORY.filter(c => c.price <= myPrice + 20 && c.price >= myPrice - 1800)
           .sort((a, b) => b.price - a.price);
-        if (matches.length < 2) {
-          matches = KCAR_INVENTORY.filter(c => c.price <= myVal + 100).sort((a, b) => b.price - a.price);
+        if (list.length < 2) {
+          list = INVENTORY.filter(c => c.price <= myPrice + 150).sort((a, b) => b.price - a.price);
         }
       } else {
-        const minTarget = myVal + Math.max(50, extraMax - 1100);
-        matches = KCAR_INVENTORY.filter(c => c.price > minTarget && c.price <= budget + 150)
+        const minPrice = myPrice + Math.max(50, extra - 1100);
+        list = INVENTORY.filter(c => c.price > minPrice && c.price <= maxBudget + 200)
           .sort((a, b) => a.price - b.price);
-        if (matches.length < 2) {
-          matches = KCAR_INVENTORY.filter(c => c.price <= budget + 300 && c.price > myVal)
+        if (list.length < 2) {
+          list = INVENTORY.filter(c => c.price > myPrice && c.price <= maxBudget + 400)
             .sort((a, b) => b.price - a.price);
         }
       }
-      return matches.slice(0, 4);
+      return list.slice(0, 3);
     }
 
-    function formatDiffBadge(diff) {
-      if (diff <= 0) {
-        const payback = Math.abs(diff);
-        return {
-          cls: 'zero',
-          txt: payback === 0 ? '추가금 0원 맞교환' : `추가금 0원 (+${fmtNum(payback)}만원 환급)`
-        };
-      }
-      const monthly = Math.max(4, Math.round(diff / 48));
-      return {
-        cls: 'plus',
-        txt: `+${fmtNum(diff)}만원 추가 (월 ${monthly}만원)`
-      };
-    }
+    /* ==========================================================================
+       Shared Component Renderer (100% Identical Structure & Functions!)
+       ========================================================================== */
+    function buildAppHTML(typeNum) {
+      const car = GARAGE[state.carIdx];
+      const kcarPrice = car.baseKcar + state.careBonus;
+      const c2cDiff = car.c2cPrice - kcarPrice;
+      const tradeCars = getTradeRecommendations(kcarPrice, state.extraBudget);
+      const isDarkHdr = typeNum === 3;
 
-    function renderAllTradeViews() {
-      // V1 Grid (2-col vertical K Car cards)
-      const myValV1 = getMySellValue('kcar');
-      const v1Cars = pickTradeCars(myValV1, v1ExtraCap);
-      const v1Grid = document.getElementById('v1TradeGrid');
-      if (v1Grid) {
-        v1Grid.innerHTML = v1Cars.map(c => {
-          const badge = formatDiffBadge(c.price - myValV1);
-          return `
-            <div class="trade-card">
-              <div class="trade-thumb">
-                <span class="kc-badge-red top-badge">K Car 직영</span>
-                <img src="${c.img}" alt="${c.name}" />
-              </div>
-              <div class="trade-body">
-                <div class="trade-name">${c.name}</div>
-                <div class="trade-meta">${c.meta}</div>
-                <div class="trade-price">${fmtNum(c.price)}만원</div>
-                <div class="trade-diff ${badge.cls}">${badge.txt}</div>
+      const garageItemsHTML = GARAGE.map((g, idx) => `
+        <button type="button" class="g-item ${idx === state.carIdx ? 'is-active' : ''}" onclick="changeCar(${idx})">
+          <img src="${g.img}" alt="${g.name}" />
+          <div style="text-align:left;">
+            <div class="ty-b2-m" style="font-weight:700;color:var(--gray-2);">${g.plate}</div>
+            <div class="ty-cap2" style="color:var(--gray-4);">${g.name}</div>
+          </div>
+        </button>
+      `).join('');
+
+      const tradeCardsHTML = tradeCars.map(item => {
+        const diff = item.price - kcarPrice;
+        const badgeHTML = diff <= 0
+          ? `<span class="bdg bdg-gold">${diff === 0 ? '추가금 0원' : `0원 · ${fmt(Math.abs(diff))}만원 환급`}</span>`
+          : `<span class="bdg bdg-red">+${fmt(diff)}만원 추가</span>`;
+
+        return `
+          <div class="trade-item">
+            <div class="trade-img-wrap">
+              <img src="${item.img}" alt="${item.name}" />
+            </div>
+            <div class="trade-info">
+              <div class="ty-sub3" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${item.name}</div>
+              <div class="ty-b2" style="color:var(--gray-4);">${item.sub}</div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px;gap:8px;flex-wrap:wrap;">
+                <span class="ty-sub2 num">${fmt(item.price)}만원</span>
+                ${badgeHTML}
               </div>
             </div>
-          `;
-        }).join('');
-      }
+          </div>
+        `;
+      }).join('');
 
-      // V2 Slider View
-      const myValV2 = getMySellValue(v2SellBasis);
-      document.getElementById('v2ActiveSellPrice').textContent = fmtNum(myValV2);
-      document.getElementById('v2TotalBudgetTxt').textContent = fmtNum(myValV2 + v2ExtraCap);
-      const v2Cars = pickTradeCars(myValV2, v2ExtraCap);
-      const v2List = document.getElementById('v2TradeList');
-      if (v2List) {
-        v2List.innerHTML = v2Cars.slice(0, 3).map(c => {
-          const badge = formatDiffBadge(c.price - myValV2);
-          return `
-            <div class="trade-row-card">
-              <img src="${c.img}" alt="${c.name}" />
-              <div style="flex:1;min-width:0;">
-                <div style="display:flex;align-items:center;gap:4px;margin-bottom:2px;">
-                  <span class="kc-badge-red" style="height:17px;font-size:10px;">직영</span>
-                  <span style="font-size:11px;color:var(--kc-gray4);">${c.meta}</span>
+      return `
+        <!-- Header -->
+        <header class="mo-hdr">
+          <div class="mo-hdr-left">
+            <span class="ico-back" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="${isDarkHdr ? '#FFFFFF' : '#16171D'}" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+            </span>
+            <span class="kcar-logo ${isDarkHdr ? 'on-dark' : ''}"></span>
+            <span class="ty-sub3" style="font-weight:500;">마이카</span>
+          </div>
+          <button type="button" class="garage-btn" onclick="toggleGarage(${typeNum})">
+            내 차고 <strong>3</strong> ▾
+          </button>
+        </header>
+
+        <!-- Garage Drawer -->
+        <div class="mo-garage-drawer ${state.garageOpen[typeNum] ? 'is-open' : ''}">
+          ${garageItemsHTML}
+        </div>
+
+        <!-- Clean Anchor Bar -->
+        <nav class="mo-nav">
+          <button type="button" class="mo-nav-btn is-active" onclick="jumpToSec(${typeNum}, 'sec1')">내차정보</button>
+          <button type="button" class="mo-nav-btn" onclick="jumpToSec(${typeNum}, 'sec2')">차량관리</button>
+          <button type="button" class="mo-nav-btn" onclick="jumpToSec(${typeNum}, 'sec3')">예상시세</button>
+          <button type="button" class="mo-nav-btn" onclick="jumpToSec(${typeNum}, 'sec4')">갈아타기</button>
+          <button type="button" class="mo-nav-btn" onclick="jumpToSec(${typeNum}, 'sec5')">우대·제휴</button>
+        </nav>
+
+        <div class="mo-body">
+
+          <!-- 01. 등록 차량 정보 -->
+          <section class="mo-sec sec-hero" id="t${typeNum}_sec1">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+              <span class="bdg bdg-plate num">${car.plate}</span>
+              <span class="bdg bdg-gold">${state.missionDone ? 'VIP 관리인증' : 'GOLD 관리인증'}</span>
+            </div>
+
+            <h2 class="ty-h3">${car.name}</h2>
+            <p class="ty-b1 ty-sub-txt" style="color:var(--gray-3);margin-top:4px;">${car.trim}</p>
+
+            <div class="car-stage">
+              <img src="${car.img}" alt="${car.name}" />
+            </div>
+
+            <div class="spec-row-3">
+              <div class="spec-cell">
+                <div class="ty-b2 spec-lbl-txt" style="color:var(--gray-4);margin-bottom:4px;">연식</div>
+                <div class="ty-sub3 num">${car.year}</div>
+              </div>
+              <div class="spec-cell">
+                <div class="ty-b2 spec-lbl-txt" style="color:var(--gray-4);margin-bottom:4px;">주행거리</div>
+                <div class="ty-sub3 num">${car.km}</div>
+              </div>
+              <div class="spec-cell">
+                <div class="ty-b2 spec-lbl-txt" style="color:var(--gray-4);margin-bottom:4px;">이력</div>
+                <div class="ty-sub3">${car.historyShort}</div>
+              </div>
+            </div>
+
+            <button type="button" class="kc-btn kc-btn-soft" onclick="openModal()">
+              기본 제원 · 이력 상세보기
+            </button>
+          </section>
+
+          <!-- 02. 차량 관리 -->
+          <section class="mo-sec" id="t${typeNum}_sec2">
+            <div class="sec-head">
+              <h3 class="ty-sub1">내 차 관리</h3>
+              <span class="ty-b2-m" style="color:var(--info);">정비 등록 +</span>
+            </div>
+
+            <div class="gauge-stack">
+              <div class="gauge-item">
+                <div class="gauge-top">
+                  <span class="ty-sub3">엔진오일</span>
+                  <span class="ty-b1-m num" style="color:var(--error);">${car.oilRemain}</span>
                 </div>
-                <div style="font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${c.name}</div>
-                <div style="display:flex;align-items:center;justify-content:space-between;margin-top:4px;">
-                  <strong style="font-size:13.5px;">${fmtNum(c.price)}만원</strong>
-                  <span class="trade-diff ${badge.cls}" style="margin:0;padding:2px 7px;">${badge.txt}</span>
+                <div class="gauge-track">
+                  <div class="gauge-fill" style="width:${car.oilPct}%;background:var(--primary-3);"></div>
+                </div>
+              </div>
+
+              <div class="gauge-item">
+                <div class="gauge-top">
+                  <span class="ty-sub3">타이어 점검</span>
+                  <span class="ty-b1-m num" style="color:var(--gray-3);">${car.tireRemain}</span>
+                </div>
+                <div class="gauge-track">
+                  <div class="gauge-fill" style="width:${car.tirePct}%;background:var(--info);"></div>
                 </div>
               </div>
             </div>
-          `;
-        }).join('');
-      }
 
-      // V3 Tab Trade List
-      const v3Cars = pickTradeCars(myValV1, v3ExtraCap);
-      const v3List = document.getElementById('v3TradeList');
-      if (v3List) {
-        v3List.innerHTML = v3Cars.slice(0, 3).map(c => {
-          const badge = formatDiffBadge(c.price - myValV1);
-          return `
-            <div class="trade-row-card">
-              <img src="${c.img}" alt="${c.name}" />
-              <div style="flex:1;min-width:0;">
-                <div style="font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${c.name}</div>
-                <div style="font-size:11px;color:var(--kc-gray4);margin-top:1px;">${c.meta} · 차량가 ${fmtNum(c.price)}만원</div>
-                <div class="trade-diff ${badge.cls}" style="display:inline-block;margin-top:5px;padding:3px 8px;">${badge.txt}</div>
+            <div class="kv-list">
+              <div class="kv-row">
+                <span class="ty-b1" style="color:var(--gray-3);">자동차 보험</span>
+                <span class="ty-b1-m" style="font-weight:700;">${car.insurer}</span>
+              </div>
+              <div class="kv-row">
+                <span class="ty-b1" style="color:var(--gray-3);">법정 정기검사</span>
+                <span class="ty-b1-m num" style="font-weight:700;">${car.inspectDate}</span>
+              </div>
+              <div class="kv-row">
+                <span class="ty-b1" style="color:var(--gray-3);">과태료 · 하이패스</span>
+                <span class="ty-b1-m" style="color:var(--green-5);font-weight:700;">미납 0건</span>
               </div>
             </div>
-          `;
-        }).join('');
-      }
+          </section>
+
+          <!-- 03. 예상 시세 (직영 vs 직거래) -->
+          <section class="mo-sec" id="t${typeNum}_sec3">
+            <div class="sec-head">
+              <h3 class="ty-sub1">예상 매각 시세</h3>
+              <span class="bdg bdg-gold">우대 +${state.careBonus}만원 반영</span>
+            </div>
+
+            <div class="val-stack">
+              <div class="val-box is-primary">
+                <span class="ty-b2-m" style="color:var(--gray-3);">케이카 직영매각</span>
+                <strong class="ty-h3 num" style="color:var(--primary-3);">${fmt(kcarPrice)}만원</strong>
+                <span class="ty-cap2" style="color:var(--primary-3);">당일 무료 방문견적</span>
+              </div>
+
+              <div class="val-box">
+                <span class="ty-b2-m" style="color:var(--gray-3);">안심직거래 예상가</span>
+                <strong class="ty-h3 num">${fmt(car.c2cPrice)}만원</strong>
+                <span class="ty-cap2" style="color:var(--info);">직영 대비 +${fmt(c2cDiff)}만원</span>
+              </div>
+            </div>
+
+            <div class="btn-row-2">
+              <button type="button" class="kc-btn kc-btn-red">내차팔기 신청</button>
+              <button type="button" class="kc-btn kc-btn-line">직거래 등록</button>
+            </div>
+          </section>
+
+          <!-- 04. 케이카 갈아타기 (추가금 0원 ~ 금액별) -->
+          <section class="mo-sec" id="t${typeNum}_sec4">
+            <div class="sec-head" style="margin-bottom:8px;">
+              <h3 class="ty-sub1">내 차 팔고 갈아타기</h3>
+            </div>
+            <p class="ty-b1" style="color:var(--gray-3);margin-bottom:20px;">
+              내 차 시세 <strong style="color:var(--gray-2);">${fmt(kcarPrice)}만원</strong> 기준 추천 직영차
+            </p>
+
+            <div class="chip-row">
+              <button type="button" class="flt-chip ${state.extraBudget === 0 ? 'is-active' : ''}" onclick="setExtraBudget(0)">추가금 0원</button>
+              <button type="button" class="flt-chip ${state.extraBudget === 500 ? 'is-active' : ''}" onclick="setExtraBudget(500)">+500만원</button>
+              <button type="button" class="flt-chip ${state.extraBudget === 1500 ? 'is-active' : ''}" onclick="setExtraBudget(1500)">+1,500만원</button>
+              <button type="button" class="flt-chip ${state.extraBudget === 3000 ? 'is-active' : ''}" onclick="setExtraBudget(3000)">+2,500만원</button>
+            </div>
+
+            <div class="car-list-stack">
+              ${tradeCardsHTML}
+            </div>
+          </section>
+
+          <!-- 05 & 06. 관리이력 매각우대 & 케이카 제휴 할인 -->
+          <section class="mo-sec" id="t${typeNum}_sec5">
+            <div class="sec-head">
+              <h3 class="ty-sub1">관리 우대 · 제휴 혜택</h3>
+            </div>
+
+            <!-- 관리이력 -> 향후 매각 우대 보상 -->
+            <div class="reward-box" style="margin-bottom:28px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                <span class="ty-b1-m ty-sub-txt" style="color:var(--gray-3);">케어 점수 ${state.careScore}점</span>
+                <span class="bdg bdg-gold">${state.missionDone ? 'VIP 등급' : 'GOLD 등급'}</span>
+              </div>
+              <div class="ty-h4 num reward-price" style="color:var(--primary-3);">
+                케이카 매각 시 +${state.careBonus}만원 우대
+              </div>
+              <div class="gauge-track" style="margin:18px 0 20px;height:8px;">
+                <div class="gauge-fill" style="width:${state.careScore}%;background:var(--primary-3);"></div>
+              </div>
+              <button type="button" class="kc-btn ${state.missionDone ? 'kc-btn-soft' : 'kc-btn-red'}" onclick="runMission()">
+                ${state.missionDone ? '✓ 정비 인증 완료 (+85만원 적용됨)' : '제휴 정비 인증하고 +85만원 받기'}
+              </button>
+            </div>
+
+            <!-- 케이카 제휴 할인 3종 -->
+            <div class="benefit-stack">
+              <div class="benefit-item">
+                <div>
+                  <div class="ty-sub3">스피드메이트 엔진오일 35%</div>
+                  <div class="ty-b2" style="color:var(--gray-4);margin-top:4px;">이용 시 매각우대 +25만원 적립</div>
+                </div>
+                <button type="button" class="btn-coupon ${state.coupons.c1 ? 'is-done' : ''}" onclick="getCoupon('c1')">
+                  ${state.coupons.c1 ? '발급됨' : '쿠폰받기'}
+                </button>
+              </div>
+
+              <div class="benefit-item">
+                <div>
+                  <div class="ty-sub3">T-Station 타이어 30%</div>
+                  <div class="ty-b2" style="color:var(--gray-4);margin-top:4px;">이용 시 매각우대 +15만원 적립</div>
+                </div>
+                <button type="button" class="btn-coupon ${state.coupons.c2 ? 'is-done' : ''}" onclick="getCoupon('c2')">
+                  ${state.coupons.c2 ? '발급됨' : '쿠폰받기'}
+                </button>
+              </div>
+
+              <div class="benefit-item">
+                <div>
+                  <div class="ty-sub3">갓차 출장세차 45%</div>
+                  <div class="ty-b2" style="color:var(--gray-4);margin-top:4px;">케이카 마이카 고객 상시 할인</div>
+                </div>
+                <button type="button" class="btn-coupon ${state.coupons.c3 ? 'is-done' : ''}" onclick="getCoupon('c3')">
+                  ${state.coupons.c3 ? '발급됨' : '쿠폰받기'}
+                </button>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- Bottom Tab Bar -->
+        <nav class="mo-tabbar">
+          <div>홈</div>
+          <div>내차사기</div>
+          <div>내차팔기</div>
+          <div class="is-on">마이카</div>
+          <div>전체</div>
+        </nav>
+      `;
     }
 
-    function filterTrade(ver, extraWon, btn) {
-      btn.parentElement.querySelectorAll('.kc-pill').forEach(b => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
-      if (ver === 'v1') v1ExtraCap = extraWon;
-      if (ver === 'v3') v3ExtraCap = extraWon;
-      renderAllTradeViews();
-    }
-
-    function updateV2Slider(val) {
-      v2ExtraCap = parseInt(val, 10) || 0;
-      const lbl = document.getElementById('v2ExtraReadout');
-      if (v2ExtraCap === 0) {
-        lbl.textContent = '추가금 0원 (환급/맞교환)';
-      } else {
-        lbl.textContent = '+' + fmtNum(v2ExtraCap) + '만원 추가';
-      }
-      renderAllTradeViews();
-    }
-
-    function setV2SellBasis(basis) {
-      v2SellBasis = basis;
-      const btnK = document.getElementById('v2SellModeKcar');
-      const btnC = document.getElementById('v2SellModeC2c');
-      const lbl = document.getElementById('v2BasisLabel');
-      if (basis === 'kcar') {
-        btnK.style.cssText = 'flex:1;height:30px;border-radius:4px;font-size:12px;font-weight:700;background:#fff;color:var(--kc-gray2);box-shadow:0 1px 2px rgba(0,0,0,0.08);';
-        btnC.style.cssText = 'flex:1;height:30px;border-radius:4px;font-size:12px;font-weight:500;color:var(--kc-gray3);';
-        lbl.textContent = '내차팔기 홈서비스 예상 매입가 (관리우대 포함)';
-      } else {
-        btnC.style.cssText = 'flex:1;height:30px;border-radius:4px;font-size:12px;font-weight:700;background:#fff;color:var(--kc-gray2);box-shadow:0 1px 2px rgba(0,0,0,0.08);';
-        btnK.style.cssText = 'flex:1;height:30px;border-radius:4px;font-size:12px;font-weight:500;color:var(--kc-gray3);';
-        lbl.textContent = '케이카 안심직거래 예상 판매가 (수수료 0원)';
-      }
-      renderAllTradeViews();
-    }
-
-    function completeCareMission() {
-      if (careBonus >= 85) return;
-      careBonus = 85;
-      careScore = 96;
-      document.querySelectorAll('.js-care-score').forEach(el => el.textContent = '96점 (VIP)');
-      document.querySelectorAll('.js-care-score-num').forEach(el => el.textContent = '96');
-      document.querySelectorAll('.js-score-bar').forEach(el => el.style.width = '96%');
-      document.querySelectorAll('.js-mission-btn').forEach(btn => {
-        btn.textContent = '✓ VIP 매각우대 +85만원 승급 완료 (내차 시세 반영됨)';
-        btn.style.background = '#086f4f';
+    function renderAll() {
+      [1, 2, 3].forEach(t => {
+        document.getElementById('mount' + t).innerHTML = buildAppHTML(t);
       });
-      selectMyCar(activeCarIdx);
     }
 
-    function claimCoupon(btn) {
-      btn.textContent = '발급완료';
-      btn.classList.add('done');
+    function changeCar(idx) {
+      state.carIdx = idx;
+      [0, 1, 2].forEach(i => {
+        document.getElementById('carBtn' + i).classList.toggle('is-active', i === idx);
+      });
+      renderAll();
     }
 
-    function toggleGarageBar(num) {
-      const bar = document.getElementById('garageBar' + num);
-      if (bar) bar.classList.toggle('is-open');
+    function setExtraBudget(val) {
+      state.extraBudget = val;
+      renderAll();
     }
 
-    function scrollSec(containerId, secId, btn) {
-      btn.parentElement.querySelectorAll('.kc-tab').forEach(t => t.classList.remove('is-active'));
-      btn.classList.add('is-active');
-      const container = document.getElementById(containerId);
-      const sec = document.getElementById(secId);
-      if (container && sec) {
-        container.scrollTo({ top: sec.offsetTop - 95, behavior: 'smooth' });
+    function runMission() {
+      if (state.missionDone) return;
+      state.missionDone = true;
+      state.careScore = 96;
+      state.careBonus = 85;
+      renderAll();
+    }
+
+    function getCoupon(key) {
+      state.coupons[key] = true;
+      renderAll();
+    }
+
+    function toggleGarage(typeNum) {
+      state.garageOpen[typeNum] = !state.garageOpen[typeNum];
+      renderAll();
+    }
+
+    function jumpToSec(typeNum, secKey) {
+      const el = document.getElementById(`t${typeNum}_${secKey}`);
+      if (el) {
+        const y = el.getBoundingClientRect().top + window.scrollY - 76;
+        window.scrollTo({ top: y, behavior: 'smooth' });
       }
     }
 
-    function switchV3Tab(panelName, btn) {
-      btn.parentElement.querySelectorAll('.kc-tab').forEach(t => t.classList.remove('is-active'));
-      btn.classList.add('is-active');
-      ['Care', 'Price', 'Trade', 'Partner'].forEach(p => {
-        const el = document.getElementById('v3Panel' + p);
-        if (el) el.style.display = (p.toLowerCase() === panelName) ? 'block' : 'none';
-      });
+    function openModal() {
+      const car = GARAGE[state.carIdx];
+      document.getElementById('modalContent').innerHTML = car.specs.map(row => `
+        <div class="kv-row" style="padding-bottom:12px;border-bottom:1px solid var(--gray-8);">
+          <span class="ty-b1" style="color:var(--gray-3);">${row[0]}</span>
+          <span class="ty-b1-m" style="font-weight:700;">${row[1]}</span>
+        </div>
+      `).join('');
+      document.getElementById('specModal').classList.add('is-open');
     }
 
-    function openDetailModal(ver) {
-      document.getElementById('modal' + ver).classList.add('is-open');
-    }
-    function closeDetailModal(ver) {
-      document.getElementById('modal' + ver).classList.remove('is-open');
+    function closeModal() {
+      document.getElementById('specModal').classList.remove('is-open');
     }
 
-    function setLayoutMode(mode) {
-      layoutMode = mode;
-      document.getElementById('btnModeAll').classList.toggle('is-active', mode === 'all');
-      document.getElementById('btnModeOne').classList.toggle('is-active', mode === 'one');
-      document.getElementById('btnModeOne').classList.toggle('is-red', mode === 'one');
-      if (mode === 'all') {
-        [1, 2, 3].forEach(v => document.getElementById('verCol' + v).classList.remove('is-hidden'));
+    function setViewMode(mode) {
+      state.viewMode = mode;
+      const grid = document.getElementById('stageGrid');
+      document.getElementById('modeCompareBtn').classList.toggle('is-active', mode === 'compare');
+      document.getElementById('modeCompareBtn').classList.toggle('is-brand', mode === 'compare');
+      document.getElementById('modeSingleBtn').classList.toggle('is-active', mode === 'single');
+      document.getElementById('modeSingleBtn').classList.toggle('is-brand', mode === 'single');
+
+      grid.classList.toggle('single-mode', mode === 'single');
+
+      if (mode === 'compare') {
+        [1, 2, 3].forEach(t => document.getElementById('col' + t).classList.remove('is-hidden'));
       } else {
-        focusVersion(focusedVer);
+        selectDesign(state.selectedType);
       }
     }
 
-    function focusVersion(ver) {
-      focusedVer = ver;
-      [1, 2, 3].forEach(v => {
-        document.getElementById('btnVer' + v).classList.toggle('is-active', v === ver);
+    function selectDesign(num) {
+      state.selectedType = num;
+      [1, 2, 3].forEach(t => {
+        document.getElementById('selT' + t).classList.toggle('is-active', t === num);
       });
-      if (layoutMode === 'one') {
-        [1, 2, 3].forEach(v => {
-          document.getElementById('verCol' + v).classList.toggle('is-hidden', v !== ver);
+      if (state.viewMode === 'single') {
+        [1, 2, 3].forEach(t => {
+          document.getElementById('col' + t).classList.toggle('is-hidden', t !== num);
         });
       } else {
-        document.getElementById('verCol' + ver).scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        document.getElementById('col' + num).scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
       }
     }
 
-    // Initialize
-    selectMyCar(0);
+    renderAll();
   </script>
 </body>
 </html>
